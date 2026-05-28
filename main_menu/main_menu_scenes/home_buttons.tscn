@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://c3owdcdpsx1qd"]
+
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_g8f6d"]
+[ext_resource type="Script" uid="uid://b74hn360xwf07" path="res://main_menu/main_menu_scripts/home_buttons.gd" id="1_wubda"]
+[ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="2_wubda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5x7d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xjg0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8awx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yfe1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sy3g6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0w0s0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqlvd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxct1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wnnde"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkqsc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g44x5"]
+
+[node name="home_buttons" type="Control" unique_id=1333668451]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wubda")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1904825053]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer" unique_id=221332369]
+
+[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=467623412]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -136.0
+offset_right = 100.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Play" type="Button" parent="." unique_id=755462468]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 281.0
+offset_right = 704.0
+offset_bottom = 313.0
+focus_neighbor_top = NodePath("../Quit")
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_g8f6d")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5x7d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1xjg0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b8awx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yfe1f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_sy3g6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0w0s0")
+text = "Play"
+flat = true
+
+[node name="Settings" type="Button" parent="." unique_id=1204381775]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 323.0
+offset_right = 752.0
+offset_bottom = 355.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_g8f6d")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eqlvd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mxct1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wnnde")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vkqsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g44x5")
+text = "Options"
+flat = true
+
+[node name="Credits" type="Button" parent="." unique_id=1767830278]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 365.0
+offset_right = 752.0
+offset_bottom = 397.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_g8f6d")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eqlvd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mxct1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wnnde")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vkqsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g44x5")
+text = "Credits"
+flat = true
+
+[node name="Quit" type="Button" parent="." unique_id=1338479466]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 407.0
+offset_right = 704.0
+offset_bottom = 439.0
+focus_neighbor_bottom = NodePath("../Play")
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_g8f6d")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eqlvd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mxct1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wnnde")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vkqsc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g44x5")
+text = "Quit"
+flat = true
+
+[node name="Selector" type="Control" parent="." unique_id=924717865]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftDecoration" type="TextureRect" parent="Selector" unique_id=87841946]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 224.0
+offset_right = 536.0
+offset_bottom = 264.0
+texture = ExtResource("2_wubda")
+
+[node name="RightDecoration" type="TextureRect" parent="Selector" unique_id=831508346]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 224.0
+offset_right = 936.0
+offset_bottom = 264.0
+texture = ExtResource("2_wubda")
+flip_h = true
+
+[node name="Control" type="Control" parent="." unique_id=1852274753]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_top = -40.0
+offset_right = 58.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Control" unique_id=1730687185]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -23.0
+offset_right = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_g8f6d")
+theme_override_font_sizes/font_size = 18
+text = "Version: 1.0"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

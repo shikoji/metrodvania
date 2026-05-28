@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://csd61q4b1tevi"]
+
+[ext_resource type="Script" uid="uid://b22sf6wdimm74" path="res://main_menu/main_menu_scripts/options.gd" id="1_emxbx"]
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="2_80rkp"]
+[ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="3_rtyio"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dv51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sp024"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uf3o2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_japh6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_it76j"]
+
+[node name="options" type="Control" unique_id=1248114316]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emxbx")
+right_selector_gap = 20.0
+item_zoom_time = 0.08
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=339541415]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="MenuButtons" type="VBoxContainer" parent="." unique_id=2143110435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -136.0
+offset_right = 469.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="MasterRow" type="HBoxContainer" parent="MenuButtons" unique_id=769728399]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Master_volume" type="Label" parent="MenuButtons/MasterRow" unique_id=1837293011]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Master Volume:"
+
+[node name="MasterSlider" type="HSlider" parent="MenuButtons/MasterRow" unique_id=1982961445]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+
+[node name="MasterValue" type="Label" parent="MenuButtons/MasterRow" unique_id=154966279]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
+
+[node name="MusicRow" type="HBoxContainer" parent="MenuButtons" unique_id=569790004]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Music_Volume" type="Label" parent="MenuButtons/MusicRow" unique_id=953837521]
+custom_minimum_size = Vector2(448, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Music Volume:"
+
+[node name="MusicSlider" type="HSlider" parent="MenuButtons/MusicRow" unique_id=1231820926]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+
+[node name="MusicValue" type="Label" parent="MenuButtons/MusicRow" unique_id=2055857349]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
+
+[node name="SFxRow" type="HBoxContainer" parent="MenuButtons" unique_id=1140858269]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Sfx_volume" type="Label" parent="MenuButtons/SFxRow" unique_id=412873238]
+custom_minimum_size = Vector2(448, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Sfx:"
+
+[node name="SfxSlider" type="HSlider" parent="MenuButtons/SFxRow" unique_id=1531680004]
+custom_minimum_size = Vector2(300, 35)
+layout_mode = 2
+
+[node name="SfxValue" type="Label" parent="MenuButtons/SFxRow" unique_id=2139932453]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
+
+[node name="FullscreenRow" type="HBoxContainer" parent="MenuButtons" unique_id=1080364256]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Fullscreen_volume" type="Button" parent="MenuButtons/FullscreenRow" unique_id=1991260686]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uf3o2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_japh6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_it76j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Fullscreen:"
+flat = true
+
+[node name="FullscreenValue" type="Label" parent="MenuButtons/FullscreenRow" unique_id=873170935]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+
+[node name="VSyncRow" type="HBoxContainer" parent="MenuButtons" unique_id=138888018]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VSync_volume" type="Button" parent="MenuButtons/VSyncRow" unique_id=857584382]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uf3o2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_japh6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_it76j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "VSync:"
+flat = true
+
+[node name="VSyncValue" type="Label" parent="MenuButtons/VSyncRow" unique_id=1131036464]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+
+[node name="BackRow" type="HBoxContainer" parent="MenuButtons" unique_id=1520632640]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Back" type="Button" parent="MenuButtons/BackRow" unique_id=80794937]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uf3o2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_japh6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_it76j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Back"
+flat = true
+
+[node name="Selector" type="Control" parent="." unique_id=790274440]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="LeftDecoration" type="TextureRect" parent="Selector" unique_id=751923409]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 112.0
+offset_right = 856.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("3_rtyio")
+
+[node name="RightDecoration" type="TextureRect" parent="Selector" unique_id=2070055539]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 112.0
+offset_right = 1256.0
+offset_bottom = 152.0
+mouse_filter = 2
+texture = ExtResource("3_rtyio")
+flip_h = true
+
+[connection signal="pressed" from="MenuButtons/BackRow/Back" to="." method="_on_back_pressed"]

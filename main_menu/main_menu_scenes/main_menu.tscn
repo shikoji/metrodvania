@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://y2mqmq6y1kjc"]
+
+[ext_resource type="Script" uid="uid://8oyjslhn3aqp" path="res://main_menu/main_menu_scripts/main_menu.gd" id="1_rryjh"]
+[ext_resource type="PackedScene" uid="uid://c3owdcdpsx1qd" path="res://main_menu/main_menu_scenes/home_buttons.tscn" id="2_wi2um"]
+[ext_resource type="PackedScene" uid="uid://csd61q4b1tevi" path="res://main_menu/main_menu_scenes/options.tscn" id="3_rryjh"]
+[ext_resource type="AudioStream" uid="uid://dwvppgan72mty" path="res://main_menu/main_menu_assets/Relaxing audio.mp3" id="4_0up7n"]
+
+[node name="MainMenu" type="Control" unique_id=100007282]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rryjh")
+
+[node name="Background" type="ColorRect" parent="." unique_id=664911551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+
+[node name="home_buttons" parent="." unique_id=1333668451 instance=ExtResource("2_wi2um")]
+layout_mode = 1
+
+[node name="options" parent="." unique_id=1248114316 instance=ExtResource("3_rryjh")]
+visible = false
+layout_mode = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2047958842]
+stream = ExtResource("4_0up7n")
+volume_db = 20.0
+autoplay = true

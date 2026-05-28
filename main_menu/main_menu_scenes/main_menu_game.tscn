@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://dnq57cig1fyvr"]
+
+[ext_resource type="Script" uid="uid://7md2hjqpq4a0" path="res://main_menu/main_menu_scripts/main_menu_game.gd" id="1_21amt"]
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_68ugc"]
+[ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="2_21amt"]
+[ext_resource type="Texture2D" uid="uid://cmre073bsmmgg" path="res://main_menu/main_menu_assets/DividerD.png" id="4_b8xyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8xyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eldeg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7w8vc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oli04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5upbn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wkigb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xypca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt3ia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7j01n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjtrm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyeha"]
+
+[node name="main_menu_game" type="Control" unique_id=1447221991]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_21amt")
+
+[node name="Continue" type="Button" parent="." unique_id=700529832]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -64.0
+offset_right = 133.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Menu")
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_68ugc")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b8xyd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eldeg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7w8vc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_oli04")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5upbn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wkigb")
+text = "Continue"
+flat = true
+
+[node name="Settings" type="Button" parent="." unique_id=1682186811]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 341.0
+offset_right = 774.0
+offset_bottom = 373.0
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_68ugc")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xypca")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pt3ia")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7j01n")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yjtrm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nyeha")
+text = "Options"
+flat = true
+
+[node name="Menu" type="Button" parent="." unique_id=453177641]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 386.0
+offset_right = 705.0
+offset_bottom = 418.0
+focus_neighbor_bottom = NodePath("../Continue")
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_68ugc")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xypca")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pt3ia")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7j01n")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_yjtrm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nyeha")
+text = "menu"
+flat = true
+
+[node name="Selector" type="Control" parent="." unique_id=1760509910]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftDecoration" type="TextureRect" parent="Selector" unique_id=2092898548]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 88.0
+offset_right = 872.0
+offset_bottom = 128.0
+texture = ExtResource("2_21amt")
+
+[node name="RightDecoration" type="TextureRect" parent="Selector" unique_id=1532156465]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 88.0
+offset_right = 1272.0
+offset_bottom = 128.0
+texture = ExtResource("2_21amt")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1859108336]
+position = Vector2(640, 260)
+scale = Vector2(7, 7)
+texture = ExtResource("4_b8xyd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1516268458]
+position = Vector2(640, 445)
+scale = Vector2(7, 7)
+texture = ExtResource("4_b8xyd")
+flip_v = true
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
