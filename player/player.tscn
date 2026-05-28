@@ -453,6 +453,7 @@ size = Vector2(21, 40)
 collision_mask = 2
 script = ExtResource("1_rgyib")
 max_life = 2
+attack_hitbox_active_time = 0.3
 metadata/_edit_horizontal_guides_ = [-18.0]
 
 [node name="colider" type="CollisionShape2D" parent="." unique_id=292948900]

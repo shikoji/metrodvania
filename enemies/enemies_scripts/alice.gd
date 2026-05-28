@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var max_hp: int = 5
-@export var contact_damage: int = 1
+@export var contact_damage: int = 10
 @export var speed: float = 60.0
 @export var gravity: float = 900.0
 
@@ -142,6 +142,7 @@ func update_facing() -> void:
 func attack_player() -> void:
 	if _dead or _attacking or _player_in_range == null:
 		return
+	
 	if _attack_cd > 0.0:
 		return
 
@@ -149,11 +150,24 @@ func attack_player() -> void:
 	_attack_cd = attack_interval
 	velocity.x = 0.0
 
-	# toca attack (sem loop)
+	# toca animação
 	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_attack):
 		anim.play(anim_attack)
 
-	# aplica dano imediato (você pode sincronizar com frame depois)
+	# espera o frame do golpe
+	await get_tree().create_timer(0.25).timeout
+
+	# segurança
+	if _dead:
+		return
+	
+	if not _attacking:
+		return
+	
+	if _player_in_range == null:
+		return
+
+	# aplica dano no timing do ataque
 	_apply_damage_to_player(_player_in_range)
 
 func take_damage(amount: int) -> void:
@@ -216,10 +230,15 @@ func _on_attack_area_area_exited(area: Area2D) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if _dead:
 		return
-
-	# 1 hit por swing do player
+		
+		
 	if not area.has_meta("swing_id"):
 		return
+
+	if not area.get_meta("is_attacking", false):
+		return
+		
+		
 	var swing_id := int(area.get_meta("swing_id"))
 	if swing_id == _last_player_swing_id:
 		return

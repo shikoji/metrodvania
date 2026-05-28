@@ -10,10 +10,7 @@ extends Node2D
 
 var game_over_started := false
 
-func _physics_process(_delta: float):
-	if Global.player_life <= 0 and not game_over_started:
-		game_over_started = true
-		game_over()
+
 
 func _ready() -> void:
 	Global.player_start_position = player_start_position
@@ -23,7 +20,7 @@ func _ready() -> void:
 	
 	Global.respawn_player()
 	
-	Global.player.player_has_died.connect(reload_game)
+	Global.player.player_has_died.connect(game_over)
 	
 	SceneManager.play_transition_out()
 

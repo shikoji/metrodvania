@@ -91,6 +91,8 @@ func _ready() -> void:
 	# >>> ADICIONE ISTO:
 	player_attack_area.monitoring = false
 	player_attack_area.monitorable = true
+	player_attack_area.set_meta("is_attacking", false)
+	player_attack_area.monitoring = false
 
 
 func _physics_process(delta: float) -> void:
@@ -173,14 +175,21 @@ func start_attack() -> void:
 	animation_sprite.frame = 0
 	
 	_swing_id += 1
+	
 	player_attack_area.set_meta("swing_id", _swing_id)
 	player_attack_area.set_meta("damage", attack_damage)
-
+	player_attack_area.set_meta("is_attacking", true)
+	
+	await get_tree().create_timer(0.08).timeout
+	
 	player_attack_area.monitoring = true
+	
 	await get_tree().create_timer(attack_hitbox_active_time).timeout
+	
 	# só desliga se ainda for o mesmo swing
 	if player_attack_area.get_meta("swing_id", -1) == _swing_id:
 		player_attack_area.monitoring = false
+		player_attack_area.set_meta("is_attacking", false)
 
 
 func request_roll() -> void:
@@ -395,6 +404,7 @@ func _on_animation_finished() -> void:
 			
 			# >>> ADICIONE ISTO (segurança):
 			player_attack_area.monitoring = false
+			player_attack_area.set_deferred("monitoring", false)
 			
 			if attack_queued and attack_buffer_timer > 0.0:
 				start_attack()
@@ -453,14 +463,16 @@ func take_damage(amount: int) -> void:
 	_inv_timer = invincibility_time
 
 	life -= amount
-
+	
+	Global.player_life = life
+	
 	if life <= 0:
 		life = 0
 		death()
 		return
 
 	# Só atualiza o Global se NÃO morreu
-	Global.player_life = life
+	
 
 	is_hurt = true
 	hurt_timer = hurt_lock_time
@@ -482,13 +494,16 @@ func death() -> void:
 
 	player_attack_area.set_deferred("monitoring", false)
 	player_hurtbox.set_deferred("monitoring", false)
-
+	
+	player_attack_area.queue_free()
+	player_hurtbox.queue_free()
+	
 	set_physics_process(false)
 
 	animation_sprite.play("death")
 	animation_sprite.frame = 0
 
-	await get_tree().create_timer(0.8).timeout
+	while animation_sprite.frame < animation_sprite.sprite_frames.get_frame_count("death") - 2:
+		await get_tree().process_frame
 	
-	Global.player_life = 0
 	player_has_died.emit()

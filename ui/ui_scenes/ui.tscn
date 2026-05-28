@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dw2g72c6e2oty"]
+
+[ext_resource type="Texture2D" uid="uid://coxbvai143ebp" path="res://ui/ui_assents/Red/BossBarCBackground.png" id="1_lxx45"]
+[ext_resource type="Texture2D" uid="uid://bslkc2rsejdpl" path="res://ui/ui_assents/Red/BossBarCForeground.png" id="2_rawjh"]
+[ext_resource type="Texture2D" uid="uid://cyrmvbfc8ipvm" path="res://ui/ui_assents/Red/BossBarCFill.png" id="3_g0q25"]
+[ext_resource type="Script" uid="uid://7f2vmtmqq4q" path="res://ui/ui_scripts/texture_progress_bar.gd" id="4_rawjh"]
+
+[node name="ui" type="CanvasLayer" unique_id=359356806]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1213289342]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(6, 6)
+step = 0.0
+texture_under = ExtResource("1_lxx45")
+texture_over = ExtResource("2_rawjh")
+texture_progress = ExtResource("3_g0q25")
+texture_progress_offset = Vector2(3, 2)
+script = ExtResource("4_rawjh")
+
+[node name="Timer" type="Timer" parent="." unique_id=1362373368]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="TextureProgressBar" method="_on_timer_timeout"]
