@@ -42,6 +42,9 @@
 [ext_resource type="Texture2D" uid="uid://cb72eu318m8lr" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt07.png" id="21_vx8kc"]
 [ext_resource type="Texture2D" uid="uid://dtfhgyx60lcop" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk08.png" id="22_ttlbc"]
 [ext_resource type="Texture2D" uid="uid://csigdkdjx6bhb" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt08.png" id="22_y2elh"]
+[ext_resource type="Texture2D" uid="uid://dpynfdntl6ak8" path="res://ui/ui_assents/Red/RegularBarABackground.png" id="43_qnydx"]
+[ext_resource type="Texture2D" uid="uid://b4ijx35fasnva" path="res://ui/ui_assents/Red/RegularBarAForeground.png" id="44_gdgo6"]
+[ext_resource type="Texture2D" uid="uid://bkt33gmjjsdml" path="res://ui/ui_assents/Red/RegularBarAFill.png" id="45_p30vy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_epted"]
 animations = [{
@@ -216,10 +219,9 @@ script = ExtResource("1_0f0xg")
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1879266000]
 position = Vector2(1, -42)
 sprite_frames = SubResource("SpriteFrames_epted")
-animation = &"attack"
+animation = &"walk"
 autoplay = "walk"
-frame = 5
-frame_progress = 1.0
+frame_progress = 0.1336977
 
 [node name="colision" type="CollisionShape2D" parent="." unique_id=1283065198]
 position = Vector2(2, -20)
@@ -251,3 +253,21 @@ collision_mask = 2
 position = Vector2(10, 0)
 target_position = Vector2(0, 10)
 collision_mask = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1581653900]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -46.0
+offset_right = 8.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.6)
+max_value = 5.0
+step = 0.0
+texture_under = ExtResource("43_qnydx")
+texture_over = ExtResource("44_gdgo6")
+texture_progress = ExtResource("45_p30vy")
+texture_progress_offset = Vector2(2, 2)

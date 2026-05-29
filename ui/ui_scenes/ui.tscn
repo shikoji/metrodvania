@@ -17,8 +17,3 @@ texture_over = ExtResource("2_rawjh")
 texture_progress = ExtResource("3_g0q25")
 texture_progress_offset = Vector2(3, 2)
 script = ExtResource("4_rawjh")
-
-[node name="Timer" type="Timer" parent="." unique_id=1362373368]
-wait_time = 3.0
-
-[connection signal="timeout" from="Timer" to="TextureProgressBar" method="_on_timer_timeout"]

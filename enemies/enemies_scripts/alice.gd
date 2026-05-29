@@ -45,7 +45,10 @@ var _floor_ray_base_target: Vector2
 var _hurt_shape_base_pos: Vector2
 var _attack_shape_base_pos: Vector2
 
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
+
 func _ready() -> void:
+	texture_progress_bar.value = max_hp
 	hp = max_hp
 
 	_wall_ray_base_pos = wall_ray.position
@@ -71,6 +74,19 @@ func _ready() -> void:
 	_play_walk()
 
 func _physics_process(delta: float) -> void:
+	if is_instance_valid(texture_progress_bar):
+		texture_progress_bar.value = lerpf(
+			texture_progress_bar.value,
+			hp,
+			5.0 * delta
+		)
+
+	if hp <= 0:
+		if is_instance_valid(texture_progress_bar):
+			texture_progress_bar.queue_free()
+
+		_dead = true
+	
 	if _dead:
 		return
 
