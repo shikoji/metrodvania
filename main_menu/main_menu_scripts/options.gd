@@ -476,3 +476,16 @@ func focus_first_option() -> void:
 
 func _on_back_pressed() -> void:
 	back_to_home.emit()
+
+
+func process_audio_sliders() -> void:
+	var sfx_index = AudioServer.get_bus_index("Sounds")
+	var music_index = AudioServer.get_bus_index("Music")
+	var master_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_linear(sfx_index, sfx_slider.value / 100.0)
+	AudioServer.set_bus_volume_linear(music_index, music_slider.value / 100.0)
+	AudioServer.set_bus_volume_linear(master_index, master_slider.value / 100.0)
+
+
+func _process(_delta: float) -> void:
+	process_audio_sliders()
