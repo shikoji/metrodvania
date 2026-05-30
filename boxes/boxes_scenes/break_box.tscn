@@ -71,7 +71,7 @@ _data = {
 [node name="break-box" type="RigidBody2D" unique_id=1106866653]
 collision_layer = 2
 collision_mask = 5
-mass = 4.0
+mass = 50.0
 gravity_scale = 0.2
 script = ExtResource("1_vbiny")
 pieces = PackedStringArray("res://boxes/boxes_assents/brick-piece-01.png", "res://boxes/boxes_assents/brick-piece-02.png", "res://boxes/boxes_assents/brick-piece-03.png", "res://boxes/boxes_assents/brick-piece-04.png")
