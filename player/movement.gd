@@ -49,8 +49,11 @@ var last_wall_normal_x: float = 0.0
 var wall_slide_exit_timer: float = 0.0
 
 var is_respawning_from_fall: bool = false
+
+#==box valuies
 var PushForce:int = 200
 var push_buffer_timer: float = 0.0
+@onready var box_ray = $BoxRay
 
 # --- Hitboxes / Hurtboxes (NÃO mexe no resto do player) ---
 @onready var player_hurtbox: Area2D = $HurtBoxArea2d
@@ -98,18 +101,22 @@ func _ready() -> void:
 	player_attack_area.set_meta("is_attacking", false)
 	player_attack_area.monitoring = false
 
-func RigidBodyCollision():
+func RigidBodyCollision() -> void:
 	for i in get_slide_collision_count():
-		var Collision = get_slide_collision(i)
-		var Body = Collision.get_collider()
+		var collision := get_slide_collision(i)
+		var body := collision.get_collider()
 		
-		if Body is RigidBody2D:
-			# Refresh the buffer timer while touching the box
-			push_buffer_timer = 0.15 
+		if body is RigidBody2D:
+			var normal := collision.get_normal()
+			if abs(normal.y) > 0.7: 
+				continue
+			if box_ray.is_colliding():
+				push_buffer_timer = 0.15
+				var push_direction := Vector2(-normal.x, 0.0).normalized()
+				body.apply_central_impulse(push_direction * PushForce)
+				
+				velocity.x = lerp(velocity.x, 0.0, 0.25)
 			
-			Body.apply_central_impulse(Collision.get_normal() * -PushForce)
-			velocity.x = lerp(velocity.x, 0.0, 0.25)
-	
 func _physics_process(delta: float) -> void:
 	
 	update_timers(delta)
@@ -370,8 +377,10 @@ func sprite_flip() -> void:
 		return
 	
 	if horizontal_direction > 0.0:
+		box_ray.target_position = Vector2(15,0)
 		animation_sprite.flip_h = false
 	elif horizontal_direction < 0.0:
+		box_ray.target_position = Vector2(-15,0)
 		animation_sprite.flip_h = true
 		
 	update_attack_facing()
@@ -410,7 +419,7 @@ func animations() -> void:
 			play_animation("fall")
 		return
 	
-	if push_buffer_timer > 0.0:
+	if push_buffer_timer > 0.0 and $BoxRay:
 		play_animation("push")
 	elif abs(velocity.x) > 10.0:
 		play_animation("run")

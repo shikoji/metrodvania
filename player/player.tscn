@@ -560,9 +560,8 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"push"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.44842672
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
 zoom = Vector2(2, 2)
@@ -594,5 +593,11 @@ bus = &"Sounds"
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1270309170]
 stream = SubResource("AudioStreamRandomizer_65viv")
 bus = &"Sounds"
+
+[node name="BoxRay" type="RayCast2D" parent="." unique_id=1214862258]
+exclude_parent = false
+target_position = Vector2(15, 0)
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]
