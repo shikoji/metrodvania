@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 const box_pieces = preload("res://boxes/boxes_scenes/box_pieces.tscn")
 

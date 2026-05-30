@@ -180,3 +180,6 @@ position = Vector2(784, 616)
 
 [node name="break-box" parent="." unique_id=1599972065 instance=ExtResource("12_4kh6q")]
 position = Vector2(744, 632)
+collision_mask = 7
+mass = 20.0
+gravity_scale = 0.5

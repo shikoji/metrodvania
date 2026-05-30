@@ -48,8 +48,8 @@ var last_wall_normal_x: float = 0.0
 var wall_slide_exit_timer: float = 0.0
 
 var is_respawning_from_fall: bool = false
-
-
+var PushForce:int = 200
+var push_buffer_timer: float = 0.0
 
 # --- Hitboxes / Hurtboxes (NÃO mexe no resto do player) ---
 @onready var player_hurtbox: Area2D = $HurtBoxArea2d
@@ -94,11 +94,24 @@ func _ready() -> void:
 	player_attack_area.set_meta("is_attacking", false)
 	player_attack_area.monitoring = false
 
-
+func RigidBodyCollision():
+	for i in get_slide_collision_count():
+		var Collision = get_slide_collision(i)
+		var Body = Collision.get_collider()
+		
+		if Body is RigidBody2D:
+			# Refresh the buffer timer while touching the box
+			push_buffer_timer = 0.15 
+			
+			Body.apply_central_impulse(Collision.get_normal() * -PushForce)
+			velocity.x = lerp(velocity.x, 0.0, 0.25)
+	
 func _physics_process(delta: float) -> void:
+	
 	update_timers(delta)
 	read_action_inputs()
 	jump_buffer(delta)
+	
 	
 	if is_rolling:
 		roll_movement(delta)
@@ -108,10 +121,10 @@ func _physics_process(delta: float) -> void:
 		wall_movement(delta)
 	
 	move_and_slide()
-	
 	update_wall_slide_state(delta)
-	sprite_flip()
 	animations()
+	sprite_flip()
+	RigidBodyCollision()
 	
 	
 	for platforms in get_slide_collision_count():
@@ -138,7 +151,9 @@ func update_timers(delta: float) -> void:
 		hurt_timer -= delta
 	else:
 		is_hurt = false
-
+	
+	if push_buffer_timer > 0.0:
+		push_buffer_timer -= delta
 
 func read_action_inputs() -> void:
 	if Input.is_action_just_pressed("attack"):
@@ -393,7 +408,9 @@ func animations() -> void:
 			play_animation("fall")
 		return
 	
-	if abs(velocity.x) > 10.0:
+	if push_buffer_timer > 0.0:
+		play_animation("push")
+	elif abs(velocity.x) > 10.0:
 		play_animation("run")
 	else:
 		play_animation("idle")
