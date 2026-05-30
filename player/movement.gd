@@ -1,6 +1,7 @@
 extends CharacterBody2D
-
+class_name Player
 @onready var animation_sprite: AnimatedSprite2D = $animation_sprite
+
 
 @export_group("Horizontal Movement X")
 @export var horizontal_max_speed: float = 240.0
@@ -136,7 +137,6 @@ func _physics_process(delta: float) -> void:
 			collision.get_collider().has_collided_with(collision, self)
 			
 	
-
 
 func update_timers(delta: float) -> void:
 	if roll_cooldown_timer > 0.0:

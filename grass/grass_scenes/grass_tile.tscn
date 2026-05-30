@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b8ynx6r3bx6xh"]
+
+[ext_resource type="Script" uid="uid://d2dccpd6tleo4" path="res://grass/grass_scripts/grass_tile.gd" id="1_ifghj"]
+[ext_resource type="Texture2D" uid="uid://cg2o2qbbmx7ov" path="res://grass/grass_assents/tileset.png" id="2_k36i7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_baapu"]
+size = Vector2(16, 13)
+
+[sub_resource type="Animation" id="Animation_iws3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5n5ob"]
+resource_name = "sway"
+length = 0.40000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:skew")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3, 0.40000004),
+"transitions": PackedFloat32Array(4, 4, 4, 4, 4),
+"update": 0,
+"values": [0.0, 0.17453292519943295, 0.0, -0.17453292519943295, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ng1ox"]
+_data = {
+&"RESET": SubResource("Animation_iws3s"),
+&"sway": SubResource("Animation_5n5ob")
+}
+
+[node name="grass_tile" type="Node2D" unique_id=249449535]
+script = ExtResource("1_ifghj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=293888397]
+position = Vector2(0, 8)
+texture = ExtResource("2_k36i7")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(48, 112, 16, 16)
+
+[node name="grass_area" type="Area2D" parent="." unique_id=1122220457]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grass_area" unique_id=725855452]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_baapu")
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=31347803]
+libraries/ = SubResource("AnimationLibrary_ng1ox")
+speed_scale = 1.1
+
+[connection signal="body_entered" from="grass_area" to="." method="_on_grass_area_body_entered"]
