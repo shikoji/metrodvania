@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://b484rhov6eunm"
 SceneManager="*uid://kfccxhshkt1e"
+ParticleHelper="*uid://bfbwnt7u86mk1"
 
 [display]
 

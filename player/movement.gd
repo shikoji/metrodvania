@@ -481,7 +481,6 @@ func handle_death_zone() -> void:
 
 
 func take_damage(amount: int) -> void:
-	hurt_sound.play()
 	if is_dead:
 		return
 
@@ -494,6 +493,11 @@ func take_damage(amount: int) -> void:
 	_inv_timer = invincibility_time
 
 	life -= amount
+	
+	hurt_sound.play()
+	var particles = ParticleHelper.spawn_particles(position)
+	var particles_material: ParticleProcessMaterial = particles.process_material
+	particles_material.color = Color.RED
 	
 	Global.player_life = life
 	
@@ -543,6 +547,8 @@ func death() -> void:
 @onready var camera: Camera2D = $Camera2D
 
 func _on_attack_area_2d_body_entered(body: Node2D) -> void:
+	var particle = ParticleHelper.spawn_particles($AttackArea2d/CollisionShape2D.global_position)
+	
 	if body.has_method("break_sprite"):
 		camera.shake(2.5, 0.05);
 		body.hitpoints -= 1
