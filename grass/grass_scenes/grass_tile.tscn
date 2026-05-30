@@ -54,6 +54,8 @@ region_enabled = true
 region_rect = Rect2(48, 112, 16, 16)
 
 [node name="grass_area" type="Area2D" parent="." unique_id=1122220457]
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="grass_area" unique_id=725855452]
 position = Vector2(0, 1.5)

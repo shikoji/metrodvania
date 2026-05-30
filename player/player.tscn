@@ -9,19 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://cjqssyhd5acq5" path="res://player/assets/Sword Run/Player Sword Run 48x48.png" id="6_8t03j"]
 [ext_resource type="Texture2D" uid="uid://bnce7y8564hoe" path="res://player/assets/Wall Slide/player wall slide (left) 48x48.png" id="6_ebec5"]
 [ext_resource type="Texture2D" uid="uid://dwobyu4y7jjjv" path="res://player/assets/Hurt-Damaged/Player Hurt 48x48.png" id="6_kb6p2"]
-
 [ext_resource type="Texture2D" uid="uid://tpmy2qkx7s32" path="res://player/assets/Push/player push 48x48 2.png" id="7_8t03j"]
-
 [ext_resource type="Script" uid="uid://cx6fq3pn4ih2t" path="res://player/camera.gd" id="11_32hag"]
 [ext_resource type="AudioStream" uid="uid://bq7dnb4jflxy1" path="res://player/assets/sfx/swish-1.wav" id="11_wodsf"]
 [ext_resource type="AudioStream" uid="uid://rwmm1sdsaf2r" path="res://player/assets/sfx/swish-2.wav" id="12_32hag"]
 [ext_resource type="AudioStream" uid="uid://dirchx3gin34y" path="res://player/assets/sfx/swish-3.wav" id="13_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dcbveadjjwe36" path="res://player/assets/sfx/swish-4.wav" id="14_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
-
-
-
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
 size = Vector2(18, 30)
@@ -572,16 +566,9 @@ frame_progress = 0.44842672
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
 zoom = Vector2(2, 2)
-
-script = ExtResource("11_32hag")
-
-
 position_smoothing_enabled = true
 position_smoothing_speed = 30.0
-
 script = ExtResource("11_32hag")
-
-
 
 [node name="HurtBoxArea2d" type="Area2D" parent="." unique_id=38396516]
 collision_layer = 64
