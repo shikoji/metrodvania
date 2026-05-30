@@ -190,6 +190,8 @@ func start_attack() -> void:
 	if player_attack_area.get_meta("swing_id", -1) == _swing_id:
 		player_attack_area.monitoring = false
 		player_attack_area.set_meta("is_attacking", false)
+		
+		
 
 
 func request_roll() -> void:
@@ -507,3 +509,12 @@ func death() -> void:
 		await get_tree().process_frame
 	
 	player_has_died.emit()
+
+
+func _on_attack_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("break_sprite"):
+		body.hitpoints -= 1
+		if body.hitpoints <= 0:
+			body.break_sprite()
+		else:
+			body.animation_player.play("hit")

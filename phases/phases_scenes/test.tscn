@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbljtl0gbg1xn" path="res://fall_zone/fall_zone_scenes/fall_zone.tscn" id="9_phac4"]
 [ext_resource type="PackedScene" uid="uid://d1cckj3p1spci" path="res://enemies/enemies_scenes/alice.tscn" id="10_yi8wp"]
 [ext_resource type="PackedScene" uid="uid://dw2g72c6e2oty" path="res://ui/ui_scenes/ui.tscn" id="11_14cvr"]
+[ext_resource type="PackedScene" uid="uid://bs4hh44mw8g8a" path="res://boxes/boxes_scenes/break_box.tscn" id="12_4kh6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5lwsv"]
 resource_name = "floor"
@@ -176,3 +177,6 @@ shape = SubResource("RectangleShape2D_yi8wp")
 position = Vector2(784, 616)
 
 [node name="ui" parent="." unique_id=359356806 instance=ExtResource("11_14cvr")]
+
+[node name="break-box" parent="." unique_id=1599972065 instance=ExtResource("12_4kh6q")]
+position = Vector2(744, 632)

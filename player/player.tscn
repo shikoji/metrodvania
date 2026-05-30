@@ -480,8 +480,10 @@ debug_color = Color(1, 0.023529412, 0, 0.41960785)
 
 [node name="AttackArea2d" type="Area2D" parent="." unique_id=1580345613]
 collision_layer = 8
-collision_mask = 16
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2d" unique_id=997259648]
 position = Vector2(18.5, -4)
 shape = SubResource("RectangleShape2D_hg6s5")
+
+[connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]

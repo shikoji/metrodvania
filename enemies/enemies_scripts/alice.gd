@@ -17,6 +17,7 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $anim
 @onready var wall_ray: RayCast2D = $RayCast2D
+@onready var wall_ray2: RayCast2D = $RayCast2D3
 @onready var floor_ray: RayCast2D = $RayCast2D2
 
 @onready var hurtbox: Area2D = $HurtBoxArea2d
@@ -39,8 +40,10 @@ var _last_player_swing_id: int = -999999
 
 # Flip base direita
 var _wall_ray_base_pos: Vector2
+var _wall_ray2_base_pos: Vector2
 var _floor_ray_base_pos: Vector2
 var _wall_ray_base_target: Vector2
+var _wall_ray2_base_target: Vector2
 var _floor_ray_base_target: Vector2
 var _hurt_shape_base_pos: Vector2
 var _attack_shape_base_pos: Vector2
@@ -52,8 +55,10 @@ func _ready() -> void:
 	hp = max_hp
 
 	_wall_ray_base_pos = wall_ray.position
+	_wall_ray2_base_pos = wall_ray2.position
 	_floor_ray_base_pos = floor_ray.position
 	_wall_ray_base_target = wall_ray.target_position
+	_wall_ray2_base_target = wall_ray2.target_position
 	_floor_ray_base_target = floor_ray.target_position
 	_hurt_shape_base_pos = hurt_shape.position
 	_attack_shape_base_pos = attack_shape.position
@@ -106,8 +111,9 @@ func _physics_process(delta: float) -> void:
 	# virar
 	if can_move and is_on_floor() and _turn_cd <= 0.0:
 		wall_ray.force_raycast_update()
+		wall_ray2.force_raycast_update()
 		floor_ray.force_raycast_update()
-		if wall_ray.is_colliding() or not floor_ray.is_colliding():
+		if wall_ray.is_colliding() or wall_ray2.is_colliding() or not floor_ray.is_colliding():
 			flip_direction()
 			_turn_cd = turn_cooldown
 
@@ -147,7 +153,9 @@ func update_facing() -> void:
 
 	# flip raycasts
 	wall_ray.position = Vector2(_wall_ray_base_pos.x * xsign, _wall_ray_base_pos.y)
+	wall_ray2.position = Vector2(_wall_ray2_base_pos.x * xsign, _wall_ray2_base_pos.y)
 	wall_ray.target_position = Vector2(_wall_ray_base_target.x * xsign, _wall_ray_base_target.y)
+	wall_ray2.target_position = Vector2(_wall_ray2_base_target.x * xsign, _wall_ray2_base_target.y)
 
 	floor_ray.position = Vector2(_floor_ray_base_pos.x * xsign, _floor_ray_base_pos.y)
 	floor_ray.target_position = Vector2(_floor_ray_base_target.x * xsign, _floor_ray_base_target.y)
@@ -242,6 +250,9 @@ func _on_attack_area_area_exited(area: Area2D) -> void:
 	var player := area.get_parent()
 	if player == _player_in_range:
 		_player_in_range = null
+
+
+
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if _dead:

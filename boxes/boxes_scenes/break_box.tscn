@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bs4hh44mw8g8a"]
+
+[ext_resource type="Texture2D" uid="uid://ds65s0wtudks1" path="res://boxes/boxes_assents/Blocks (16 x 16).png" id="1_fv82w"]
+[ext_resource type="Script" uid="uid://cjwafq88xq7f6" path="res://boxes/boxes_scripts/break_box.gd" id="1_vbiny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbiny"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_s57lp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vbiny"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.752941, 0.0784314, 0.141176, 0.917647), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uyajm"]
+_data = {
+&"RESET": SubResource("Animation_s57lp"),
+&"hit": SubResource("Animation_vbiny")
+}
+
+[node name="break-box" type="CharacterBody2D" unique_id=1599972065]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_vbiny")
+pieces = PackedStringArray("res://boxes/boxes_assents/brick-piece-01.png", "res://boxes/boxes_assents/brick-piece-02.png", "res://boxes/boxes_assents/brick-piece-03.png", "res://boxes/boxes_assents/brick-piece-04.png")
+hitpoints = 1
+
+[node name="texture" type="Sprite2D" parent="." unique_id=215100259]
+texture = ExtResource("1_fv82w")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="colision" type="CollisionShape2D" parent="." unique_id=2085944895]
+shape = SubResource("RectangleShape2D_vbiny")
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1754519131]
+libraries/ = SubResource("AnimationLibrary_uyajm")

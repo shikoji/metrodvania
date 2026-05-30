@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cvvh2hujgf0al"]
+
+[ext_resource type="Script" uid="uid://cda3vdvmeajs7" path="res://boxes/boxes_scripts/box_pieces.gd" id="1_lnptf"]
+
+[node name="box-pieces" type="RigidBody2D" unique_id=66351772]
+script = ExtResource("1_lnptf")
+
+[node name="texture" type="Sprite2D" parent="." unique_id=2055283780]
+
+[node name="notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=758308767]
+
+[connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]
