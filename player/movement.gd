@@ -73,6 +73,9 @@ var hurt_timer: float = 0.0
 
 var is_dead: bool = false
 
+@onready var attack_sound: AudioStreamPlayer2D = $AttackSound
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
+
 func update_attack_facing() -> void:
 	# Se flip_h = true, player está olhando pra ESQUERDA.
 	var xsign := -1.0 if animation_sprite.flip_h else 1.0
@@ -198,6 +201,7 @@ func start_attack() -> void:
 	await get_tree().create_timer(0.08).timeout
 	
 	player_attack_area.monitoring = true
+	attack_sound.play()
 	
 	await get_tree().create_timer(attack_hitbox_active_time).timeout
 	
@@ -205,8 +209,6 @@ func start_attack() -> void:
 	if player_attack_area.get_meta("swing_id", -1) == _swing_id:
 		player_attack_area.monitoring = false
 		player_attack_area.set_meta("is_attacking", false)
-		
-		
 
 
 func request_roll() -> void:
@@ -470,6 +472,7 @@ func handle_death_zone() -> void:
 
 
 func take_damage(amount: int) -> void:
+	hurt_sound.play()
 	if is_dead:
 		return
 
@@ -528,8 +531,11 @@ func death() -> void:
 	player_has_died.emit()
 
 
+@onready var camera: Camera2D = $Camera2D
+
 func _on_attack_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("break_sprite"):
+		camera.shake(2.5, 0.05);
 		body.hitpoints -= 1
 		if body.hitpoints <= 0:
 			body.break_sprite()
