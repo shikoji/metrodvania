@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://ds65s0wtudks1" path="res://boxes/boxes_assents/Blocks (16 x 16).png" id="1_fv82w"]
 [ext_resource type="Script" uid="uid://cjwafq88xq7f6" path="res://boxes/boxes_scripts/break_box.gd" id="1_vbiny"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v68gr"]
+friction = 0.2
+rough = true
+bounce = 0.3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbiny"]
 size = Vector2(16, 16)
 
@@ -72,6 +77,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_v68gr")
 gravity_scale = 0.2
 script = ExtResource("1_vbiny")
 pieces = PackedStringArray("res://boxes/boxes_assents/brick-piece-01.png", "res://boxes/boxes_assents/brick-piece-02.png", "res://boxes/boxes_assents/brick-piece-03.png", "res://boxes/boxes_assents/brick-piece-04.png")
