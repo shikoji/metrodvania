@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bs4hh44mw8g8a" path="res://boxes/boxes_scenes/break_box.tscn" id="12_4kh6q"]
 [ext_resource type="PackedScene" uid="uid://u4qgtror5030" path="res://platforms/platforms_scenes/bounce_platform.tscn" id="13_0b12p"]
 
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5lwsv"]
 resource_name = "floor"
 texture = ExtResource("1_xe23b")
@@ -202,90 +201,3 @@ position = Vector2(784, 536)
 
 [node name="bounce_platform3" parent="." unique_id=1415104109 instance=ExtResource("13_0b12p")]
 position = Vector2(864, 504)
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box2" parent="." unique_id=1106866653 instance=ExtResource("12_4kh6q")]
-position = Vector2(738, 585)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box3" parent="." unique_id=1171287156 instance=ExtResource("12_4kh6q")]
-position = Vector2(742, 559)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box4" parent="." unique_id=1838085234 instance=ExtResource("12_4kh6q")]
-position = Vector2(731, 523)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box5" parent="." unique_id=785213061 instance=ExtResource("12_4kh6q")]
-position = Vector2(749, 500)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box6" parent="." unique_id=52714998 instance=ExtResource("12_4kh6q")]
-position = Vector2(738, 469)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box7" parent="." unique_id=622007664 instance=ExtResource("12_4kh6q")]
-position = Vector2(756, 445)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box8" parent="." unique_id=1980779247 instance=ExtResource("12_4kh6q")]
-position = Vector2(787, 455)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box9" parent="." unique_id=1396670269 instance=ExtResource("12_4kh6q")]
-position = Vector2(790, 490)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box10" parent="." unique_id=1597059584 instance=ExtResource("12_4kh6q")]
-position = Vector2(771, 511)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box11" parent="." unique_id=1430335933 instance=ExtResource("12_4kh6q")]
-position = Vector2(766, 539)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box12" parent="." unique_id=1867456486 instance=ExtResource("12_4kh6q")]
-position = Vector2(758, 563)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box13" parent="." unique_id=985037189 instance=ExtResource("12_4kh6q")]
-position = Vector2(781, 546)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box14" parent="." unique_id=681812746 instance=ExtResource("12_4kh6q")]
-position = Vector2(720, 494)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-
-[node name="break-box15" parent="." unique_id=2086617303 instance=ExtResource("12_4kh6q")]
-position = Vector2(706, 466)
-collision_mask = 7
-mass = 20.0
-gravity_scale = 0.5
-

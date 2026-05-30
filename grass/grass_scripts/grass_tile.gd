@@ -4,5 +4,5 @@ extends Node2D
 
 
 func _on_grass_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player or body.is_in_group("enemies"):
 		anim.play("sway")
