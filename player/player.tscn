@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
-size = Vector2(13, 26)
+size = Vector2(12, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
 atlas = ExtResource("2_rgyib")
@@ -553,13 +553,13 @@ attack_hitbox_active_time = 0.3
 metadata/_edit_horizontal_guides_ = [-18.0]
 
 [node name="colider" type="CollisionShape2D" parent="." unique_id=292948900]
-position = Vector2(-0.5, 2)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_boad6")
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"idle"
+animation = &"wall_slide"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
