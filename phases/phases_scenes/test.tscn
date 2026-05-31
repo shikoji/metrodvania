@@ -186,63 +186,36 @@ position = Vector2(1136, 576)
 
 [node name="ui" parent="." unique_id=359356806 instance=ExtResource("11_14cvr")]
 
-[node name="break-box10" parent="." unique_id=1902967686 instance=ExtResource("12_4kh6q")]
-position = Vector2(673, 579)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
-hitpoints = 2
-
 [node name="break-box11" parent="." unique_id=1106866653 instance=ExtResource("12_4kh6q")]
 position = Vector2(742, 633)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box12" parent="." unique_id=803251012 instance=ExtResource("12_4kh6q")]
 position = Vector2(758, 633)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box13" parent="." unique_id=326076520 instance=ExtResource("12_4kh6q")]
 position = Vector2(758, 617)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box14" parent="." unique_id=129216105 instance=ExtResource("12_4kh6q")]
 position = Vector2(742, 617)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box17" parent="." unique_id=627752577 instance=ExtResource("12_4kh6q")]
 position = Vector2(792, 520)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box18" parent="." unique_id=1199069914 instance=ExtResource("12_4kh6q")]
 position = Vector2(776, 520)
-collision_mask = 7
-center_of_mass_mode = 0
-center_of_mass = Vector2(0, 0)
 hitpoints = 2
 
 [node name="break-box3" parent="." unique_id=1749556981 instance=ExtResource("12_4kh6q")]
-position = Vector2(650, 532)
-collision_mask = 7
+position = Vector2(703, 551)
 hitpoints = 2
 
 [node name="break-box2" parent="." unique_id=1474742597 instance=ExtResource("12_4kh6q")]
 position = Vector2(1088, 616)
-collision_mask = 7
 
 [node name="bounce_platform" parent="." unique_id=1662010542 instance=ExtResource("13_0b12p")]
 position = Vector2(704, 568)

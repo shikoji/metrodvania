@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://duiu8ymkjy6sa" path="res://potion_collectable/scripts/potion.gd" id="1_gld8b"]
 [ext_resource type="Texture2D" uid="uid://bgl6v5skslvch" path="res://potion_collectable/assets/ground.png" id="2_6iord"]
+[ext_resource type="AudioStream" uid="uid://ctfwlj5uvygt3" path="res://potion_collectable/collect_sound.mp3" id="3_6iord"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8a61"]
 atlas = ExtResource("2_6iord")
@@ -74,7 +75,10 @@ script = ExtResource("1_gld8b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=649209596]
 sprite_frames = SubResource("SpriteFrames_rxj62")
-frame_progress = 0.5699579
+frame_progress = 0.6655669
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1381031359]
 shape = SubResource("CircleShape2D_01l2j")
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="." unique_id=511428684]
+stream = ExtResource("3_6iord")
