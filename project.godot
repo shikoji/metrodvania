@@ -34,6 +34,10 @@ window/vsync/vsync_mode=0
 movie_writer/disable_vsync=true
 movie_writer/fps=120
 
+[global_group]
+
+enemies=""
+
 [input]
 
 pause={

@@ -563,7 +563,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 30.0
 script = ExtResource("11_32hag")

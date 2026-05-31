@@ -211,7 +211,7 @@ size = Vector2(21, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5mll"]
 size = Vector2(27, 41)
 
-[node name="alice" type="CharacterBody2D" unique_id=880267049]
+[node name="alice" type="CharacterBody2D" unique_id=880267049 groups=["enemies"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_0f0xg")
@@ -246,12 +246,12 @@ shape = SubResource("RectangleShape2D_n5mll")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=458271016]
 position = Vector2(0, -21)
-target_position = Vector2(10, 0)
+target_position = Vector2(12, 0)
 collision_mask = 2
 
 [node name="RayCast2D3" type="RayCast2D" parent="." unique_id=1629149448]
 position = Vector2(0, -8)
-target_position = Vector2(10, 0)
+target_position = Vector2(12, 0)
 collision_mask = 2
 
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1063186391]
