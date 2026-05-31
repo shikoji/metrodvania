@@ -15,11 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bs4hh44mw8g8a" path="res://boxes/boxes_scenes/break_box.tscn" id="12_4kh6q"]
 [ext_resource type="PackedScene" uid="uid://crg0d6vslnp17" path="res://laser/laser_scenes/laser_trap.tscn" id="12_87j01"]
 [ext_resource type="PackedScene" uid="uid://u4qgtror5030" path="res://platforms/platforms_scenes/bounce_platform.tscn" id="13_0b12p"]
-
 [ext_resource type="PackedScene" uid="uid://b424erbhlfxpn" path="res://potion_collectable/scenes/potion.tscn" id="15_87j01"]
-
+[ext_resource type="PackedScene" uid="uid://b3l8vrj37pecb" path="res://spikes/spike_scenes/spike_area.tscn" id="16_8d7md"]
 [ext_resource type="PackedScene" uid="uid://w8embyvwxk7t" path="res://saws/saws_scenes/saw.tscn" id="16_vctr8"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5lwsv"]
 resource_name = "floor"
@@ -196,7 +194,6 @@ hitpoints = 2
 position = Vector2(744, 632)
 collision_mask = 7
 
-
 [node name="break-box12" parent="." unique_id=803251012 instance=ExtResource("12_4kh6q")]
 position = Vector2(758, 633)
 hitpoints = 2
@@ -233,21 +230,23 @@ position = Vector2(784, 536)
 [node name="bounce_platform3" parent="." unique_id=1415104109 instance=ExtResource("13_0b12p")]
 position = Vector2(864, 504)
 
-
 [node name="Potion" parent="." unique_id=1326953496 instance=ExtResource("15_87j01")]
 position = Vector2(960, 619)
 
-[connection signal="body_entered" from="Potion" to="Potion" method="_on_body_entered"]
-
 [node name="laser_trap" parent="." unique_id=2095198468 instance=ExtResource("12_87j01")]
 position = Vector2(1448, 576)
+
+[node name="spike_area" parent="." unique_id=1951572929 instance=ExtResource("16_8d7md")]
+position = Vector2(1568, 640)
+rect_length = Rect2(0, 10, 45, 7)
 
 [node name="player" parent="." unique_id=1819110571 instance=ExtResource("1_qmcui")]
 position = Vector2(1328, 592)
 max_life = 100
 
-[node name="ui" parent="." unique_id=359356806 instance=ExtResource("11_14cvr")]
+[node name="ui2" parent="." unique_id=1620579979 instance=ExtResource("11_14cvr")]
 
 [node name="paused_menu" parent="." unique_id=641081728 instance=ExtResource("2_xe23b")]
 visible = false
 
+[connection signal="body_entered" from="Potion" to="Potion" method="_on_body_entered"]

@@ -502,6 +502,8 @@ func handle_death_zone() -> void:
 	
 	is_respawning_from_fall = false
 
+func apply_knockback(force: Vector2) -> void:
+	velocity = force
 
 func take_damage(amount: int) -> void:
 	if is_dead:
