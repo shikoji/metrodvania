@@ -202,6 +202,7 @@ position = Vector2(960, 619)
 
 [node name="laser_trap" parent="lasers" unique_id=2095198468 instance=ExtResource("12_87j01")]
 position = Vector2(1448, 576)
+laser_color = Color(0.1583238, 0.39135906, 1, 1)
 
 [node name="spikes" type="Node2D" parent="." unique_id=30911606]
 
