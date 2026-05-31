@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://7f2vmtmqq4q" path="res://ui/ui_scripts/texture_progress_bar.gd" id="4_rawjh"]
 [ext_resource type="Texture2D" uid="uid://bgl6v5skslvch" path="res://potion_collectable/assets/ground.png" id="5_6a15p"]
 [ext_resource type="Script" uid="uid://ryg71fmi0usy" path="res://ui/ui_scripts/potionlabel.gd" id="6_6a15p"]
+[ext_resource type="AudioStream" uid="uid://bf14paa8numpi" path="res://potion_collectable/potion_drink.mp3" id="7_djw1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djw1d"]
 atlas = ExtResource("5_6a15p")
@@ -52,3 +53,6 @@ layout_mode = 2
 theme_override_constants/outline_size = 3
 text = "X999"
 script = ExtResource("6_6a15p")
+
+[node name="DrinkingSound" type="AudioStreamPlayer" parent="potioncontainer/potionlabel" unique_id=851179368]
+stream = ExtResource("7_djw1d")
