@@ -8,6 +8,9 @@ var player_life := 100
 var player = null
 var player_start_position = null
 
+#potions
+var potion_amount: int
+
 var current_checkpoint_position: Vector2
 var has_checkpoint := false
 

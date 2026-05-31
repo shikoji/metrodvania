@@ -9,7 +9,7 @@ rough = true
 bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbiny"]
-size = Vector2(16, 16)
+size = Vector2(15, 15)
 
 [sub_resource type="Animation" id="Animation_s57lp"]
 length = 0.001
@@ -75,10 +75,11 @@ _data = {
 
 [node name="break-box" type="RigidBody2D" unique_id=1106866653]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 6
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_v68gr")
 gravity_scale = 0.2
+can_sleep = false
 script = ExtResource("1_vbiny")
 pieces = PackedStringArray("res://boxes/boxes_assents/brick-piece-01.png", "res://boxes/boxes_assents/brick-piece-02.png", "res://boxes/boxes_assents/brick-piece-03.png", "res://boxes/boxes_assents/brick-piece-04.png")
 hitpoints = 1

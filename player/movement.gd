@@ -54,6 +54,7 @@ var is_respawning_from_fall: bool = false
 var PushForce:int = 200
 var push_buffer_timer: float = 0.0
 @onready var box_ray = $BoxRay
+@onready var box_ray_head = $BoxRayHead
 
 # --- Hitboxes / Hurtboxes (NÃO mexe no resto do player) ---
 @onready var player_hurtbox: Area2D = $HurtBoxArea2d
@@ -86,6 +87,7 @@ func update_attack_facing() -> void:
 	player_attack_shape.position.x = _attack_shape_base_pos.x * xsign
 
 func _ready() -> void:
+	
 	_attack_shape_base_pos = player_attack_shape.position
 	
 	life = max_life
@@ -94,7 +96,9 @@ func _ready() -> void:
 	# mantém seu connect atual
 	if not animation_sprite.animation_finished.is_connected(_on_animation_finished):
 		animation_sprite.animation_finished.connect(_on_animation_finished)
-
+	
+	box_ray_head.add_exception(self)
+	
 	# >>> ADICIONE ISTO:
 	player_attack_area.monitoring = false
 	player_attack_area.monitorable = true
@@ -108,13 +112,20 @@ func RigidBodyCollision() -> void:
 		
 		if body is RigidBody2D:
 			var normal := collision.get_normal()
-			if abs(normal.y) > 0.7: 
+			
+			if normal.y > 0.5: 
+				body.apply_central_impulse(Vector2.UP * PushForce * 1.5)
+				if velocity.y < 0:
+					velocity.y = 0
+				continue 
+			
+			if normal.y < -0.7:
 				continue
+				
 			if box_ray.is_colliding():
 				push_buffer_timer = 0.15
 				var push_direction := Vector2(-normal.x, 0.0).normalized()
 				body.apply_central_impulse(push_direction * PushForce)
-				
 				velocity.x = lerp(velocity.x, 0.0, 0.25)
 			
 func _physics_process(delta: float) -> void:
@@ -131,6 +142,18 @@ func _physics_process(delta: float) -> void:
 		vertical_movement(delta)
 		wall_movement(delta)
 	
+	var input_dir := Input.get_axis("move_left", "move_right")
+
+	if box_ray_head.is_colliding():
+		var top_body = box_ray_head.get_collider()
+		if top_body is RigidBody2D:
+			if input_dir != 0:
+
+				top_body.global_position.x += input_dir * 1.5
+				top_body.global_position.y -= 1.0 
+			
+				top_body.linear_velocity = Vector2(input_dir * PushForce * 0.5, -50.0)
+
 	move_and_slide()
 	update_wall_slide_state(delta)
 	animations()

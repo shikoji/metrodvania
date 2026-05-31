@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://b424erbhlfxpn"]
+
+[ext_resource type="Script" uid="uid://duiu8ymkjy6sa" path="res://potion_collectable/scripts/potion.gd" id="1_gld8b"]
+[ext_resource type="Texture2D" uid="uid://bgl6v5skslvch" path="res://potion_collectable/assets/ground.png" id="2_6iord"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8a61"]
+atlas = ExtResource("2_6iord")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1ia8"]
+atlas = ExtResource("2_6iord")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfc87"]
+atlas = ExtResource("2_6iord")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lmfs"]
+atlas = ExtResource("2_6iord")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdpc5"]
+atlas = ExtResource("2_6iord")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a0ba"]
+atlas = ExtResource("2_6iord")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv7u4"]
+atlas = ExtResource("2_6iord")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jq4x"]
+atlas = ExtResource("2_6iord")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxj62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8a61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1ia8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfc87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lmfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdpc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a0ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv7u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jq4x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_01l2j"]
+
+[node name="Potion" type="Area2D" unique_id=1326953496]
+script = ExtResource("1_gld8b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=649209596]
+sprite_frames = SubResource("SpriteFrames_rxj62")
+frame_progress = 0.5699579
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1381031359]
+shape = SubResource("CircleShape2D_01l2j")

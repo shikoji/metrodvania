@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
-size = Vector2(18, 30)
+size = Vector2(13, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
 atlas = ExtResource("2_rgyib")
@@ -553,12 +553,11 @@ attack_hitbox_active_time = 0.3
 metadata/_edit_horizontal_guides_ = [-18.0]
 
 [node name="colider" type="CollisionShape2D" parent="." unique_id=292948900]
-position = Vector2(-1, 2)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_boad6")
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
-position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_35wys")
 animation = &"idle"
 autoplay = "idle"
@@ -574,7 +573,7 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="colision" type="CollisionShape2D" parent="HurtBoxArea2d" unique_id=1069108837]
-position = Vector2(-1, 2)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_boad6")
 debug_color = Color(1, 0.023529412, 0, 0.41960785)
 
@@ -583,7 +582,7 @@ collision_layer = 8
 collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2d" unique_id=997259648]
-position = Vector2(18.5, -4)
+position = Vector2(18, -4)
 shape = SubResource("RectangleShape2D_hg6s5")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1860366972]
@@ -595,8 +594,18 @@ stream = SubResource("AudioStreamRandomizer_65viv")
 bus = &"Sounds"
 
 [node name="BoxRay" type="RayCast2D" parent="." unique_id=1214862258]
+position = Vector2(0, 1.68)
 exclude_parent = false
 target_position = Vector2(15, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="BoxRayHead" type="RayCast2D" parent="." unique_id=730187198]
+position = Vector2(0, 1)
+exclude_parent = false
+target_position = Vector2(0, -20)
+collision_mask = 2
 hit_from_inside = true
 collide_with_areas = true
 
