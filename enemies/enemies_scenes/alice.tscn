@@ -25,23 +25,15 @@
 [ext_resource type="Texture2D" uid="uid://c0ut5bh8i7ptx" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die07.png" id="14_d25ws"]
 [ext_resource type="Texture2D" uid="uid://4f86h35yseew" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordIdle/SwordIdle07.png" id="14_omow0"]
 [ext_resource type="Texture2D" uid="uid://c68db08733lg8" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk01.png" id="15_1vmna"]
-[ext_resource type="Texture2D" uid="uid://ddkmoqdo1v1pa" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt01.png" id="15_e0xfl"]
 [ext_resource type="Texture2D" uid="uid://cipkdjya8a66u" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die08.png" id="15_wpuha"]
-[ext_resource type="Texture2D" uid="uid://b753gqid54ggi" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt02.png" id="16_cng8g"]
 [ext_resource type="Texture2D" uid="uid://t141uig5xovt" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die09.png" id="16_q6x7k"]
 [ext_resource type="Texture2D" uid="uid://ds3v7155hd4jf" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk02.png" id="16_s1vvi"]
-[ext_resource type="Texture2D" uid="uid://c6txoiy1onmg3" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt03.png" id="17_k80fc"]
 [ext_resource type="Texture2D" uid="uid://8bqthf4afnwv" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk03.png" id="17_thj0n"]
 [ext_resource type="Texture2D" uid="uid://b1wrwxcxqms3y" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk04.png" id="18_6jpfe"]
-[ext_resource type="Texture2D" uid="uid://du65wg6mmpc6u" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt04.png" id="18_25ndg"]
-[ext_resource type="Texture2D" uid="uid://bi8vgasccetty" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt05.png" id="19_35ehc"]
 [ext_resource type="Texture2D" uid="uid://cvi1uln73uo3l" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk05.png" id="19_omow0"]
 [ext_resource type="Texture2D" uid="uid://xbggcx7y1fiu" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk06.png" id="20_n5mll"]
-[ext_resource type="Texture2D" uid="uid://dr3o5eptj24s0" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt06.png" id="20_neja4"]
 [ext_resource type="Texture2D" uid="uid://0kdhw03hv8us" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk07.png" id="21_r5qot"]
-[ext_resource type="Texture2D" uid="uid://cb72eu318m8lr" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt07.png" id="21_vx8kc"]
 [ext_resource type="Texture2D" uid="uid://dtfhgyx60lcop" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk08.png" id="22_ttlbc"]
-[ext_resource type="Texture2D" uid="uid://csigdkdjx6bhb" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordRunAlt/SwordRunAlt08.png" id="22_y2elh"]
 [ext_resource type="Texture2D" uid="uid://dpynfdntl6ak8" path="res://ui/ui_assents/Red/RegularBarABackground.png" id="43_qnydx"]
 [ext_resource type="Texture2D" uid="uid://b4ijx35fasnva" path="res://ui/ui_assents/Red/RegularBarAForeground.png" id="44_gdgo6"]
 [ext_resource type="Texture2D" uid="uid://bkt33gmjjsdml" path="res://ui/ui_assents/Red/RegularBarAFill.png" id="45_p30vy"]
@@ -145,35 +137,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("15_e0xfl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_cng8g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_k80fc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_25ndg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_35ehc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_neja4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_vx8kc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_y2elh")
-}],
-"loop": false,
-"name": &"run",
-"speed": 9.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("15_1vmna")
 }, {
 "duration": 1.0,
@@ -221,7 +184,6 @@ position = Vector2(1, -42)
 sprite_frames = SubResource("SpriteFrames_epted")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.7365509
 
 [node name="colision" type="CollisionShape2D" parent="." unique_id=1283065198]
 position = Vector2(2, -20)
