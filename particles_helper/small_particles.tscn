@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dv38dki7gipoo"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_go1xx"]
+resource_local_to_scene = true
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
 spread = 180.0
