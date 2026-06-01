@@ -575,7 +575,7 @@ func take_damage(amount: int) -> void:
 
 	if animation_sprite.sprite_frames.has_animation("hurt"):
 		animation_sprite.play("hurt")
-		animation_sprite.frame = 0
+		#animation_sprite.frame = 0
 
 func death() -> void:
 	if is_dead:

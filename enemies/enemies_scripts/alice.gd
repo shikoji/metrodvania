@@ -210,6 +210,8 @@ func take_damage(amount: int) -> void:
 	if hp <= 0:
 		death()
 
+const DEATH_FX = preload("res://death_fx/death_fx.tscn")
+
 func death() -> void:
 	if _dead:
 		return
@@ -229,7 +231,13 @@ func death() -> void:
 	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_death):
 		anim.play(anim_death)
 	else:
-		queue_free()
+		free_and_explode()
+
+func free_and_explode():
+	var instance = DEATH_FX.instantiate()
+	instance.position = position + (Vector2.UP * 16.0)
+	add_sibling(instance)
+	queue_free()
 
 func _apply_damage_to_player(player: Node) -> void:
 	if player and player.has_method("take_damage"):
@@ -276,7 +284,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func _on_anim_finished() -> void:
 	if _dead:
 		if anim.animation == String(anim_death):
-			queue_free()
+			free_and_explode()
 		return
 
 	if anim.animation == String(anim_attack):

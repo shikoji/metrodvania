@@ -182,7 +182,7 @@ script = ExtResource("1_0f0xg")
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1879266000]
 position = Vector2(1, -42)
 sprite_frames = SubResource("SpriteFrames_epted")
-animation = &"walk"
+animation = &"death"
 autoplay = "walk"
 
 [node name="colision" type="CollisionShape2D" parent="." unique_id=1283065198]

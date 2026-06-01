@@ -393,7 +393,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 4.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -629,9 +629,9 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"roll"
+animation = &"hurt"
 autoplay = "idle"
-frame = 6
+frame = 3
 frame_progress = 1.0
 flip_h = true
 
