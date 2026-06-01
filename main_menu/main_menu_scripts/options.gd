@@ -193,9 +193,41 @@ func _ready() -> void:
 	fullscreen.pressed.connect(_on_fullscreen_pressed)
 	v_sync.pressed.connect(_on_vsync_pressed)
 
-	# Textos YES / NO iniciais
+	# Process current values and setup texts
+	load_saved_preferences()
 	update_fullscreen_label()
 	update_vsync_label()
+	process_audio_sliders()
+
+func load_saved_preferences() -> void:
+	var file = FileAccess.open("user://preferences.txt", FileAccess.READ)
+	if file == null:
+		return
+	var line = file.get_line()
+	while line:
+		var key = line.split(" ")[0]
+		var value = line.split(" ")[1]
+		match key:
+			"master_volume":
+				master_slider.value = float(value)
+			"music_volume":
+				music_slider.value = float(value)
+			"sfx_volume":
+				sfx_slider.value = float(value)
+			"fullscreen":
+				DisplayServer.window_set_mode(int(value))
+			"vsync":
+				DisplayServer.window_set_vsync_mode(int(value))
+		line = file.get_line()
+
+func save_current_preferences() -> void:
+	var file = FileAccess.open("user://preferences.txt", FileAccess.WRITE)
+	file.store_line("master_volume " + str(master_slider.value))
+	file.store_line("music_volume " + str(music_slider.value))
+	file.store_line("sfx_volume " + str(sfx_slider.value))
+	file.store_line("fullscreen " + str(DisplayServer.window_get_mode()))
+	file.store_line("vsync " + str(DisplayServer.window_get_vsync_mode()))
+	file.close()
 
 
 # ============================================================
@@ -475,6 +507,7 @@ func focus_first_option() -> void:
 # ============================================================
 
 func _on_back_pressed() -> void:
+	save_current_preferences()
 	back_to_home.emit()
 
 
@@ -488,4 +521,6 @@ func process_audio_sliders() -> void:
 
 
 func _process(_delta: float) -> void:
-	process_audio_sliders()
+	# only process changes if options menu is on the forefront 
+	if visible:
+		process_audio_sliders()
