@@ -80,5 +80,5 @@ frame_progress = 0.6655669
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1381031359]
 shape = SubResource("CircleShape2D_01l2j")
 
-[node name="CollectSound" type="AudioStreamPlayer" parent="." unique_id=511428684]
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=1743212046]
 stream = ExtResource("3_6iord")

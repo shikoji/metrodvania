@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bnce7y8564hoe" path="res://player/assets/Wall Slide/player wall slide (left) 48x48.png" id="6_ebec5"]
 [ext_resource type="Texture2D" uid="uid://dwobyu4y7jjjv" path="res://player/assets/Hurt-Damaged/Player Hurt 48x48.png" id="6_kb6p2"]
 [ext_resource type="Texture2D" uid="uid://tpmy2qkx7s32" path="res://player/assets/Push/player push 48x48 2.png" id="7_8t03j"]
+[ext_resource type="Texture2D" uid="uid://bvwmnhbq4l2wa" path="res://player/assets/Sword Stab/Player Sword Stab 96x48.png" id="10_e7oew"]
 [ext_resource type="Script" uid="uid://cx6fq3pn4ih2t" path="res://player/camera.gd" id="11_32hag"]
 [ext_resource type="AudioStream" uid="uid://bq7dnb4jflxy1" path="res://player/assets/sfx/swish-1.wav" id="11_wodsf"]
 [ext_resource type="AudioStream" uid="uid://rwmm1sdsaf2r" path="res://player/assets/sfx/swish-2.wav" id="12_32hag"]
@@ -269,6 +270,34 @@ region = Rect2(288, 0, 48, 48)
 atlas = ExtResource("6_8t03j")
 region = Rect2(336, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5tca"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(0, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbx34"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(96, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3g0c"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(192, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35wys"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(288, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjwc4"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(384, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or4qq"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(480, 0, 96, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hggc2"]
+atlas = ExtResource("10_e7oew")
+region = Rect2(576, 0, 96, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpyo2"]
 atlas = ExtResource("6_ebec5")
 region = Rect2(0, 0, 48, 48)
@@ -483,7 +512,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"roll",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -512,7 +541,33 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 9.0
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5tca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbx34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3g0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35wys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjwc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or4qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hggc2")
+}],
+"loop": true,
+"name": &"stab",
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -526,7 +581,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"wall_slide",
-"speed": 5.0
+"speed": 16.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hg6s5"]
@@ -546,6 +601,20 @@ random_pitch = 1.0594631
 streams_count = 1
 stream_0/stream = ExtResource("15_c35mf")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7oew"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(-1, -0.5, 0)
+initial_velocity_max = 50.0
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c35mf"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(1, -0.5, 0)
+initial_velocity_max = 50.0
+gravity = Vector3(0, 9.8, 0)
+
 [node name="player" type="CharacterBody2D" unique_id=1819110571]
 collision_mask = 2
 script = ExtResource("1_rgyib")
@@ -560,13 +629,16 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"run"
+animation = &"roll"
 autoplay = "idle"
+frame = 6
+frame_progress = 1.0
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
-position_smoothing_speed = 30.0
+position_smoothing_speed = 10.0
 script = ExtResource("11_32hag")
 
 [node name="HurtBoxArea2d" type="Area2D" parent="." unique_id=38396516]
@@ -592,6 +664,7 @@ bus = &"Sounds"
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1270309170]
 stream = SubResource("AudioStreamRandomizer_65viv")
+volume_db = 10.0
 bus = &"Sounds"
 
 [node name="BoxRay" type="RayCast2D" parent="." unique_id=1214862258]
@@ -613,5 +686,21 @@ collide_with_areas = true
 [node name="Footstep" type="AudioStreamPlayer2D" parent="." unique_id=41263427]
 stream = ExtResource("17_tqiix")
 bus = &"Sounds"
+
+[node name="FootStepParticle" type="GPUParticles2D" parent="." unique_id=601448509]
+position = Vector2(-14, 9)
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e7oew")
+
+[node name="FootStepParticleFlip" type="GPUParticles2D" parent="." unique_id=100972812]
+position = Vector2(14, 9)
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_c35mf")
 
 [connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]

@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _on_bounce_entered(body: Node2D):
 	if body is Player and not is_moving:
-		if body.velocity.y  == 0:
+		if body.velocity.y == 0:
 			activate()
 		
 func activate():

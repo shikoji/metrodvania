@@ -163,6 +163,7 @@ func _physics_process(delta: float) -> void:
 		if previous_direction != animation_sprite.flip_h:
 			last_footstep_played = 0
 		process_walking_footsteps()
+		process_walking_particles()
 
 	
 	
@@ -173,6 +174,7 @@ func _physics_process(delta: float) -> void:
 
 var was_on_floor = true
 var last_footstep_played = 0
+var last_footstep_emitted = 0
 
 func process_walking_footsteps():
 	if animation_sprite.animation == "run":
@@ -184,7 +186,20 @@ func process_walking_footsteps():
 			play_footstep(1.2)
 	if not was_on_floor:
 		play_footstep(0.7)
-	
+
+func process_walking_particles():
+	if animation_sprite.animation != "run":
+		return
+	if (animation_sprite.frame == 1 or animation_sprite.frame == 5) and last_footstep_emitted != animation_sprite.frame:
+		last_footstep_emitted = animation_sprite.frame
+		var instance
+		if animation_sprite.flip_h:
+			instance = $FootStepParticleFlip.duplicate()
+		else:
+			instance = $FootStepParticle.duplicate()
+		add_child(instance)
+		instance.emitting = true
+		instance.connect("finished", instance.queue_free)
 
 func update_timers(delta: float) -> void:
 	if roll_cooldown_timer > 0.0:
@@ -335,6 +350,8 @@ func jump_buffer(delta: float) -> void:
 	if jump_buffer_timer > 0.0:
 		jump_buffer_timer -= delta
 
+func stab_buffer(_delta: float) -> void:
+	pass
 
 func vertical_movement(delta: float) -> void:
 	if is_on_floor() and jump_buffer_timer > 0.0:
@@ -598,6 +615,8 @@ func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
 @onready var camera: Camera2D = $Camera2D
 
 func _on_attack_area_2d_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		return
 	var particle = ParticleHelper.spawn_particles($AttackArea2d/CollisionShape2D.global_position)
 	
 	if body.has_method("break_sprite"):
