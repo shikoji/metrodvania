@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_g8f6d"]
 [ext_resource type="Script" uid="uid://b74hn360xwf07" path="res://main_menu/main_menu_scripts/home_buttons.gd" id="1_wubda"]
 [ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="2_wubda"]
+[ext_resource type="Texture2D" uid="uid://c6iajmk1cd88y" path="res://main_menu/main_menu_assets/controller.png" id="4_j5x7d"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5x7d"]
 
@@ -185,6 +186,46 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_g8f6d")
 theme_override_font_sizes/font_size = 18
 text = "Version: 1.0"
+
+[node name="ControllerSupportNotice" type="Control" parent="." unique_id=552882328]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -338.0
+offset_top = -241.0
+offset_bottom = -142.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="ControllerSupportNotice" unique_id=1650345140]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+texture = ExtResource("4_j5x7d")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ControllerSupportNotice" unique_id=518010464]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -23.0
+offset_right = 135.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_g8f6d")
+text = "Controller support!"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
