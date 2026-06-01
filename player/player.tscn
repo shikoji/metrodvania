@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dirchx3gin34y" path="res://player/assets/sfx/swish-3.wav" id="13_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dcbveadjjwe36" path="res://player/assets/sfx/swish-4.wav" id="14_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
+[ext_resource type="AudioStream" uid="uid://skmymikyqs7g" path="res://player/assets/sfx/footstep.wav" id="17_tqiix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
 size = Vector2(12, 26)
@@ -559,7 +560,7 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"wall_slide"
+animation = &"run"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
@@ -608,5 +609,9 @@ target_position = Vector2(0, -20)
 collision_mask = 2
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="." unique_id=41263427]
+stream = ExtResource("17_tqiix")
+bus = &"Sounds"
 
 [connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]

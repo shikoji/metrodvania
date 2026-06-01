@@ -129,11 +129,9 @@ func RigidBodyCollision() -> void:
 				velocity.x = lerp(velocity.x, 0.0, 0.25)
 			
 func _physics_process(delta: float) -> void:
-	
 	update_timers(delta)
 	read_action_inputs()
 	jump_buffer(delta)
-	
 	
 	if is_rolling:
 		roll_movement(delta)
@@ -154,18 +152,38 @@ func _physics_process(delta: float) -> void:
 			
 				top_body.linear_velocity = Vector2(input_dir * PushForce * 0.5, -50.0)
 
+	was_on_floor = is_on_floor()
 	move_and_slide()
 	update_wall_slide_state(delta)
+	var previous_direction = animation_sprite.flip_h
 	animations()
 	sprite_flip()
 	RigidBodyCollision()
+	if is_on_floor():
+		if previous_direction != animation_sprite.flip_h:
+			last_footstep_played = 0
+		process_walking_footsteps()
+
 	
 	
 	for platforms in get_slide_collision_count():
 		var collision := get_slide_collision(platforms)
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
-			
+
+var was_on_floor = true
+var last_footstep_played = 0
+
+func process_walking_footsteps():
+	if animation_sprite.animation == "run":
+		if animation_sprite.frame == 2 and last_footstep_played != 2:
+			last_footstep_played = 2
+			play_footstep(1.0)
+		if animation_sprite.frame == 6 and last_footstep_played != 6:
+			last_footstep_played = 6
+			play_footstep(1.2)
+	if not was_on_floor:
+		play_footstep(0.7)
 	
 
 func update_timers(delta: float) -> void:
@@ -320,6 +338,7 @@ func jump_buffer(delta: float) -> void:
 
 func vertical_movement(delta: float) -> void:
 	if is_on_floor() and jump_buffer_timer > 0.0:
+		play_footstep(0.5)
 		velocity.y = -sqrt(2.0 * gravity * jump_height)
 		jump_buffer_timer = 0.0
 	
@@ -568,6 +587,13 @@ func death() -> void:
 	
 	player_has_died.emit()
 
+func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
+	var instance: AudioStreamPlayer2D = $Footstep.duplicate()
+	add_child(instance)
+	instance.pitch_scale = pitch_scale
+	instance.volume_db = volume_db
+	instance.play()
+	instance.connect("finished", instance.queue_free)
 
 @onready var camera: Camera2D = $Camera2D
 
