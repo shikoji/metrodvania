@@ -67,6 +67,7 @@ process_material = SubResource("ParticleProcessMaterial_ryc6q")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=878643492]
 stream = SubResource("AudioStreamRandomizer_f6kwd")
 autoplay = true
+bus = &"Sounds"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1268535489]
 material = SubResource("ShaderMaterial_arq5y")

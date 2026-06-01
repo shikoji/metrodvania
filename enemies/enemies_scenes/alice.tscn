@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://xbggcx7y1fiu" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk06.png" id="20_n5mll"]
 [ext_resource type="Texture2D" uid="uid://0kdhw03hv8us" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk07.png" id="21_r5qot"]
 [ext_resource type="Texture2D" uid="uid://dtfhgyx60lcop" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Combat/SwordWalk/SwordWalk08.png" id="22_ttlbc"]
+[ext_resource type="AudioStream" uid="uid://cjg6cgnj01y8v" path="res://enemies/enemies_assents/hit1.wav" id="38_3t22m"]
+[ext_resource type="AudioStream" uid="uid://bblngq81iwdtt" path="res://enemies/enemies_assents/hit2.wav" id="39_4yv07"]
 [ext_resource type="Texture2D" uid="uid://dpynfdntl6ak8" path="res://ui/ui_assents/Red/RegularBarABackground.png" id="43_qnydx"]
 [ext_resource type="Texture2D" uid="uid://b4ijx35fasnva" path="res://ui/ui_assents/Red/RegularBarAForeground.png" id="44_gdgo6"]
 [ext_resource type="Texture2D" uid="uid://bkt33gmjjsdml" path="res://ui/ui_assents/Red/RegularBarAFill.png" id="45_p30vy"]
@@ -174,6 +176,13 @@ size = Vector2(21, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5mll"]
 size = Vector2(27, 41)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j1gbs"]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("38_3t22m")
+stream_1/stream = ExtResource("39_4yv07")
+
 [node name="alice" type="CharacterBody2D" unique_id=880267049 groups=["enemies"]]
 collision_layer = 4
 collision_mask = 2
@@ -238,3 +247,7 @@ texture_under = ExtResource("43_qnydx")
 texture_over = ExtResource("44_gdgo6")
 texture_progress = ExtResource("45_p30vy")
 texture_progress_offset = Vector2(2, 2)
+
+[node name="TakeDamage" type="AudioStreamPlayer2D" parent="." unique_id=1509436409]
+stream = SubResource("AudioStreamRandomizer_j1gbs")
+bus = &"Sounds"

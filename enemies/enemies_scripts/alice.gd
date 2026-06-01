@@ -207,6 +207,8 @@ func take_damage(amount: int) -> void:
 	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_hurt):
 		anim.play(anim_hurt)
 
+	$TakeDamage.play()
+
 	if hp <= 0:
 		death()
 
