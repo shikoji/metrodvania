@@ -485,7 +485,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -599,9 +599,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hggc2")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab",
-"speed": 16.0
+"speed": 32.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -621,7 +621,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hg6s5"]
 size = Vector2(21, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c35mf"]
+size = Vector2(49, 11)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e7oew"]
+playback_mode = 1
 random_pitch = 1.0594631
 random_volume_offset_db = 1.0
 streams_count = 4
@@ -663,11 +667,9 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"climb"
+animation = &"stab"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
-flip_h = true
+frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
 zoom = Vector2(3, 3)
@@ -688,9 +690,15 @@ debug_color = Color(1, 0.023529412, 0, 0.41960785)
 collision_layer = 8
 collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2d" unique_id=997259648]
+[node name="SlamCollisionShape" type="CollisionShape2D" parent="AttackArea2d" unique_id=997259648]
 position = Vector2(18, -4)
 shape = SubResource("RectangleShape2D_hg6s5")
+disabled = true
+
+[node name="StabCollisionShape" type="CollisionShape2D" parent="AttackArea2d" unique_id=1718027709]
+position = Vector2(17.5, 0.5)
+shape = SubResource("RectangleShape2D_c35mf")
+disabled = true
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1860366972]
 stream = SubResource("AudioStreamRandomizer_e7oew")

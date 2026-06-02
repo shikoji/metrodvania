@@ -67,7 +67,8 @@ var push_buffer_timer: float = 0.0
 var _inv_timer: float = 0.0
 var _swing_id: int = 0
 
-@onready var player_attack_shape: CollisionShape2D = $AttackArea2d/CollisionShape2D
+@onready var player_attack_shape: CollisionShape2D = $AttackArea2d/SlamCollisionShape
+@onready var player_stab_shape: CollisionShape2D = $AttackArea2d/StabCollisionShape
 
 var _attack_shape_base_pos: Vector2
 
@@ -93,6 +94,8 @@ func update_attack_facing() -> void:
 	# Se flip_h = true, player está olhando pra ESQUERDA.
 	var xsign := -1.0 if animation_sprite.flip_h else 1.0
 	player_attack_shape.position.x = _attack_shape_base_pos.x * xsign
+	player_stab_shape.position.x = _attack_shape_base_pos.x * xsign
+	
 
 func _ready() -> void:
 	_attack_shape_base_pos = player_attack_shape.position
@@ -254,40 +257,65 @@ func request_attack() -> void:
 		attack_buffer_timer = attack_buffer_time
 		return
 	
-	start_attack()
+	start_attack(AttackTypes.SLAM)
 
 func cancel_roll_into_attack() -> void:
 	is_rolling = false
 	set_collision_mask_value(enemy_collision_layer, false)
 	velocity.x = roll_direction * horizontal_max_speed * attack_move_multiplier
-	start_attack()
+	start_attack(AttackTypes.STAB)
 
-func start_attack() -> void:
+enum AttackTypes { SLAM, STAB }
+
+func start_attack(type: AttackTypes) -> void:
 	is_attacking = true
 	attack_queued = false
 	attack_buffer_timer = 0.0
+	match type:
+		AttackTypes.SLAM:
+			animation_sprite.play("attack")
+			animation_sprite.frame = 0
 	
-	animation_sprite.play("attack")
-	animation_sprite.frame = 0
+			_swing_id += 1
 	
-	_swing_id += 1
+			player_attack_area.set_meta("swing_id", _swing_id)
+			player_attack_area.set_meta("damage", attack_damage)
+			player_attack_area.set_meta("is_attacking", true)
 	
-	player_attack_area.set_meta("swing_id", _swing_id)
-	player_attack_area.set_meta("damage", attack_damage)
-	player_attack_area.set_meta("is_attacking", true)
+			await get_tree().create_timer(0.08).timeout
 	
-	await get_tree().create_timer(0.08).timeout
+			$AttackArea2d/SlamCollisionShape.disabled = false
+			player_attack_area.monitoring = true
+			attack_sound.play()
+			attack_sound.pitch_scale = 1.0
 	
-	player_attack_area.monitoring = true
-	attack_sound.play()
+			await get_tree().create_timer(attack_hitbox_active_time).timeout
 	
-	await get_tree().create_timer(attack_hitbox_active_time).timeout
+			# só desliga se ainda for o mesmo swing
+			if player_attack_area.get_meta("swing_id", -1) == _swing_id:
+				player_attack_area.monitoring = false
+				$AttackArea2d/SlamCollisionShape.disabled = true
+				player_attack_area.set_meta("is_attacking", false)
+		AttackTypes.STAB:
+			animation_sprite.play("stab")
+			animation_sprite.frame = 0
+			
+			player_attack_area.set_meta("swing_id", _swing_id)
+			player_attack_area.set_meta("damage", attack_damage)
+			player_attack_area.set_meta("is_attacking", true)
+			await get_tree().create_timer(0.02).timeout
+			$AttackArea2d/StabCollisionShape.disabled = false
+			player_attack_area.monitoring = true
+			attack_sound.play()
+			attack_sound.pitch_scale = 1.5
 	
-	# só desliga se ainda for o mesmo swing
-	if player_attack_area.get_meta("swing_id", -1) == _swing_id:
-		player_attack_area.monitoring = false
-		player_attack_area.set_meta("is_attacking", false)
-
+			await get_tree().create_timer(attack_hitbox_active_time).timeout
+	
+			# só desliga se ainda for o mesmo swing
+			if player_attack_area.get_meta("swing_id", -1) == _swing_id:
+				player_attack_area.monitoring = false
+				$AttackArea2d/StabCollisionShape.disabled = true
+				player_attack_area.set_meta("is_attacking", false)
 
 func request_roll() -> void:
 	if roll_cooldown_timer > 0.0:
@@ -364,9 +392,6 @@ func jump_buffer(delta: float) -> void:
 	
 	if jump_buffer_timer > 0.0:
 		jump_buffer_timer -= delta
-
-func stab_buffer(_delta: float) -> void:
-	pass
 
 func vertical_movement(delta: float) -> void:
 	if climbing:
@@ -493,7 +518,6 @@ func animations() -> void:
 		return
 	
 	if is_attacking:
-		play_animation("attack")
 		return
 	
 	if climbing:
@@ -531,15 +555,25 @@ func _on_animation_finished() -> void:
 		"attack":
 			is_attacking = false
 			
-			# >>> ADICIONE ISTO (segurança):
+			# SAFETY
 			player_attack_area.monitoring = false
 			player_attack_area.set_deferred("monitoring", false)
 			
 			if attack_queued and attack_buffer_timer > 0.0:
-				start_attack()
+				start_attack(AttackTypes.STAB)
 			else:
 				attack_queued = false
-		
+		"stab":
+			is_attacking = false
+			
+			# SAFETY
+			player_attack_area.monitoring = false
+			player_attack_area.set_deferred("monitoring", false)
+			if attack_queued and attack_buffer_timer > 0.0:
+				start_attack(AttackTypes.SLAM)
+			else:
+				attack_queued = false
+			
 		"roll":
 			end_roll()
 			
@@ -657,7 +691,7 @@ func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
 func _on_attack_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
 		return
-	var particle = ParticleHelper.spawn_particles($AttackArea2d/CollisionShape2D.global_position)
+	var particle = ParticleHelper.spawn_particles($AttackArea2d/SlamCollisionShape.global_position)
 	
 	if body.has_method("break_sprite"):
 		camera.shake(2.5, 0.05);

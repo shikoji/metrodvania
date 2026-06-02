@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cd6bavn4760w5"]
 
-[ext_resource type="Script" uid="uid://bho4eg5s46tv5" path="res://death_fx/death_fx.gd" id="1_f6kwd"]
-[ext_resource type="AudioStream" uid="uid://2p1730uv323v" path="res://death_fx/death.wav" id="3_anycs"]
-[ext_resource type="Texture2D" uid="uid://drdy41bkoijfk" path="res://death_fx/death_head.png" id="4_anycs"]
-[ext_resource type="Shader" uid="uid://csbwdp5xn6ny0" path="res://death_fx/disolve.gdshader" id="4_lopbg"]
+[ext_resource type="Script" uid="uid://bho4eg5s46tv5" path="res://fx/death_fx/death_fx.gd" id="1_f6kwd"]
+[ext_resource type="AudioStream" uid="uid://2p1730uv323v" path="res://fx/death_fx/death.wav" id="3_anycs"]
+[ext_resource type="Texture2D" uid="uid://drdy41bkoijfk" path="res://fx/death_fx/death_head.png" id="4_anycs"]
+[ext_resource type="Shader" uid="uid://csbwdp5xn6ny0" path="res://fx/death_fx/disolve.gdshader" id="4_lopbg"]
 
 [sub_resource type="Gradient" id="Gradient_ka2df"]
 offsets = PackedFloat32Array(0, 0.08510638, 0.18723404, 1)

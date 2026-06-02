@@ -212,7 +212,7 @@ func take_damage(amount: int) -> void:
 	if hp <= 0:
 		death()
 
-const DEATH_FX = preload("res://death_fx/death_fx.tscn")
+const DEATH_FX = preload("res://fx/death_fx/death_fx.tscn")
 
 func death() -> void:
 	if _dead:

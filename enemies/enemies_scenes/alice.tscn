@@ -65,6 +65,11 @@ animations = [{
 "name": &"attack",
 "speed": 12.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"attack2",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_8xcec")
@@ -191,7 +196,7 @@ script = ExtResource("1_0f0xg")
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1879266000]
 position = Vector2(1, -42)
 sprite_frames = SubResource("SpriteFrames_epted")
-animation = &"death"
+animation = &"attack"
 autoplay = "walk"
 
 [node name="colision" type="CollisionShape2D" parent="." unique_id=1283065198]
