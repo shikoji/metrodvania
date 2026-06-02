@@ -81,13 +81,20 @@ var is_dead: bool = false
 @onready var attack_sound: AudioStreamPlayer2D = $AttackSound
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 
+#climb
+var on_ladder: bool = false
+var climbing: bool = false
+var ladders_touching: int = 0
+
+@export var climb_speed: float = 120.0
+@export var ladder_horizontal_speed: float = 60.0
+
 func update_attack_facing() -> void:
 	# Se flip_h = true, player está olhando pra ESQUERDA.
 	var xsign := -1.0 if animation_sprite.flip_h else 1.0
 	player_attack_shape.position.x = _attack_shape_base_pos.x * xsign
 
 func _ready() -> void:
-	
 	_attack_shape_base_pos = player_attack_shape.position
 	
 	life = max_life
@@ -136,9 +143,14 @@ func _physics_process(delta: float) -> void:
 	if is_rolling:
 		roll_movement(delta)
 	else:
-		horizontal_movement(delta)
-		vertical_movement(delta)
-		wall_movement(delta)
+
+		ladder_movement()
+
+		if not climbing:
+			horizontal_movement(delta)
+			vertical_movement(delta)
+
+	wall_movement(delta)
 	
 	var input_dir := Input.get_axis("move_left", "move_right")
 
@@ -153,6 +165,9 @@ func _physics_process(delta: float) -> void:
 				top_body.linear_velocity = Vector2(input_dir * PushForce * 0.5, -50.0)
 
 	was_on_floor = is_on_floor()
+
+
+		
 	move_and_slide()
 	update_wall_slide_state(delta)
 	var previous_direction = animation_sprite.flip_h
@@ -354,6 +369,9 @@ func stab_buffer(_delta: float) -> void:
 	pass
 
 func vertical_movement(delta: float) -> void:
+	if climbing:
+		return
+	
 	if is_on_floor() and jump_buffer_timer > 0.0:
 		play_footstep(0.5)
 		velocity.y = -sqrt(2.0 * gravity * jump_height)
@@ -361,6 +379,7 @@ func vertical_movement(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
+
 
 
 func can_wall_slide() -> bool:
@@ -379,6 +398,10 @@ func can_wall_slide() -> bool:
 
 
 func update_wall_slide_state(delta: float) -> void:
+	if climbing:
+		wall_slide_active = false
+		return
+	
 	var horizontal_direction := Input.get_axis("move_left", "move_right")
 	
 	if is_rolling or is_attacking:
@@ -397,6 +420,9 @@ func update_wall_slide_state(delta: float) -> void:
 
 
 func wall_movement(_delta: float) -> void:
+	if climbing:
+		return
+	
 	if wall_slide_active and Input.is_action_just_pressed("move_jump"):
 		var wall_normal_x := get_wall_normal().x
 		
@@ -416,6 +442,9 @@ func wall_movement(_delta: float) -> void:
 
 
 func sprite_flip() -> void:
+	if climbing:
+		return
+	
 	if is_rolling:
 		animation_sprite.flip_h = roll_direction < 0.0
 		return
@@ -467,9 +496,20 @@ func animations() -> void:
 		play_animation("attack")
 		return
 	
+	if climbing:
+		animation_sprite.play("climb")
+
+		if abs(velocity.y) > 0 or abs(velocity.x) > 0:
+			animation_sprite.speed_scale = 1.0
+		else:
+			animation_sprite.speed_scale = 0.0
+
+		return
+	
 	if wall_slide_active:
 		play_animation("wall_slide")
 		return
+	
 	
 	if not is_on_floor():
 		if velocity.y < 0.0:
@@ -626,3 +666,22 @@ func _on_attack_area_2d_body_entered(body: Node2D) -> void:
 			body.break_sprite()
 		else:
 			body.animation_player.play("hit")
+
+func ladder_movement() -> void:
+
+	var vertical := Input.get_axis("move_up", "move_down")
+	var horizontal := Input.get_axis("move_left", "move_right")
+
+	if on_ladder and (abs(vertical) > 0 or abs(horizontal) > 0):
+		climbing = true
+
+	if not climbing:
+		return
+		
+	if climbing:
+		velocity.x = horizontal * ladder_horizontal_speed
+		velocity.y = vertical * climb_speed
+
+	if Input.is_action_just_pressed("move_jump"):
+		climbing = false
+		velocity.y = -sqrt(2.0 * gravity * jump_height)

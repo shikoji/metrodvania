@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://jcwwdxpfs62u" path="res://player/movement.gd" id="1_rgyib"]
 [ext_resource type="Texture2D" uid="uid://cpopi5aktrf3f" path="res://player/assets/Sword Attack/player sword atk 64x64.png" id="2_rgyib"]
 [ext_resource type="Texture2D" uid="uid://c36kvy8ago73r" path="res://player/assets/Sword Idle/Player Sword Idle 48x48.png" id="3_boad6"]
+[ext_resource type="Texture2D" uid="uid://c8mlqghholprc" path="res://player/assets/Climb (facing back of player)/player climb-back 48x48.png" id="3_c35mf"]
 [ext_resource type="Texture2D" uid="uid://ss01xj3x0s52" path="res://player/assets/Roll/Player Roll 48x48.png" id="3_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://88yx7oei3vff" path="res://player/assets/Death/Player Death 64x64.png" id="4_yllr7"]
 [ext_resource type="Texture2D" uid="uid://cjqssyhd5acq5" path="res://player/assets/Sword Run/Player Sword Run 48x48.png" id="6_8t03j"]
@@ -45,6 +46,22 @@ region = Rect2(256, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_55jnj"]
 atlas = ExtResource("2_rgyib")
 region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2j0d"]
+atlas = ExtResource("3_c35mf")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l6ig"]
+atlas = ExtResource("3_c35mf")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxclr"]
+atlas = ExtResource("3_c35mf")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onxu2"]
+atlas = ExtResource("3_c35mf")
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j3r50"]
 atlas = ExtResource("4_yllr7")
@@ -334,6 +351,23 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2j0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l6ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxclr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onxu2")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -629,7 +663,7 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"hurt"
+animation = &"climb"
 autoplay = "idle"
 frame = 3
 frame_progress = 1.0
