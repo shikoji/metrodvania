@@ -299,6 +299,7 @@ func start_attack(type: AttackTypes) -> void:
 		AttackTypes.STAB:
 			animation_sprite.play("stab")
 			animation_sprite.frame = 0
+			_swing_id += 1
 			
 			player_attack_area.set_meta("swing_id", _swing_id)
 			player_attack_area.set_meta("damage", attack_damage)
