@@ -246,7 +246,7 @@ func _apply_damage_to_player(player: Node) -> void:
 		player.call("take_damage", contact_damage)
 
 # -------------------------
-# Sinais
+# Signals
 # -------------------------
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	if _dead:

@@ -42,6 +42,7 @@ streams_count = 1
 stream_0/stream = ExtResource("3_anycs")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_arq5y"]
+resource_local_to_scene = true
 shader = ExtResource("4_lopbg")
 shader_parameter/progress_fall = 0.0
 shader_parameter/progress_rotation = 0.0
