@@ -518,6 +518,10 @@ func animations() -> void:
 		return
 	
 	if is_attacking:
+		if animation_sprite.animation == "stab":
+			play_animation("stab")
+		else:
+			play_animation("attack")
 		return
 	
 	if climbing:
