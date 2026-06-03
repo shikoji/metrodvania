@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bd63a4xjh1vct"]
+
+[ext_resource type="Shader" uid="uid://bpwv2uk84cylv" path="res://player/power_mode.gdshader" id="1_8y7f8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x7c3f"]
+seamless = true
+
+[resource]
+shader = ExtResource("1_8y7f8")
+shader_parameter/channel0 = SubResource("NoiseTexture2D_x7c3f")
