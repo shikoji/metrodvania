@@ -1,3 +1,3 @@
 extends Node
 
-var power_mode = false
+var power_mode: bool = false
