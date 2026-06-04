@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://w8embyvwxk7t" path="res://saws/saws_scenes/saw.tscn" id="16_vctr8"]
 [ext_resource type="PackedScene" uid="uid://chf5wkei53i8l" path="res://ladder/ladder_scenes/ladder.tscn" id="19_onjjn"]
 [ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="20_6qica"]
+[ext_resource type="PackedScene" uid="uid://cpqlbmibregyo" path="res://ability_unlocker/ability_unlocker.tscn" id="21_i3geh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i3geh"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -428,7 +429,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.42185003, 0.6327038, 0.54869473, 1)
+color = Color(0.23529412, 0.2784314, 0.44705883, 1)
 
 [node name="saws" type="Node2D" parent="." unique_id=1599457977]
 
@@ -627,7 +628,7 @@ max_life = 100
 visible = false
 
 [node name="Spikey" parent="." unique_id=1775360366 instance=ExtResource("20_6qica")]
-position = Vector2(404, 488)
+position = Vector2(472, 544)
 
 [node name="Spikey2" parent="." unique_id=1539293473 instance=ExtResource("20_6qica")]
 position = Vector2(489, 476)
@@ -637,5 +638,9 @@ position = Vector2(512, 517)
 
 [node name="Spikey4" parent="." unique_id=632257516 instance=ExtResource("20_6qica")]
 position = Vector2(435, 408)
+
+[node name="AbilityUnlocker" parent="." unique_id=1219678768 instance=ExtResource("21_i3geh")]
+position = Vector2(1318, 334)
+offset = Vector2(0, -4.0844183)
 
 [connection signal="body_entered" from="potions/Potion" to="potions/Potion" method="_on_body_entered"]

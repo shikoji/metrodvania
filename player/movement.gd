@@ -342,7 +342,7 @@ func request_roll() -> void:
 var power_mode = false
 
 func activate_power_mode():
-	if Input.is_action_just_pressed("parasite"):
+	if Input.is_action_just_pressed("parasite") and not power_mode and Abilities.power_mode:
 		print("hello?")
 		power_mode = true
 		animation_sprite.material = POWER_MODE_SHADER
@@ -719,7 +719,7 @@ func _on_attack_area_2d_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("break_sprite"):
 		camera.shake(2.5, 0.05);
-		body.hitpoints -= 1
+		body.hitpoints -= attack_damage
 		if body.hitpoints <= 0:
 			body.break_sprite()
 		else:
