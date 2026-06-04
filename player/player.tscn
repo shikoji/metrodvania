@@ -653,6 +653,24 @@ direction = Vector3(1, -0.5, 0)
 initial_velocity_max = 50.0
 gravity = Vector3(0, 9.8, 0)
 
+[sub_resource type="Gradient" id="Gradient_c35mf"]
+offsets = PackedFloat32Array(0, 0.21904762, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_65viv"]
+gradient = SubResource("Gradient_c35mf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x7c3f"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10.16, 10.665, 1)
+spread = 0.0
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -9, 0)
+color_ramp = SubResource("GradientTexture1D_65viv")
+
 [node name="player" type="CharacterBody2D" unique_id=1819110571]
 collision_mask = 2
 script = ExtResource("1_rgyib")
@@ -744,5 +762,11 @@ amount = 4
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_c35mf")
+
+[node name="PowerMode" type="GPUParticles2D" parent="." unique_id=423246565]
+emitting = false
+amount = 20
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_x7c3f")
 
 [connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]

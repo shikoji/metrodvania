@@ -90,6 +90,8 @@ var ladders_touching: int = 0
 @export var climb_speed: float = 120.0
 @export var ladder_horizontal_speed: float = 60.0
 
+const POWER_MODE_SHADER = preload("res://player/power_mode.tres")
+
 func update_attack_facing() -> void:
 	# Se flip_h = true, player está olhando pra ESQUERDA.
 	var xsign := -1.0 if animation_sprite.flip_h else 1.0
@@ -172,6 +174,7 @@ func _physics_process(delta: float) -> void:
 
 		
 	move_and_slide()
+	activate_power_mode()
 	update_wall_slide_state(delta)
 	var previous_direction = animation_sprite.flip_h
 	animations()
@@ -238,6 +241,15 @@ func update_timers(delta: float) -> void:
 	
 	if push_buffer_timer > 0.0:
 		push_buffer_timer -= delta
+	
+	if power_mode:
+		power_mode_hit_rate -= delta
+		if power_mode_hit_rate <= 0:
+			life -= 1
+			Global.player_life = life
+			power_mode_hit_rate = 1.0
+
+var power_mode_hit_rate = 1.0
 
 func read_action_inputs() -> void:
 	if Input.is_action_just_pressed("attack"):
@@ -327,9 +339,17 @@ func request_roll() -> void:
 	
 	start_roll()
 
+var power_mode = false
+
+func activate_power_mode():
+	if Input.is_action_just_pressed("parasite"):
+		print("hello?")
+		power_mode = true
+		animation_sprite.material = POWER_MODE_SHADER
+		attack_damage *= 2
+		$PowerMode.emitting = true
 
 func start_roll() -> void:
-	
 	is_rolling = true
 	is_attacking = false
 	attack_queued = false
@@ -633,13 +653,12 @@ func take_damage(amount: int) -> void:
 	_inv_timer = invincibility_time
 
 	life -= amount
+	Global.player_life = life
 	
 	hurt_sound.play()
 	var particles = ParticleHelper.spawn_particles(position)
 	var particles_material: ParticleProcessMaterial = particles.process_material
 	particles_material.color = Color.RED
-	
-	Global.player_life = life
 	
 	if life <= 0:
 		life = 0
@@ -696,7 +715,7 @@ func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
 func _on_attack_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
 		return
-	var particle = ParticleHelper.spawn_particles($AttackArea2d/SlamCollisionShape.global_position)
+	var _particle = ParticleHelper.spawn_particles($AttackArea2d/SlamCollisionShape.global_position)
 	
 	if body.has_method("break_sprite"):
 		camera.shake(2.5, 0.05);

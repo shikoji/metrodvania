@@ -7,9 +7,9 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 red_displacement = fract(UV.xy + vec2(TIME * 0.1, 0.0));
+	vec2 red_displacement = fract(UV.xy + vec2(TIME * 0.01, 0.0));
 	float red_derived = texture(channel0, fract(UV.xy + red_displacement)).x;
-	vec2 blue_displacement = fract(UV.xy + vec2(0.0, TIME * 0.1));
+	vec2 blue_displacement = fract(UV.xy + vec2(0.0, TIME * 0.01));
 	float blue_derived = texture(channel0, fract(UV.xy + blue_displacement)).x;
 	
 	

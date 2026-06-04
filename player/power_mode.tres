@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://bpwv2uk84cylv" path="res://player/power_mode.gdshader" id="1_8y7f8"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x7c3f"]
+resource_local_to_scene = true
 seamless = true
 
 [resource]
