@@ -685,9 +685,8 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"stab"
+animation = &"attack"
 autoplay = "idle"
-frame = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
 zoom = Vector2(3, 3)

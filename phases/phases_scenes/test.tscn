@@ -616,7 +616,7 @@ position = Vector2(816, 312)
 position = Vector2(816, 232)
 
 [node name="player_start_position" type="Marker2D" parent="." unique_id=1636481879]
-position = Vector2(36, 521)
+position = Vector2(749, 280)
 
 [node name="player" parent="." unique_id=1819110571 instance=ExtResource("1_qmcui")]
 position = Vector2(30, 600)
@@ -641,6 +641,6 @@ position = Vector2(435, 408)
 
 [node name="AbilityUnlocker" parent="." unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -4.0844183)
+offset = Vector2(0, -4.0810785)
 
 [connection signal="body_entered" from="potions/Potion" to="potions/Potion" method="_on_body_entered"]

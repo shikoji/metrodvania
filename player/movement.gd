@@ -108,6 +108,7 @@ func _ready() -> void:
 	# mantém seu connect atual
 	if not animation_sprite.animation_finished.is_connected(_on_animation_finished):
 		animation_sprite.animation_finished.connect(_on_animation_finished)
+		
 	
 	box_ray_head.add_exception(self)
 	
@@ -192,10 +193,14 @@ func _physics_process(delta: float) -> void:
 		var collision := get_slide_collision(platforms)
 		if collision.get_collider().has_method("has_collided_with"):
 			collision.get_collider().has_collided_with(collision, self)
+			
+	
 
 var was_on_floor = true
 var last_footstep_played = 0
 var last_footstep_emitted = 0
+
+
 
 func process_walking_footsteps():
 	if animation_sprite.animation == "run":
@@ -280,6 +285,7 @@ func cancel_roll_into_attack() -> void:
 enum AttackTypes { SLAM, STAB }
 
 func start_attack(type: AttackTypes) -> void:
+	climbing = false
 	is_attacking = true
 	attack_queued = false
 	attack_buffer_timer = 0.0
@@ -530,6 +536,9 @@ func animations() -> void:
 	# Prioridade:
 	# roll > attack > wall_slide > jump/fall > run > idle
 	
+	if not climbing:
+		animation_sprite.speed_scale = 1.0
+	
 	if is_hurt:
 		play_animation("hurt")
 		return
@@ -566,6 +575,8 @@ func animations() -> void:
 		else:
 			play_animation("fall")
 		return
+		
+	
 	
 	if push_buffer_timer > 0.0 and $BoxRay:
 		play_animation("push")
@@ -729,7 +740,10 @@ func ladder_movement() -> void:
 
 	var vertical := Input.get_axis("move_up", "move_down")
 	var horizontal := Input.get_axis("move_left", "move_right")
-
+	
+	if not on_ladder:
+		climbing = false
+	
 	if on_ladder and (abs(vertical) > 0 or abs(horizontal) > 0):
 		climbing = true
 
