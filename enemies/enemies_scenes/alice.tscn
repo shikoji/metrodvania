@@ -192,6 +192,7 @@ stream_1/stream = ExtResource("39_4yv07")
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_0f0xg")
+max_hp = 200
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1879266000]
 position = Vector2(1, -42)

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cwwt3n7cyqcpr"]
+
+[ext_resource type="Script" uid="uid://de14f8sf6036l" path="res://dialog/dialog_script/warning_sing.gd" id="1_mj8vk"]
+[ext_resource type="Texture2D" uid="uid://bpiacd01glac8" path="res://dialog/dialog_assents/Speech_Emotes (16 x 16).png" id="2_vfi4p"]
+[ext_resource type="Texture2D" uid="uid://b5cx3mu6g1ylo" path="res://dialog/dialog_assents/Grassland_entities (16 x 16).png" id="3_vfi4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnkt7"]
+size = Vector2(54, 20)
+
+[sub_resource type="Animation" id="Animation_vfi4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32.999996)]
+}
+
+[sub_resource type="Animation" id="Animation_qthxc"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector2(0, -28), Vector2(0, -24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7f3k"]
+_data = {
+&"RESET": SubResource("Animation_vfi4p"),
+&"idle": SubResource("Animation_qthxc")
+}
+
+[node name="warning_sing" type="Node2D" unique_id=135176323]
+script = ExtResource("1_mj8vk")
+dialog_offset = Vector2(-25, -50)
+
+[node name="texture" type="Sprite2D" parent="." unique_id=1190728926]
+position = Vector2(0, -32.999996)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_vfi4p")
+region_enabled = true
+region_rect = Rect2(1, 1, 14, 15)
+
+[node name="area_sing" type="Area2D" parent="." unique_id=1043434475]
+collision_layer = 2
+
+[node name="wood_sing" type="Sprite2D" parent="area_sing" unique_id=1272878592]
+position = Vector2(0, -8)
+texture = ExtResource("3_vfi4p")
+region_enabled = true
+region_rect = Rect2(49, 81, 14, 15)
+
+[node name="colision" type="CollisionShape2D" parent="area_sing" unique_id=191532707]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_bnkt7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1051883762]
+libraries/ = SubResource("AnimationLibrary_w7f3k")
+
+[connection signal="body_entered" from="area_sing" to="." method="_on_area_sing_body_entered"]
+[connection signal="body_exited" from="area_sing" to="." method="_on_area_sing_body_exited"]

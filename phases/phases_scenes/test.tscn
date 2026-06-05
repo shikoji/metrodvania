@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://chf5wkei53i8l" path="res://ladder/ladder_scenes/ladder.tscn" id="19_onjjn"]
 [ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="20_6qica"]
 [ext_resource type="PackedScene" uid="uid://cpqlbmibregyo" path="res://ability_unlocker/ability_unlocker.tscn" id="21_i3geh"]
+[ext_resource type="PackedScene" uid="uid://cwwt3n7cyqcpr" path="res://dialog/dialog_scene/warning_sing.tscn" id="22_itass"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i3geh"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -492,6 +493,26 @@ rect_length = Rect2(0, 10, 45, 7)
 [node name="alice" parent="enemies" unique_id=880267049 instance=ExtResource("10_yi8wp")]
 position = Vector2(1136, 576)
 
+[node name="abilitys" type="Node2D" parent="." unique_id=71297285]
+
+[node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
+position = Vector2(1318, 334)
+offset = Vector2(0, -8.45399)
+
+[node name="spikeys" type="Node2D" parent="." unique_id=693331304]
+
+[node name="Spikey" parent="spikeys" unique_id=1775360366 instance=ExtResource("20_6qica")]
+position = Vector2(472, 544)
+
+[node name="Spikey2" parent="spikeys" unique_id=1539293473 instance=ExtResource("20_6qica")]
+position = Vector2(489, 476)
+
+[node name="Spikey3" parent="spikeys" unique_id=1285942170 instance=ExtResource("20_6qica")]
+position = Vector2(512, 517)
+
+[node name="Spikey4" parent="spikeys" unique_id=632257516 instance=ExtResource("20_6qica")]
+position = Vector2(435, 408)
+
 [node name="boxes" type="Node2D" parent="." unique_id=1846035718]
 
 [node name="break-box11" parent="boxes" unique_id=1106866653 instance=ExtResource("12_4kh6q")]
@@ -615,8 +636,15 @@ position = Vector2(816, 312)
 [node name="ladder3" parent="ladders" unique_id=465232804 instance=ExtResource("19_onjjn")]
 position = Vector2(816, 232)
 
+[node name="warnigs" type="Node2D" parent="." unique_id=457894731]
+
+[node name="warning_sing" parent="warnigs" unique_id=135176323 instance=ExtResource("22_itass")]
+position = Vector2(-51, 640.5)
+dialog_offset = Vector2(-30, -50)
+dialog_lines = Array[String](["Hi!, how are you?", "nice"])
+
 [node name="player_start_position" type="Marker2D" parent="." unique_id=1636481879]
-position = Vector2(749, 280)
+position = Vector2(-151, 586)
 
 [node name="player" parent="." unique_id=1819110571 instance=ExtResource("1_qmcui")]
 position = Vector2(30, 600)
@@ -626,21 +654,5 @@ max_life = 100
 
 [node name="paused_menu" parent="." unique_id=641081728 instance=ExtResource("2_xe23b")]
 visible = false
-
-[node name="Spikey" parent="." unique_id=1775360366 instance=ExtResource("20_6qica")]
-position = Vector2(472, 544)
-
-[node name="Spikey2" parent="." unique_id=1539293473 instance=ExtResource("20_6qica")]
-position = Vector2(489, 476)
-
-[node name="Spikey3" parent="." unique_id=1285942170 instance=ExtResource("20_6qica")]
-position = Vector2(512, 517)
-
-[node name="Spikey4" parent="." unique_id=632257516 instance=ExtResource("20_6qica")]
-position = Vector2(435, 408)
-
-[node name="AbilityUnlocker" parent="." unique_id=1219678768 instance=ExtResource("21_i3geh")]
-position = Vector2(1318, 334)
-offset = Vector2(0, -4.0773554)
 
 [connection signal="body_entered" from="potions/Potion" to="potions/Potion" method="_on_body_entered"]
