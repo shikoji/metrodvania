@@ -26,7 +26,7 @@ var fast_forward := false
 @onready var continue_label: AnimatedSprite2D = $MarginContainer/MarginContainer/ContinueLabel
 
 func _ready():
-	audio_stream_player_2d.volume_db = -30
+	audio_stream_player_2d.volume_db = -25
 
 func display_text(text_to_display: String):
 	continue_label.hide()
@@ -63,7 +63,12 @@ func _process(delta):
 	else:
 		label.text += letra
 		
-		if letra != "":
+		if letra != "" \
+		and letra != "." \
+		and letra != "," \
+		and letra != "!" \
+		and letra != "?" \
+		and letra != "\n":
 			audio_stream_player_2d.pitch_scale = randf_range(0.95, 1.05)
 			play_letter_sound()
 	
@@ -116,7 +121,7 @@ func play_letter_sound():
 	
 	player.volume_db = audio_stream_player_2d.volume_db
 
-	player.pitch_scale = randf_range(0.95, 1.05)
+	player.pitch_scale = randf_range(0.85, 1.15)
 
 	player.finished.connect(player.queue_free)
 
