@@ -497,7 +497,7 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -10.401924)
+offset = Vector2(0, -8.791666)
 
 [node name="spikeys" type="Node2D" parent="." unique_id=693331304]
 
@@ -627,11 +627,11 @@ position = Vector2(39, -70)
 
 [node name="ladders" type="Node2D" parent="." unique_id=850715945]
 
-[node name="ladder2" parent="ladders" unique_id=1008487842 instance=ExtResource("19_onjjn")]
-position = Vector2(816, 272)
-
 [node name="ladder" parent="ladders" unique_id=532903423 instance=ExtResource("19_onjjn")]
 position = Vector2(816, 312)
+
+[node name="ladder2" parent="ladders" unique_id=1008487842 instance=ExtResource("19_onjjn")]
+position = Vector2(816, 272)
 
 [node name="ladder3" parent="ladders" unique_id=465232804 instance=ExtResource("19_onjjn")]
 position = Vector2(816, 232)
