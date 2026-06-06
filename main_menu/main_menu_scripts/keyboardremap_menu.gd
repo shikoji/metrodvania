@@ -52,7 +52,7 @@ const ACTIONS := [
 		"label": "Dash",
 		"row_name": "DashRow",
 		"defaults": [
-			{"type": BIND_KEY, "code": KEY_A},
+			{"type": BIND_KEY, "code": KEY_SHIFT},
 			{"type": BIND_NONE, "code": 0}
 		]
 	},
