@@ -22,7 +22,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "move_jump",
-		"label": "Pulo",
+		"label": "Jump",
 		"row_name": "MoveJumpRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_SPACE},
@@ -31,7 +31,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "move_left",
-		"label": "Esquerda",
+		"label": "move Left",
 		"row_name": "MoveLeftRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_A},
@@ -40,7 +40,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "move_right",
-		"label": "Direita",
+		"label": "Move Right",
 		"row_name": "MoveRightRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_D},
@@ -58,7 +58,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "attack",
-		"label": "Ataque",
+		"label": "Attack",
 		"row_name": "AttackRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_L},
@@ -67,7 +67,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "potion",
-		"label": "Poção",
+		"label": "Potion",
 		"row_name": "PotionRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_R},
@@ -76,7 +76,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "move_up",
-		"label": "Cima",
+		"label": "Move Up",
 		"row_name": "MoveUpRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_W},
@@ -85,7 +85,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "move_down",
-		"label": "Baixo",
+		"label": "Move Down",
 		"row_name": "MoveDownRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_S},
@@ -94,7 +94,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "parasite",
-		"label": "Parasita",
+		"label": "Parasite",
 		"row_name": "ParasiteRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_Z},
@@ -103,7 +103,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "interact",
-		"label": "Interagir",
+		"label": "Interact",
 		"row_name": "InteractRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_F},
@@ -112,7 +112,7 @@ const ACTIONS := [
 	},
 	{
 		"action": "advance_dialog",
-		"label": "Avançar Diálogo",
+		"label": "advance Dialog",
 		"row_name": "AdvanceDialogRow",
 		"defaults": [
 			{"type": BIND_KEY, "code": KEY_ENTER},
@@ -156,10 +156,10 @@ var scale_tweens: Dictionary = {}
 func _ready() -> void:
 	visible = false
 
-	title.text = "Teclado"
+	title.text = "Keyboard"
 
-	restore_button.text = "Restaurar padrões"
-	back_keyboard_button.text = "Voltar"
+	restore_button.text = "Restore Defaults"
+	back_keyboard_button.text = "Back"
 
 	restore_button.flat = true
 	back_keyboard_button.flat = true
@@ -743,7 +743,7 @@ func _bind_to_pretty_text(bind: Dictionary) -> String:
 	var bind_code: int = int(bind["code"])
 
 	if bind_type == BIND_NONE:
-		return "Não Definido"
+		return "Not Set"
 
 	if bind_type == BIND_MOUSE:
 		return _mouse_button_to_text(bind_code)
@@ -751,7 +751,7 @@ func _bind_to_pretty_text(bind: Dictionary) -> String:
 	if bind_type == BIND_KEY:
 		return _key_to_text(bind_code)
 
-	return "Não Definido"
+	return "Not Set"
 
 
 func _key_to_text(code: int) -> String:
@@ -759,19 +759,19 @@ func _key_to_text(code: int) -> String:
 		KEY_ESCAPE:
 			return "Esc"
 		KEY_SPACE:
-			return "Espaço"
+			return "Space"
 		KEY_ENTER:
 			return "Enter"
 		KEY_TAB:
 			return "Tab"
 		KEY_LEFT:
-			return "←"
+			return "Left"
 		KEY_RIGHT:
-			return "→"
+			return "Right"
 		KEY_UP:
-			return "↑"
+			return "Up"
 		KEY_DOWN:
-			return "↓"
+			return "Down"
 		KEY_SHIFT:
 			return "Shift"
 		KEY_CTRL:
@@ -785,15 +785,15 @@ func _key_to_text(code: int) -> String:
 func _mouse_button_to_text(button_index: int) -> String:
 	match button_index:
 		MOUSE_BUTTON_LEFT:
-			return "Mouse Esq."
+			return "Left Mouse"
 		MOUSE_BUTTON_RIGHT:
-			return "Mouse Dir."
+			return "Right Mouse"
 		MOUSE_BUTTON_MIDDLE:
-			return "Mouse Meio"
+			return "Middle Mouse"
 		MOUSE_BUTTON_WHEEL_UP:
-			return "Roda Cima"
+			return "Mouse Wheel Up"
 		MOUSE_BUTTON_WHEEL_DOWN:
-			return "Roda Baixo"
+			return "Mouse Wheel Down"
 		_:
 			return "Mouse " + str(button_index)
 

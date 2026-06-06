@@ -43,7 +43,7 @@ theme_override_fonts/font = ExtResource("1_ftt20")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
-text = "Teclado"
+text = "Keyboard"
 autowrap_trim_flags = 128
 
 [node name="Rows" type="HBoxContainer" parent="." unique_id=1969412804]
