@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dwvppgan72mty" path="res://main_menu/main_menu_assets/Relaxing audio.mp3" id="4_0up7n"]
 
 [node name="MainMenu" type="Control" unique_id=100007282]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://csd61q4b1tevi" path="res://main_menu/main_menu_scenes/options.tscn" id="2_pfkev"]
 
 [node name="paused_menu" type="CanvasLayer" unique_id=641081728]
+process_mode = 3
 script = ExtResource("1_pfkev")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=801853603]

@@ -39,13 +39,17 @@ func _on_dialog_finished():
 		sprite_2d.show()
 
 	
-func _unhandled_input(event):
+func _process(_delta: float) -> void:
+	if get_tree().paused:
+		return
+
 	if not pode_interagir or dialog_ativo:
 		return
 	
-	if event.is_action_pressed("interact"):
-		sprite_2d.hide() 
+	if Input.is_action_just_pressed("interact"):
+		sprite_2d.hide()
 		dialog_ativo = true
+
 		DialogManager.start_dialog(
 			global_position + dialog_offset,
 			dialog_lines,

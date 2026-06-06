@@ -200,7 +200,7 @@ func close_menu() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not visible:
+	if not is_visible_in_tree():
 		return
 
 	if waiting_for_input:
@@ -599,12 +599,12 @@ func _apply_all_binds_to_input_map() -> void:
 
 			if bind_type == BIND_KEY:
 				var key_event := InputEventKey.new()
-				key_event.physical_keycode = bind_code
+				key_event.physical_keycode = bind_code as Key
 				InputMap.action_add_event(action_name, key_event)
 
 			elif bind_type == BIND_MOUSE:
 				var mouse_event := InputEventMouseButton.new()
-				mouse_event.button_index = bind_code
+				mouse_event.button_index = bind_code as MouseButton
 				InputMap.action_add_event(action_name, mouse_event)
 
 
@@ -811,3 +811,6 @@ func _get_first_focus_item() -> Control:
 		return null
 
 	return focus_items[0]
+
+func is_waiting_for_remap_input() -> bool:
+	return is_visible_in_tree() and waiting_for_input

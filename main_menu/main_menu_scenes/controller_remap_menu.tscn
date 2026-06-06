@@ -1,0 +1,486 @@
+[gd_scene format=3 uid="uid://bgfbj4ghffy35"]
+
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_cubsu"]
+[ext_resource type="Script" uid="uid://fdo430rrayl4" path="res://main_menu/main_menu_scripts/controller_remap_menu.gd" id="1_w4wxm"]
+[ext_resource type="Texture2D" uid="uid://xfu0u27v7fcw" path="res://globals/assets/Sprites/FaceButtons/Colored/CrossHighlighted.png" id="2_1ehm8"]
+[ext_resource type="Texture2D" uid="uid://b2g51ctccs6ti" path="res://globals/assets/Sprites/FaceButtons/Colored/SquareHighlighted.png" id="3_ucn7v"]
+[ext_resource type="Texture2D" uid="uid://cukqwuyj7pa1v" path="res://globals/assets/Sprites/ShoulderButtons/Color/R2Highlighted.png" id="4_xxjno"]
+[ext_resource type="Texture2D" uid="uid://c5sxppmgm0yge" path="res://globals/assets/Sprites/DirectionalButtons/Color/UpSelected.png" id="5_qn5ch"]
+[ext_resource type="Texture2D" uid="uid://chga2v5kralrh" path="res://globals/assets/Sprites/FaceButtons/Colored/TriangleHighlighted.png" id="6_w2lf8"]
+[ext_resource type="Texture2D" uid="uid://cg4a7ufefbq6h" path="res://globals/assets/Sprites/FaceButtons/Colored/CircleHighlighted.png" id="7_w2lf8"]
+[ext_resource type="Texture2D" uid="uid://blx60tmxscr6j" path="res://globals/assets/Sprites/DirectionalButtons/Color/DownSelected.png" id="7_ww1iv"]
+[ext_resource type="Texture2D" uid="uid://dkns6yok6ix3i" path="res://globals/assets/Sprites/DirectionalButtons/Color/LeftSelected.png" id="8_j5otx"]
+[ext_resource type="Texture2D" uid="uid://cub51f5rilmap" path="res://globals/assets/Sprites/DirectionalButtons/Color/RightSelected.png" id="8_w4wxm"]
+[ext_resource type="Texture2D" uid="uid://c8iurnmf7s5wl" path="res://globals/assets/Sprites/SystemButtons/Color/OptionsHighlighted.png" id="9_f0v8x"]
+[ext_resource type="Texture2D" uid="uid://bkou6p5f5birg" path="res://globals/assets/Sprites/ShoulderButtons/Color/L1Highlighted.png" id="10_jryk4"]
+[ext_resource type="Texture2D" uid="uid://bpsepnyohfokn" path="res://globals/assets/Sprites/ShoulderButtons/Color/R1Highlighted.png" id="11_6otyv"]
+[ext_resource type="Texture2D" uid="uid://b4qg7r23od1xt" path="res://globals/assets/Sprites/ShoulderButtons/Color/L2Highlighted.png" id="12_huw5q"]
+[ext_resource type="Texture2D" uid="uid://cy2ck0nt2cfuk" path="res://globals/assets/Sprites/SystemButtons/Color/ShareHighlighted.png" id="15_eom0p"]
+[ext_resource type="Texture2D" uid="uid://rx5i2y2uidpe" path="res://globals/assets/Sprites/FaceButtons/Colored/BlankHighlighted.png" id="16_673cj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dv51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sp024"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cubsu"]
+
+[node name="ControllerRemapMenu" type="Control" unique_id=1180041791]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4wxm")
+icon_cross = ExtResource("2_1ehm8")
+icon_circle = ExtResource("7_w2lf8")
+icon_square = ExtResource("3_ucn7v")
+icon_triangle = ExtResource("6_w2lf8")
+icon_dpad_up = ExtResource("5_qn5ch")
+icon_dpad_down = ExtResource("7_ww1iv")
+icon_dpad_left = ExtResource("8_j5otx")
+icon_dpad_right = ExtResource("8_w4wxm")
+icon_l1 = ExtResource("10_jryk4")
+icon_r1 = ExtResource("11_6otyv")
+icon_l2 = ExtResource("12_huw5q")
+icon_r2 = ExtResource("4_xxjno")
+icon_options = ExtResource("9_f0v8x")
+icon_share = ExtResource("15_eom0p")
+icon_none = ExtResource("16_673cj")
+
+[node name="Title" type="Label" parent="." unique_id=269937730]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 6.0
+offset_right = 720.0
+offset_bottom = 38.0
+focus_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_cubsu")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Controle"
+autowrap_trim_flags = 128
+
+[node name="Rows" type="HBoxContainer" parent="." unique_id=645689464]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -98.0
+offset_right = 181.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="Rows" unique_id=1821029062]
+layout_mode = 2
+
+[node name="JumpRow" type="HBoxContainer" parent="Rows/LeftColumn" unique_id=1732794621]
+layout_mode = 2
+
+[node name="JumpLabel" type="Label" parent="Rows/LeftColumn/JumpRow" unique_id=150249620]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+text = "Jump"
+
+[node name="JumpBind" type="Button" parent="Rows/LeftColumn/JumpRow" unique_id=1293685067]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/LeftColumn/JumpRow/JumpBind" unique_id=1092436145]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1ehm8")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/LeftColumn/JumpRow/JumpBind" unique_id=520562885]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="AttackRow" type="HBoxContainer" parent="Rows/LeftColumn" unique_id=664468806]
+layout_mode = 2
+
+[node name="AttackLabel" type="Label" parent="Rows/LeftColumn/AttackRow" unique_id=1784312426]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+text = "Attack"
+
+[node name="AttackBind" type="Button" parent="Rows/LeftColumn/AttackRow" unique_id=1486110948]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/LeftColumn/AttackRow/AttackBind" unique_id=466369934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ucn7v")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/LeftColumn/AttackRow/AttackBind" unique_id=993047384]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="DashRow" type="HBoxContainer" parent="Rows/LeftColumn" unique_id=744951559]
+layout_mode = 2
+
+[node name="DashLabel" type="Label" parent="Rows/LeftColumn/DashRow" unique_id=1005271622]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+text = "Dash"
+
+[node name="DashBind" type="Button" parent="Rows/LeftColumn/DashRow" unique_id=1185201390]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/LeftColumn/DashRow/DashBind" unique_id=1560683249]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xxjno")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/LeftColumn/DashRow/DashBind" unique_id=1107569209]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="PotionRow" type="HBoxContainer" parent="Rows/LeftColumn" unique_id=1828383172]
+layout_mode = 2
+
+[node name="PotionLabel" type="Label" parent="Rows/LeftColumn/PotionRow" unique_id=858026834]
+layout_mode = 2
+text = "Potion"
+
+[node name="PotionBind" type="Button" parent="Rows/LeftColumn/PotionRow" unique_id=756574423]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/LeftColumn/PotionRow/PotionBind" unique_id=1926161237]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qn5ch")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/LeftColumn/PotionRow/PotionBind" unique_id=929301]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="RightColumn" type="VBoxContainer" parent="Rows" unique_id=1153792609]
+layout_mode = 2
+
+[node name="ParasiteRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=181939349]
+layout_mode = 2
+
+[node name="ParasiteLabel" type="Label" parent="Rows/RightColumn/ParasiteRow" unique_id=1214697725]
+custom_minimum_size = Vector2(66, 0)
+layout_mode = 2
+text = "Parasite"
+
+[node name="ParasiteBind" type="Button" parent="Rows/RightColumn/ParasiteRow" unique_id=1232203959]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/RightColumn/ParasiteRow/ParasiteBind" unique_id=69250050]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_w2lf8")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/RightColumn/ParasiteRow/ParasiteBind" unique_id=428270744]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=941434824]
+layout_mode = 2
+
+[node name="InteractLabel" type="Label" parent="Rows/RightColumn/InteractRow" unique_id=1632718240]
+custom_minimum_size = Vector2(66, 0)
+layout_mode = 2
+text = "Interact"
+
+[node name="InteractBind" type="Button" parent="Rows/RightColumn/InteractRow" unique_id=382540833]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/RightColumn/InteractRow/InteractBind" unique_id=1285639783]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_w2lf8")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/RightColumn/InteractRow/InteractBind" unique_id=1650051768]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AdvanceDialogRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=257607381]
+layout_mode = 2
+
+[node name="AdvanceDialogLabel" type="Label" parent="Rows/RightColumn/AdvanceDialogRow" unique_id=1361959679]
+layout_mode = 2
+text = "Advance
+  Dialog"
+
+[node name="AdvanceDialogBind" type="Button" parent="Rows/RightColumn/AdvanceDialogRow" unique_id=2144401954]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/RightColumn/AdvanceDialogRow/AdvanceDialogBind" unique_id=2070786921]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_w4wxm")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/RightColumn/AdvanceDialogRow/AdvanceDialogBind" unique_id=1814423875]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=1270446497]
+layout_mode = 2
+
+[node name="PauseLabel" type="Label" parent="Rows/RightColumn/PauseRow" unique_id=1614903497]
+custom_minimum_size = Vector2(66, 0)
+layout_mode = 2
+text = "Pause"
+
+[node name="PauseBind" type="Button" parent="Rows/RightColumn/PauseRow" unique_id=778584485]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/RightColumn/PauseRow/PauseBind" unique_id=1201206493]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_f0v8x")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="WaitingText" type="Label" parent="Rows/RightColumn/PauseRow/PauseBind" unique_id=281009883]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomButtons" type="VBoxContainer" parent="." unique_id=1043727245]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RestoreButton" type="Button" parent="BottomButtons" unique_id=1777853301]
+layout_mode = 2
+text = "Restore Buttons"
+flat = true
+
+[node name="BackButton" type="Button" parent="BottomButtons" unique_id=1351966407]
+layout_mode = 2
+text = "Back"
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="BottomButtons" unique_id=1915368228]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cubsu")

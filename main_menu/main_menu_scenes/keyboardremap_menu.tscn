@@ -8,6 +8,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sp024"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vox67"]
+
 [node name="KeyboardremapMenu" type="Control" unique_id=745851080]
 layout_mode = 3
 anchors_preset = 15
@@ -82,3 +84,8 @@ layout_mode = 2
 
 [node name="BackKeyboardButton" type="Button" parent="BottomButtons" unique_id=1086358738]
 layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="BottomButtons" unique_id=1804326465]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vox67")

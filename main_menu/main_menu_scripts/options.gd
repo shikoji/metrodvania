@@ -5,35 +5,23 @@ extends Control
 @onready var main_selector: Control = $Selector
 @onready var keyboard_remap_menu: Control = $KeyboardremapMenu
 
-# =========================
-# LABELS DOS VOLUMES
-# =========================
+@onready var controller_remap_menu: Control = $ControllerRemapMenu
+
 @onready var master_volume: Label = $MenuButtons/MasterRow/Master_volume
 @onready var music_volume: Label = $MenuButtons/MusicRow/Music_Volume
 @onready var sfx_volume: Label = $MenuButtons/SFxRow/Sfx_volume
 
-
-# =========================
-# BOTÕES
-# =========================
 @onready var fullscreen: Button = $MenuButtons/FullscreenRow/Fullscreen_volume
 @onready var v_sync: Button = $MenuButtons/VSyncRow/VSync_volume
 @onready var keyboard: Button = $MenuButtons/KeyboardRow/KeyboardButton
 @onready var controller: Button = $MenuButtons/ControllerRow/ControllerButton
 @onready var back: Button = $MenuButtons/BackRow/Back
 
-
-# =========================
-# SLIDERS
-# =========================
 @onready var master_slider: HSlider = $MenuButtons/MasterRow/MasterSlider
 @onready var music_slider: HSlider = $MenuButtons/MusicRow/MusicSlider
 @onready var sfx_slider: HSlider = $MenuButtons/SFxRow/SfxSlider
 
 
-# =========================
-# VALORES MOSTRADOS NA TELA
-# =========================
 @onready var master_value: Label = $MenuButtons/MasterRow/MasterValue
 @onready var music_value: Label = $MenuButtons/MusicRow/MusicValue
 @onready var sfx_value: Label = $MenuButtons/SFxRow/SfxValue
@@ -43,44 +31,26 @@ extends Control
 @onready var keyboard_value: Label = $MenuButtons/KeyboardRow/KeyboardValue
 @onready var controller_value: Label = $MenuButtons/ControllerRow/ControllerValue
 
-
-# =========================
-# SELECTORS
-# =========================
 @onready var left_selector: TextureRect = $Selector/LeftDecoration
 @onready var right_selector: TextureRect = $Selector/RightDecoration
 
-
-# =========================
-# AJUSTES DO SELECTOR
-# =========================
-
-## Distância dos selectors em relação aos elementos da linha.
 @export var selector_gap: float = 10.0
-## Distância extra do selector esquerdo.
+
 @export var left_selector_gap: float = 25.0
-## Distância extra do selector direito.
+
 @export var right_selector_gap: float = 25.0
 
-## Quanto o Label ou Button selecionado aumenta.
 @export var selected_item_scale: Vector2 = Vector2(1.08, 1.08)
 
-## Quanto os selectors andam para dentro ao clicar/arrastar.
 @export var selector_press_distance: float = 10.0
 
-## Velocidade do movimento dos selectors.
 @export var selector_move_time: float = 0.08
 
-## Velocidade do avanço dos selectors ao apertar.
 @export var selector_press_time: float = 0.08
 
-## Velocidade do zoom do texto selecionado.
 @export var item_zoom_time: float = 0.12
 
 
-# =========================
-# VARIÁVEIS DO SISTEMA
-# =========================
 var focus_items: Array[Control] = []
 var current_item: Control
 
@@ -101,7 +71,6 @@ signal back_to_home
 
 
 func _ready() -> void:
-	# Elementos que realmente recebem foco
 	focus_items = [
 		master_slider,
 		music_slider,
@@ -113,7 +82,6 @@ func _ready() -> void:
 		back
 	]
 
-	# Onde o selector esquerdo deve ficar
 	left_selector_targets = {
 		master_slider: master_volume,
 		music_slider: music_volume,
@@ -125,7 +93,6 @@ func _ready() -> void:
 		back: back
 	}
 
-	# Onde o selector direito deve ficar
 	right_selector_targets = {
 		master_slider: master_value,
 		music_slider: music_value,
@@ -137,7 +104,6 @@ func _ready() -> void:
 		back: back
 	}
 
-	# Qual elemento visual dá zoom quando a opção está selecionada
 	scale_targets = {
 		master_slider: master_volume,
 		music_slider: music_volume,
@@ -149,7 +115,6 @@ func _ready() -> void:
 		back: back
 	}
 
-	# Garante que os sliders possam receber foco pelo teclado
 	master_slider.focus_mode = Control.FOCUS_ALL
 	music_slider.focus_mode = Control.FOCUS_ALL
 	sfx_slider.focus_mode = Control.FOCUS_ALL
@@ -157,12 +122,10 @@ func _ready() -> void:
 	keyboard.focus_mode = Control.FOCUS_ALL
 	controller.focus_mode = Control.FOCUS_ALL
 
-	# Conecta foco e mouse
 	for item in focus_items:
 		item.focus_entered.connect(_on_item_focus_entered.bind(item))
 		item.mouse_entered.connect(_on_item_mouse_entered.bind(item))
 
-	# Animação de apertar nos botões
 	fullscreen.button_down.connect(_on_item_down.bind(fullscreen))
 	fullscreen.button_up.connect(_on_item_up)
 
@@ -178,7 +141,6 @@ func _ready() -> void:
 	back.button_down.connect(_on_item_down.bind(back))
 	back.button_up.connect(_on_item_up)
 
-	# Animação de apertar ao arrastar os sliders
 	master_slider.drag_started.connect(_on_item_down.bind(master_slider))
 	master_slider.drag_ended.connect(_on_slider_drag_ended)
 
@@ -188,33 +150,26 @@ func _ready() -> void:
 	sfx_slider.drag_started.connect(_on_item_down.bind(sfx_slider))
 	sfx_slider.drag_ended.connect(_on_slider_drag_ended)
 
-	# Espera os containers organizarem tudo
 	await get_tree().process_frame
 
-	# Define o pivô central do elemento que dá zoom
 	for item in focus_items:
 		var target: Control = scale_targets[item]
 		target.pivot_offset = target.size / 2.0
 
-	# Configura sliders
 	setup_slider(master_slider)
 	setup_slider(music_slider)
 	setup_slider(sfx_slider)
 
-	# Valores iniciais
 	master_slider.value = 100
 	music_slider.value = 100
 	sfx_slider.value = 100
 
-	# Atualiza textos iniciais
 	update_volume_labels()
 
-	# Quando mover sliders
 	master_slider.value_changed.connect(_on_master_slider_changed)
 	music_slider.value_changed.connect(_on_music_slider_changed)
 	sfx_slider.value_changed.connect(_on_sfx_slider_changed)
 
-	# Botões de configuração
 	fullscreen.pressed.connect(_on_fullscreen_pressed)
 	v_sync.pressed.connect(_on_vsync_pressed)
 	
@@ -223,8 +178,10 @@ func _ready() -> void:
 	
 	keyboard_remap_menu.back_requested.connect(_on_keyboard_remap_back_requested)
 	keyboard_remap_menu.visible = false
+	
+	controller_remap_menu.back_requested.connect(_on_controller_remap_back_requested)
+	controller_remap_menu.visible = false
 
-	# Process current values and setup texts
 	load_saved_preferences()
 	update_fullscreen_label()
 	update_vsync_label()
@@ -261,10 +218,6 @@ func save_current_preferences() -> void:
 	file.close()
 
 
-# ============================================================
-# SLIDERS
-# ============================================================
-
 func setup_slider(slider: HSlider) -> void:
 	slider.min_value = 0
 	slider.max_value = 100
@@ -288,15 +241,15 @@ func _on_music_slider_changed(value: float) -> void:
 func _on_sfx_slider_changed(value: float) -> void:
 	sfx_value.text = str(int(value)) + "%"
 
-
-# ============================================================
-# INPUT EXTRA PARA FULLSCREEN / VSYNC
-# ============================================================
-
 func _unhandled_input(event: InputEvent) -> void:
-	if keyboard_remap_menu.visible:
+	if keyboard_remap_menu.visible or controller_remap_menu.visible:
 		return
-	
+
+	if event.is_action_pressed("ui_cancel") or _is_controller_back_event(event):
+		_on_back_pressed()
+		get_viewport().set_input_as_handled()
+		return
+
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
 		if current_item == fullscreen:
 			_on_fullscreen_pressed()
@@ -305,9 +258,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_vsync_pressed()
 
 
-# ============================================================
-# FULLSCREEN
-# ============================================================
+func _is_controller_back_event(event: InputEvent) -> bool:
+	if event is InputEventJoypadButton:
+		var joy_button: InputEventJoypadButton = event as InputEventJoypadButton
+
+		if joy_button.pressed and joy_button.button_index == JOY_BUTTON_B:
+			return true
+
+	return false
 
 func _on_fullscreen_pressed() -> void:
 	var current_mode := DisplayServer.window_get_mode()
@@ -336,11 +294,6 @@ func update_fullscreen_label() -> void:
 
 	fullscreen_value.text = "YES" if is_fullscreen else "NO"
 
-
-# ============================================================
-# VSYNC
-# ============================================================
-
 func _on_vsync_pressed() -> void:
 	var is_enabled := DisplayServer.window_get_vsync_mode() != DisplayServer.VSYNC_DISABLED
 
@@ -358,10 +311,9 @@ func update_vsync_label() -> void:
 
 
 func _on_keyboard_pressed() -> void:
+	keyboard_remap_menu.open_menu()
 	menu_buttons.visible = false
 	main_selector.visible = false
-
-	keyboard_remap_menu.open_menu()
 
 
 func _on_keyboard_remap_back_requested() -> void:
@@ -376,11 +328,21 @@ func _on_keyboard_remap_back_requested() -> void:
 	select_item(keyboard, false)
 	
 func _on_controller_pressed() -> void:
-	print("Abrir menu de controle")
+	controller_remap_menu.open_menu()
+	menu_buttons.visible = false
+	main_selector.visible = false
 
-# ============================================================
-# SISTEMA DE FOCO E SELECTOR
-# ============================================================
+
+func _on_controller_remap_back_requested() -> void:
+	controller_remap_menu.visible = false
+
+	menu_buttons.visible = true
+	main_selector.visible = true
+
+	await get_tree().process_frame
+
+	controller.grab_focus()
+	select_item(controller, false)
 
 func _on_item_focus_entered(item: Control) -> void:
 	select_item(item, true)
@@ -393,7 +355,6 @@ func _on_item_mouse_entered(item: Control) -> void:
 func select_item(item: Control, animate_selector: bool = true) -> void:
 	current_item = item
 
-	# Zoom apenas no texto ou botão visual da opção selecionada
 	for focus_item in focus_items:
 		var target: Control = scale_targets[focus_item]
 
@@ -402,10 +363,8 @@ func select_item(item: Control, animate_selector: bool = true) -> void:
 		else:
 			animate_control_scale(target, Vector2.ONE)
 
-	# Calcula posição correta dos selectors
 	update_selector_positions(item)
 
-	# Move os selectors
 	move_selectors_to_normal_position(animate_selector)
 
 
@@ -415,8 +374,6 @@ func update_selector_positions(item: Control) -> void:
 
 	var center_y := left_target.global_position.y + left_target.size.y / 2.0
 
-	# Posição do selector esquerdo:
-	# fica antes do Label ou Button da opção
 	var left_visual_width := left_target.size.x * left_target.scale.x
 	var left_visual_x := left_target.global_position.x - ((left_visual_width - left_target.size.x) / 2.0)
 
@@ -425,8 +382,6 @@ func update_selector_positions(item: Control) -> void:
 		center_y - left_selector.size.y / 2.0
 	)
 
-	# Posição do selector direito:
-	# fica depois do valor final da linha
 	var right_visual_width := right_target.size.x * right_target.scale.x
 	var right_visual_x := right_target.global_position.x + right_target.size.x + ((right_visual_width - right_target.size.x) / 2.0)
 
@@ -485,10 +440,6 @@ func animate_control_scale(control: Control, target_scale: Vector2) -> void:
 	)
 
 
-# ============================================================
-# ANIMAÇÃO DE APERTO DOS SELECTORS
-# ============================================================
-
 func _on_item_down(item: Control) -> void:
 	if current_item != item:
 		select_item(item, true)
@@ -544,11 +495,6 @@ func _on_item_up() -> void:
 func _on_slider_drag_ended(_value_changed: bool) -> void:
 	_on_item_up()
 
-
-# ============================================================
-# FOCO QUANDO OPTIONS ABRE
-# ============================================================
-
 func focus_first_option() -> void:
 	await get_tree().process_frame
 	master_slider.grab_focus()
@@ -556,12 +502,12 @@ func focus_first_option() -> void:
 	await get_tree().process_frame
 	select_item(master_slider, false)
 
-
-# ============================================================
-# VOLTAR AO MENU PRINCIPAL
-# ============================================================
-
 func _on_back_pressed() -> void:
+	if keyboard_remap_menu.visible:
+		keyboard_remap_menu.close_menu()
+
+	if controller_remap_menu.visible:
+		controller_remap_menu.close_menu()
 	save_current_preferences()
 	back_to_home.emit()
 
@@ -576,6 +522,24 @@ func process_audio_sliders() -> void:
 
 
 func _process(_delta: float) -> void:
-	# only process changes if options menu is on the forefront 
 	if visible:
 		process_audio_sliders()
+
+func is_waiting_for_remap_input() -> bool:
+	if keyboard_remap_menu != null:
+		if keyboard_remap_menu.has_method("is_waiting_for_remap_input"):
+			if keyboard_remap_menu.is_waiting_for_remap_input():
+				return true
+
+	if controller_remap_menu != null:
+		if controller_remap_menu.has_method("is_waiting_for_remap_input"):
+			if controller_remap_menu.is_waiting_for_remap_input():
+				return true
+
+	return false
+
+func is_controller_remap_menu_open() -> bool:
+	if controller_remap_menu == null:
+		return false
+
+	return controller_remap_menu.is_visible_in_tree()

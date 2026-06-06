@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="2_80rkp"]
 [ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="3_rtyio"]
 [ext_resource type="PackedScene" uid="uid://dn16dghuvp5vr" path="res://main_menu/main_menu_scenes/keyboardremap_menu.tscn" id="4_rtyio"]
+[ext_resource type="PackedScene" uid="uid://bgfbj4ghffy35" path="res://main_menu/main_menu_scenes/controller_remap_menu.tscn" id="5_oc1bg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dv51"]
 
@@ -64,6 +65,8 @@ text = "Master Volume:"
 [node name="MasterSlider" type="HSlider" parent="MenuButtons/MasterRow" unique_id=1982961445]
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../BackRow/Back")
+focus_neighbor_bottom = NodePath("../../MusicRow/MusicSlider")
 
 [node name="MasterValue" type="Label" parent="MenuButtons/MasterRow" unique_id=154966279]
 custom_minimum_size = Vector2(140, 0)
@@ -88,6 +91,8 @@ text = "Music Volume:"
 [node name="MusicSlider" type="HSlider" parent="MenuButtons/MusicRow" unique_id=1231820926]
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../MasterRow/MasterSlider")
+focus_neighbor_bottom = NodePath("../../SFxRow/SfxSlider")
 
 [node name="MusicValue" type="Label" parent="MenuButtons/MusicRow" unique_id=2055857349]
 custom_minimum_size = Vector2(140, 0)
@@ -112,6 +117,8 @@ text = "Sfx:"
 [node name="SfxSlider" type="HSlider" parent="MenuButtons/SFxRow" unique_id=1531680004]
 custom_minimum_size = Vector2(300, 35)
 layout_mode = 2
+focus_neighbor_top = NodePath("../../MusicRow/MusicSlider")
+focus_neighbor_bottom = NodePath("../../FullscreenRow/Fullscreen_volume")
 
 [node name="SfxValue" type="Label" parent="MenuButtons/SFxRow" unique_id=2139932453]
 custom_minimum_size = Vector2(140, 0)
@@ -126,6 +133,8 @@ theme_override_constants/separation = 25
 
 [node name="Fullscreen_volume" type="Button" parent="MenuButtons/FullscreenRow" unique_id=1991260686]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../SFxRow/SfxSlider")
+focus_neighbor_bottom = NodePath("../../VSyncRow/VSync_volume")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_80rkp")
@@ -171,6 +180,8 @@ layout_mode = 2
 
 [node name="KeyboardButton" type="Button" parent="MenuButtons/KeyboardRow" unique_id=1045558803]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../VSyncRow/VSync_volume")
+focus_neighbor_bottom = NodePath("../../ControllerRow/ControllerButton")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_80rkp")
@@ -191,6 +202,8 @@ layout_mode = 2
 
 [node name="ControllerButton" type="Button" parent="MenuButtons/ControllerRow" unique_id=1837788361]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../KeyboardRow/KeyboardButton")
+focus_neighbor_bottom = NodePath("../../BackRow/Back")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_80rkp")
@@ -212,6 +225,8 @@ theme_override_constants/separation = 25
 
 [node name="Back" type="Button" parent="MenuButtons/BackRow" unique_id=80794937]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../ControllerRow/ControllerButton")
+focus_neighbor_bottom = NodePath("../../MasterRow/MasterSlider")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_80rkp")
@@ -250,6 +265,10 @@ texture = ExtResource("3_rtyio")
 flip_h = true
 
 [node name="KeyboardremapMenu" parent="." unique_id=745851080 instance=ExtResource("4_rtyio")]
+visible = false
+layout_mode = 1
+
+[node name="ControllerRemapMenu" parent="." unique_id=1180041791 instance=ExtResource("5_oc1bg")]
 visible = false
 layout_mode = 1
 
