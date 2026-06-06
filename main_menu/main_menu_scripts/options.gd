@@ -1,6 +1,10 @@
 extends Control
 
 
+@onready var menu_buttons: VBoxContainer = $MenuButtons
+@onready var main_selector: Control = $Selector
+@onready var keyboard_remap_menu: Control = $KeyboardremapMenu
+
 # =========================
 # LABELS DOS VOLUMES
 # =========================
@@ -14,6 +18,8 @@ extends Control
 # =========================
 @onready var fullscreen: Button = $MenuButtons/FullscreenRow/Fullscreen_volume
 @onready var v_sync: Button = $MenuButtons/VSyncRow/VSync_volume
+@onready var keyboard: Button = $MenuButtons/KeyboardRow/KeyboardButton
+@onready var controller: Button = $MenuButtons/ControllerRow/ControllerButton
 @onready var back: Button = $MenuButtons/BackRow/Back
 
 
@@ -34,6 +40,8 @@ extends Control
 
 @onready var fullscreen_value: Label = $MenuButtons/FullscreenRow/FullscreenValue
 @onready var vsync_value: Label = $MenuButtons/VSyncRow/VSyncValue
+@onready var keyboard_value: Label = $MenuButtons/KeyboardRow/KeyboardValue
+@onready var controller_value: Label = $MenuButtons/ControllerRow/ControllerValue
 
 
 # =========================
@@ -100,6 +108,8 @@ func _ready() -> void:
 		sfx_slider,
 		fullscreen,
 		v_sync,
+		keyboard,
+		controller,
 		back
 	]
 
@@ -110,6 +120,8 @@ func _ready() -> void:
 		sfx_slider: sfx_volume,
 		fullscreen: fullscreen,
 		v_sync: v_sync,
+		keyboard: keyboard,
+		controller: controller,
 		back: back
 	}
 
@@ -120,6 +132,8 @@ func _ready() -> void:
 		sfx_slider: sfx_value,
 		fullscreen: fullscreen_value,
 		v_sync: vsync_value,
+		keyboard: keyboard_value,
+		controller: controller_value,
 		back: back
 	}
 
@@ -130,6 +144,8 @@ func _ready() -> void:
 		sfx_slider: sfx_volume,
 		fullscreen: fullscreen,
 		v_sync: v_sync,
+		keyboard: keyboard,
+		controller: controller,
 		back: back
 	}
 
@@ -137,6 +153,9 @@ func _ready() -> void:
 	master_slider.focus_mode = Control.FOCUS_ALL
 	music_slider.focus_mode = Control.FOCUS_ALL
 	sfx_slider.focus_mode = Control.FOCUS_ALL
+	
+	keyboard.focus_mode = Control.FOCUS_ALL
+	controller.focus_mode = Control.FOCUS_ALL
 
 	# Conecta foco e mouse
 	for item in focus_items:
@@ -149,7 +168,13 @@ func _ready() -> void:
 
 	v_sync.button_down.connect(_on_item_down.bind(v_sync))
 	v_sync.button_up.connect(_on_item_up)
-
+	
+	keyboard.button_down.connect(_on_item_down.bind(keyboard))
+	keyboard.button_up.connect(_on_item_up)
+	
+	controller.button_down.connect(_on_item_down.bind(controller))
+	controller.button_up.connect(_on_item_up)
+	
 	back.button_down.connect(_on_item_down.bind(back))
 	back.button_up.connect(_on_item_up)
 
@@ -192,6 +217,12 @@ func _ready() -> void:
 	# Botões de configuração
 	fullscreen.pressed.connect(_on_fullscreen_pressed)
 	v_sync.pressed.connect(_on_vsync_pressed)
+	
+	keyboard.pressed.connect(_on_keyboard_pressed)
+	controller.pressed.connect(_on_controller_pressed)
+	
+	keyboard_remap_menu.back_requested.connect(_on_keyboard_remap_back_requested)
+	keyboard_remap_menu.visible = false
 
 	# Process current values and setup texts
 	load_saved_preferences()
@@ -263,6 +294,9 @@ func _on_sfx_slider_changed(value: float) -> void:
 # ============================================================
 
 func _unhandled_input(event: InputEvent) -> void:
+	if keyboard_remap_menu.visible:
+		return
+	
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
 		if current_item == fullscreen:
 			_on_fullscreen_pressed()
@@ -322,6 +356,27 @@ func update_vsync_label() -> void:
 	var is_enabled := DisplayServer.window_get_vsync_mode() != DisplayServer.VSYNC_DISABLED
 	vsync_value.text = "YES" if is_enabled else "NO"
 
+
+func _on_keyboard_pressed() -> void:
+	menu_buttons.visible = false
+	main_selector.visible = false
+
+	keyboard_remap_menu.open_menu()
+
+
+func _on_keyboard_remap_back_requested() -> void:
+	keyboard_remap_menu.visible = false
+
+	menu_buttons.visible = true
+	main_selector.visible = true
+
+	await get_tree().process_frame
+
+	keyboard.grab_focus()
+	select_item(keyboard, false)
+	
+func _on_controller_pressed() -> void:
+	print("Abrir menu de controle")
 
 # ============================================================
 # SISTEMA DE FOCO E SELECTOR

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://djqtfxji1njr2"]
+
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_5gt6y"]
+
+[resource]
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_5gt6y")

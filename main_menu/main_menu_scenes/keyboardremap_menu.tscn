@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dn16dghuvp5vr"]
+
+[ext_resource type="Script" uid="uid://crewgvxd1wncs" path="res://main_menu/main_menu_scripts/keyboardremap_menu.gd" id="1_7d4vo"]
+[ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="1_ftt20"]
+[ext_resource type="Theme" uid="uid://djqtfxji1njr2" path="res://main_menu/new_theme.tres" id="1_vox67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dv51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sp024"]
+
+[node name="KeyboardremapMenu" type="Control" unique_id=745851080]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vox67")
+script = ExtResource("1_7d4vo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=218555593]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.53333336)
+
+[node name="Title" type="Label" parent="." unique_id=359757807]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 6.0
+offset_right = 720.0
+offset_bottom = 38.0
+size_flags_vertical = 1
+focus_mode = 2
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ftt20")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Teclado"
+autowrap_trim_flags = 128
+
+[node name="Rows" type="HBoxContainer" parent="." unique_id=1969412804]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="Rows" unique_id=719659605]
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="Rows" unique_id=1917284040]
+layout_mode = 2
+
+[node name="BottomButtons" type="VBoxContainer" parent="." unique_id=1461999206]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RestoreButton" type="Button" parent="BottomButtons" unique_id=1605023322]
+layout_mode = 2
+
+[node name="BackKeyboardButton" type="Button" parent="BottomButtons" unique_id=1086358738]
+layout_mode = 2

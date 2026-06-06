@@ -497,7 +497,7 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -8.791666)
+offset = Vector2(0, -10.146628)
 
 [node name="spikeys" type="Node2D" parent="." unique_id=693331304]
 

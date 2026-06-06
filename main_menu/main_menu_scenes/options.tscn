@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b22sf6wdimm74" path="res://main_menu/main_menu_scripts/options.gd" id="1_emxbx"]
 [ext_resource type="FontFile" uid="uid://cndmfutuq2c67" path="res://globals/fonts/dungeonmode/dungeonmode/font/dungeon-mode.ttf" id="2_80rkp"]
 [ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="3_rtyio"]
+[ext_resource type="PackedScene" uid="uid://dn16dghuvp5vr" path="res://main_menu/main_menu_scenes/keyboardremap_menu.tscn" id="4_rtyio"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dv51"]
 
@@ -165,6 +166,46 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_80rkp")
 theme_override_font_sizes/font_size = 36
 
+[node name="KeyboardRow" type="HBoxContainer" parent="MenuButtons" unique_id=588419511]
+layout_mode = 2
+
+[node name="KeyboardButton" type="Button" parent="MenuButtons/KeyboardRow" unique_id=1045558803]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uf3o2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_japh6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_it76j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Keyboard"
+flat = true
+
+[node name="KeyboardValue" type="Label" parent="MenuButtons/KeyboardRow" unique_id=43147800]
+layout_mode = 2
+
+[node name="ControllerRow" type="HBoxContainer" parent="MenuButtons" unique_id=1747683202]
+layout_mode = 2
+
+[node name="ControllerButton" type="Button" parent="MenuButtons/ControllerRow" unique_id=1837788361]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_80rkp")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dv51")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uf3o2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_japh6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_it76j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sp024")
+text = "Controller"
+flat = true
+
+[node name="ControllerValue" type="Label" parent="MenuButtons/ControllerRow" unique_id=828279201]
+layout_mode = 2
+
 [node name="BackRow" type="HBoxContainer" parent="MenuButtons" unique_id=1520632640]
 layout_mode = 2
 theme_override_constants/separation = 25
@@ -207,5 +248,9 @@ offset_bottom = 152.0
 mouse_filter = 2
 texture = ExtResource("3_rtyio")
 flip_h = true
+
+[node name="KeyboardremapMenu" parent="." unique_id=745851080 instance=ExtResource("4_rtyio")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="MenuButtons/BackRow/Back" to="." method="_on_back_pressed"]
