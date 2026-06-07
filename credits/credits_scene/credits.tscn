@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://darrbmttijqle"]
+
+[ext_resource type="Script" uid="uid://8fokagx3h4as" path="res://credits/credits_script/credits.gd" id="1_m4r1j"]
+
+[node name="credits" type="Control" unique_id=838778605]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4r1j")
+main_menu_scene = "uid://y2mqmq6y1kjc"
+scroll_speed = 150.0
+start_delay = 0.0
+end_delay = 1.0
+
+[node name="Background" type="ColorRect" parent="." unique_id=315049896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[node name="CreditsArea" type="Control" parent="." unique_id=162519835]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsContent" type="VBoxContainer" parent="CreditsArea" unique_id=1909429620]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
