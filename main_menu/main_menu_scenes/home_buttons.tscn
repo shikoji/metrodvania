@@ -145,7 +145,7 @@ layout_mode = 0
 offset_left = 344.0
 offset_top = 224.0
 offset_right = 536.0
-offset_bottom = 264.0
+offset_bottom = 288.0
 texture = ExtResource("2_wubda")
 
 [node name="RightDecoration" type="TextureRect" parent="Selector" unique_id=831508346]

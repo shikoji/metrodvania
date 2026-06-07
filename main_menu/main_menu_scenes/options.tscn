@@ -250,7 +250,7 @@ layout_mode = 0
 offset_left = 664.0
 offset_top = 112.0
 offset_right = 856.0
-offset_bottom = 152.0
+offset_bottom = 176.0
 mouse_filter = 2
 texture = ExtResource("3_rtyio")
 
@@ -259,7 +259,7 @@ layout_mode = 0
 offset_left = 1064.0
 offset_top = 112.0
 offset_right = 1256.0
-offset_bottom = 152.0
+offset_bottom = 176.0
 mouse_filter = 2
 texture = ExtResource("3_rtyio")
 flip_h = true

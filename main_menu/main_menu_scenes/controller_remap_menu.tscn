@@ -22,6 +22,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sp024"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ww1iv"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cubsu"]
 
 [node name="ControllerRemapMenu" type="Control" unique_id=1180041791]
@@ -48,6 +50,15 @@ icon_r2 = ExtResource("4_xxjno")
 icon_options = ExtResource("9_f0v8x")
 icon_share = ExtResource("15_eom0p")
 icon_none = ExtResource("16_673cj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=703745799]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.53333336)
 
 [node name="Title" type="Label" parent="." unique_id=269937730]
 layout_mode = 0
@@ -264,6 +275,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "..."
 horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Rows" unique_id=1280153113]
+layout_mode = 2
+theme_override_constants/separation = 61
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ww1iv")
 
 [node name="RightColumn" type="VBoxContainer" parent="Rows" unique_id=1153792609]
 layout_mode = 2

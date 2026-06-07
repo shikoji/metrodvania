@@ -764,7 +764,7 @@ process_material = SubResource("ParticleProcessMaterial_c35mf")
 
 [node name="PowerMode" type="GPUParticles2D" parent="." unique_id=423246565]
 emitting = false
-amount = 20
+amount = 50
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_x7c3f")
 

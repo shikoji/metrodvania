@@ -142,7 +142,11 @@ func RigidBodyCollision() -> void:
 				velocity.x = lerp(velocity.x, 0.0, 0.25)
 			
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	update_timers(delta)
+	if is_dead:
+		return
 	read_action_inputs()
 	jump_buffer(delta)
 	
@@ -175,10 +179,22 @@ func _physics_process(delta: float) -> void:
 
 		
 	move_and_slide()
+	
+	if is_dead:
+		return
+	
 	activate_power_mode()
+	
+	if is_dead:
+		return
+	
 	update_wall_slide_state(delta)
 	var previous_direction = animation_sprite.flip_h
 	animations()
+	
+	if is_dead:
+		return
+	
 	sprite_flip()
 	RigidBodyCollision()
 	if is_on_floor():
@@ -250,11 +266,15 @@ func update_timers(delta: float) -> void:
 	if power_mode:
 		power_mode_hit_rate -= delta
 		if power_mode_hit_rate <= 0:
-			life -= 1
+			life -= 50
 			Global.player_life = life
-			power_mode_hit_rate = 1.0
+			power_mode_hit_rate = 0.5
+			if Global.player_life <= 0:
+				death()
+				return
 
-var power_mode_hit_rate = 1.0
+@export_category("Abilits")
+@export var power_mode_hit_rate = 0.5
 
 func read_action_inputs() -> void:
 	if Input.is_action_just_pressed("attack"):
@@ -536,6 +556,9 @@ func animations() -> void:
 	# Prioridade:
 	# roll > attack > wall_slide > jump/fall > run > idle
 	
+	if is_dead:
+		return
+	
 	if not climbing:
 		animation_sprite.speed_scale = 1.0
 	
@@ -691,26 +714,30 @@ func death() -> void:
 		return
 
 	is_dead = true
+	power_mode = false
 
 	velocity = Vector2.ZERO
 	is_hurt = false
 	is_attacking = false
 	is_rolling = false
+	climbing = false
+	wall_slide_active = false
 
 	player_attack_area.set_deferred("monitoring", false)
 	player_hurtbox.set_deferred("monitoring", false)
-	
-	player_attack_area.queue_free()
-	player_hurtbox.queue_free()
-	
+
 	set_physics_process(false)
 
+	# Opcional: remove shader do power mode na morte
+	animation_sprite.material = null
+	$PowerMode.emitting = false
+
+	animation_sprite.speed_scale = 1.0
 	animation_sprite.play("death")
 	animation_sprite.frame = 0
 
-	while animation_sprite.frame < animation_sprite.sprite_frames.get_frame_count("death") - 2:
-		await get_tree().process_frame
-	
+	await animation_sprite.animation_finished
+
 	player_has_died.emit()
 
 func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
