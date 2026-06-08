@@ -90,12 +90,15 @@ const ACTIONS := [
 @onready var attack_bind: Button = $Rows/LeftColumn/AttackRow/AttackBind
 @onready var dash_bind: Button = $Rows/LeftColumn/DashRow/DashBind
 @onready var potion_bind: Button = $Rows/LeftColumn/PotionRow/PotionBind
+@onready var bomb_bind: Button = $Rows/LeftColumn/BombRow/ThrowBombBind
 
 @onready var parasite_bind: Button = $Rows/RightColumn/ParasiteRow/ParasiteBind
 @onready var interact_bind: Button = $Rows/RightColumn/InteractRow/InteractBind
 @onready var advance_dialog_bind: Button = $Rows/RightColumn/AdvanceDialogRow/AdvanceDialogBind
 @onready var pause_bind: Button = $Rows/RightColumn/PauseRow/PauseBind
+
 @onready var throw_bomb_bind: Button = $Rows/LeftColumn/BombRow/ThrowBombBind
+
 @onready var grass_bind: Button = $Rows/RightColumn/GrassRow/GrassBind
 
 @onready var restore_button: Button = $BottomButtons/RestoreButton
@@ -122,7 +125,9 @@ func _ready() -> void:
 		"parasite": parasite_bind,
 		"interact": interact_bind,
 		"advance_dialog": advance_dialog_bind,
-		"pause": pause_bind
+		"pause": pause_bind,
+		"throw_bomb": bomb_bind,
+		"throw_ground": grass_bind
 	}
 
 	_prepare_buttons()
