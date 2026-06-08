@@ -95,6 +95,8 @@ const ACTIONS := [
 @onready var interact_bind: Button = $Rows/RightColumn/InteractRow/InteractBind
 @onready var advance_dialog_bind: Button = $Rows/RightColumn/AdvanceDialogRow/AdvanceDialogBind
 @onready var pause_bind: Button = $Rows/RightColumn/PauseRow/PauseBind
+@onready var throw_bomb_bind: Button = $Rows/LeftColumn/BombRow/ThrowBombBind
+@onready var grass_bind: Button = $Rows/RightColumn/GrassRow/GrassBind
 
 @onready var restore_button: Button = $BottomButtons/RestoreButton
 @onready var back_button: Button = $BottomButtons/BackButton
