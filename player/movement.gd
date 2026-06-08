@@ -396,6 +396,8 @@ func start_roll() -> void:
 	
 	animation_sprite.play("roll")
 	animation_sprite.frame = 0
+	$colider.position.y = 9.0
+	$colider.shape.size.y = 10.0
 
 
 func roll_movement(delta: float) -> void:
@@ -411,6 +413,8 @@ func roll_movement(delta: float) -> void:
 func end_roll() -> void:
 	if not is_rolling:
 		return
+	$colider.position.y = 2.0
+	$colider.shape.size.y = 26.0
 
 	is_rolling = false
 
