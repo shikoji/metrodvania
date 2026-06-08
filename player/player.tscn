@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://cx6fq3pn4ih2t" path="res://player/camera.gd" id="11_32hag"]
 [ext_resource type="AudioStream" uid="uid://bq7dnb4jflxy1" path="res://player/assets/sfx/swish-1.wav" id="11_wodsf"]
 [ext_resource type="AudioStream" uid="uid://rwmm1sdsaf2r" path="res://player/assets/sfx/swish-2.wav" id="12_32hag"]
+[ext_resource type="Texture2D" uid="uid://cj8vekdduu1im" path="res://player/assets/Punch Cross/Player Punch Cross 64x64.png" id="12_65viv"]
 [ext_resource type="AudioStream" uid="uid://dirchx3gin34y" path="res://player/assets/sfx/swish-3.wav" id="13_tqiix"]
 [ext_resource type="AudioStream" uid="uid://dcbveadjjwe36" path="res://player/assets/sfx/swish-4.wav" id="14_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
@@ -315,6 +316,34 @@ region = Rect2(480, 0, 96, 48)
 atlas = ExtResource("10_e7oew")
 region = Rect2(576, 0, 96, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gci7n"]
+atlas = ExtResource("12_65viv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcwf7"]
+atlas = ExtResource("12_65viv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20bc7"]
+atlas = ExtResource("12_65viv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfgxe"]
+atlas = ExtResource("12_65viv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg0n1"]
+atlas = ExtResource("12_65viv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjt2w"]
+atlas = ExtResource("12_65viv")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lfai"]
+atlas = ExtResource("12_65viv")
+region = Rect2(384, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpyo2"]
 atlas = ExtResource("6_ebec5")
 region = Rect2(0, 0, 48, 48)
@@ -605,6 +634,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gci7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcwf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20bc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfgxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg0n1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjt2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lfai")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wpyo2")
 }, {
 "duration": 1.0,
@@ -685,7 +740,7 @@ debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="animation_sprite" type="AnimatedSprite2D" parent="." unique_id=931543246]
 sprite_frames = SubResource("SpriteFrames_35wys")
-animation = &"attack"
+animation = &"throw"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]

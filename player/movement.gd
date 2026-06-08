@@ -50,6 +50,8 @@ var wall_slide_exit_timer: float = 0.0
 
 var is_respawning_from_fall: bool = false
 
+var is_throwing = false
+
 #==box valuies
 var PushForce:int = 200
 var push_buffer_timer: float = 0.0
@@ -282,7 +284,39 @@ func read_action_inputs() -> void:
 	
 	if Input.is_action_just_pressed("dash"):
 		request_roll()
+	
+	if Input.is_action_just_pressed("throw_bomb"):
+		if current_bomb == null:
+			throw_bomb()
+		else:
+			current_bomb.explode()
+	
+	if Input.is_action_just_pressed("throw_ground"):
+		pass
 
+
+const BOMB = preload("res://bombs/bomb/bomb.tscn")
+
+func throw_bomb() -> void:
+	is_throwing = true
+	animation_sprite.play("throw")
+
+	await get_tree().create_timer(0.08).timeout
+	
+	var facing_left = animation_sprite.flip_h
+	var instance: Bomb = BOMB.instantiate()
+	instance.position = position
+	add_sibling(instance)
+	var forward_force = -300.0 if facing_left else 300.0
+	instance.apply_impulse(Vector2(forward_force, -250.0))
+	instance.angular_velocity = -20.0 if facing_left else 20.0
+	current_bomb = instance
+
+	await get_tree().create_timer(0.8).timeout
+	
+	is_throwing = false
+
+var current_bomb: Bomb
 
 func request_attack() -> void:
 	if is_rolling:
@@ -580,6 +614,8 @@ func animations() -> void:
 		else:
 			play_animation("attack")
 		return
+	if is_throwing:
+		play_animation("throw")
 	
 	if climbing:
 		animation_sprite.play("climb")

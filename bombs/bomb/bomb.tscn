@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b6neqq8m2me8x"]
+
+[ext_resource type="Script" uid="uid://ccs1aaxfg84in" path="res://bombs/bomb/bomb.gd" id="1_7or1l"]
+[ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="1_o1hb0"]
+[ext_resource type="Shader" uid="uid://c25py38uwv0i2" path="res://bombs/bomb/bomb.gdshader" id="2_10bhw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_10bhw"]
+bounce = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jow2a"]
+shader = ExtResource("2_10bhw")
+shader_parameter/speed = 15.000000223518
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7or1l"]
+radius = 8.0
+
+[sub_resource type="Gradient" id="Gradient_10bhw"]
+offsets = PackedFloat32Array(0, 0.049861494, 0.47368422, 0.92797786, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0.80784315, 1, 0.4862745, 0.34901962, 0.34901962, 0.5529412, 0.4045111, 0.40451115, 0.4045111, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jow2a"]
+gradient = SubResource("Gradient_10bhw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jrcn5"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+initial_velocity_min = -1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, -10, 0)
+color_ramp = SubResource("GradientTexture1D_jow2a")
+
+[node name="Bomb" type="RigidBody2D" unique_id=860001031]
+collision_layer = 0
+collision_mask = 2
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_10bhw")
+script = ExtResource("1_7or1l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876163235]
+material = SubResource("ShaderMaterial_jow2a")
+texture = ExtResource("1_o1hb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106160680]
+shape = SubResource("CircleShape2D_7or1l")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=613364904]
+position = Vector2(0, -7)
+amount = 100
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_jrcn5")
