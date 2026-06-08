@@ -118,6 +118,24 @@ const ACTIONS := [
 			{"type": BIND_KEY, "code": KEY_ENTER},
 			{"type": BIND_NONE, "code": 0}
 		]
+	},
+	{
+		"action": "throw_bomb",
+		"label": "Throw Bomb",
+		"row_name": "ThrowBombRow",
+		"defaults": [
+			{"type": BIND_KEY, "code": KEY_E},
+			{"type": BIND_NONE, "code": 0}
+		]
+	},
+	{
+		"action": "throw_grass",
+		"label": "Throw Grass",
+		"row_name": "ThrowGrassRow",
+		"defaults": [
+			{"type": BIND_KEY, "code": KEY_Q},
+			{"type": BIND_NONE, "code": 0}
+		]
 	}
 ]
 

@@ -51,6 +51,16 @@ const ACTIONS := [
 		"action": "pause",
 		"default": {"type": BIND_BUTTON, "index": JOY_BUTTON_START},
 		"button_name": "PauseBind"
+	},
+	{
+		"action": "throw_bomb",
+		"default": {"type": BIND_BUTTON, "index": JOY_BUTTON_RIGHT_SHOULDER},
+		"button_name": "ThrowBombBind"
+	},
+	{
+		"action": "throw_ground",
+		"default": {"type": BIND_BUTTON, "index": JOY_BUTTON_LEFT_SHOULDER},
+		"button_name": "GrassBind"
 	}
 ]
 

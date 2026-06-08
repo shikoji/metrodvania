@@ -276,6 +276,51 @@ grow_vertical = 2
 text = "..."
 horizontal_alignment = 1
 
+[node name="BombRow" type="HBoxContainer" parent="Rows/LeftColumn" unique_id=1714169904]
+layout_mode = 2
+
+[node name="BombLabel" type="Label" parent="Rows/LeftColumn/BombRow" unique_id=86740670]
+layout_mode = 2
+text = "Bomb"
+
+[node name="ThrowBombBind" type="Button" parent="Rows/LeftColumn/BombRow" unique_id=1685821671]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/LeftColumn/BombRow/ThrowBombBind" unique_id=1197009804]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_6otyv")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/LeftColumn/BombRow/ThrowBombBind" unique_id=183528336]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+
 [node name="VSeparator" type="VSeparator" parent="Rows" unique_id=1280153113]
 layout_mode = 2
 theme_override_constants/separation = 61
@@ -456,6 +501,53 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="WaitingText" type="Label" parent="Rows/RightColumn/PauseRow/PauseBind" unique_id=281009883]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GrassRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=68536286]
+layout_mode = 2
+
+[node name="GrassLabel" type="Label" parent="Rows/RightColumn/GrassRow" unique_id=1630957538]
+custom_minimum_size = Vector2(66, 0)
+layout_mode = 2
+text = "Grass Bomb"
+
+[node name="GrassBind" type="Button" parent="Rows/RightColumn/GrassRow" unique_id=240095682]
+custom_minimum_size = Vector2(90, 45)
+layout_mode = 2
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Rows/RightColumn/GrassRow/GrassBind" unique_id=1291128130]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_jryk4")
+expand_mode = 1
+
+[node name="WaitingText" type="Label" parent="Rows/RightColumn/GrassRow/GrassBind" unique_id=440657961]
 visible = false
 layout_mode = 1
 anchors_preset = 8
