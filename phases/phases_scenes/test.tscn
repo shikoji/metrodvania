@@ -419,6 +419,9 @@ sources/2 = SubResource("TileSetScenesCollectionSource_87j01")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yi8wp"]
 size = Vector2(2152, 314)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itass"]
+size = Vector2(163, 93)
+
 [node name="test" type="Node2D" unique_id=861584808]
 script = ExtResource("1_ruq0q")
 
@@ -497,7 +500,7 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -10.146628)
+offset = Vector2(0, -8.7499075)
 
 [node name="spikeys" type="Node2D" parent="." unique_id=693331304]
 
@@ -644,7 +647,7 @@ dialog_offset = Vector2(-30, -50)
 dialog_lines = Array[String](["Hi!, how are you?", "nice"])
 
 [node name="player_start_position" type="Marker2D" parent="." unique_id=1636481879]
-position = Vector2(-151, 586)
+position = Vector2(1252, 234)
 
 [node name="player" parent="." unique_id=1819110571 instance=ExtResource("1_qmcui")]
 position = Vector2(30, 600)
@@ -655,4 +658,15 @@ max_life = 100
 [node name="paused_menu" parent="." unique_id=641081728 instance=ExtResource("2_xe23b")]
 visible = false
 
+[node name="area_zoom" type="Node2D" parent="." unique_id=1443770733]
+
+[node name="Area2D" type="Area2D" parent="area_zoom" unique_id=72684096]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_zoom/Area2D" unique_id=929434815]
+position = Vector2(1309.5, 329.5)
+shape = SubResource("RectangleShape2D_itass")
+
 [connection signal="body_entered" from="potions/Potion" to="potions/Potion" method="_on_body_entered"]
+[connection signal="body_entered" from="area_zoom/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="area_zoom/Area2D" to="." method="_on_area_2d_body_exited"]

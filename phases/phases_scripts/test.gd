@@ -10,6 +10,12 @@ extends Node2D
 
 var game_over_started := false
 
+#camera zoom
+var zoom_perto = Vector2(7.0, 7.0)
+var zoom_normal = Vector2(3.0, 3.0)
+var zoom_alvo = Vector2(7.0, 7.0)
+var suavidade = 3.0  # valores maiores = transição mais rápida
+var player_camera : Camera2D = null
 
 
 func _ready() -> void:
@@ -47,3 +53,19 @@ func game_over():
 		player.set_process(false)
 	
 	SceneManager.play_transition_in(level_scene)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = zoom_perto
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = zoom_normal
+
+func _process(delta: float) -> void:
+	if player_camera:
+		player_camera.zoom = player_camera.zoom.lerp(zoom_alvo, delta * suavidade)
