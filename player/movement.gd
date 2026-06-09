@@ -300,6 +300,7 @@ const BOMB = preload("res://bombs/bomb/bomb.tscn")
 func throw_bomb() -> void:
 	is_throwing = true
 	animation_sprite.play("throw")
+	animation_sprite.frame = 0
 
 	await get_tree().create_timer(0.08).timeout
 	
@@ -312,7 +313,7 @@ func throw_bomb() -> void:
 	instance.angular_velocity = -20.0 if facing_left else 20.0
 	current_bomb = instance
 
-	await get_tree().create_timer(0.8).timeout
+	await animation_sprite.animation_finished
 	
 	is_throwing = false
 
@@ -614,8 +615,10 @@ func animations() -> void:
 		else:
 			play_animation("attack")
 		return
+
 	if is_throwing:
 		play_animation("throw")
+		return
 	
 	if climbing:
 		animation_sprite.play("climb")

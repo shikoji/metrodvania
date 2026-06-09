@@ -1,54 +1,55 @@
 [gd_scene format=3 uid="uid://chsc5w46rdemo"]
 
 [ext_resource type="Script" uid="uid://b2lb8y1g8dnre" path="res://spikey/spikey.gd" id="1_fomvx"]
-[ext_resource type="Texture2D" uid="uid://batc4yyoc3jk4" path="res://spikey/spikey.png" id="1_ljt36"]
+[ext_resource type="Texture2D" uid="uid://cut6fuj5j6r0k" path="res://spikey/spikey2.png" id="2_flmjd"]
 [ext_resource type="AudioStream" uid="uid://cjg6cgnj01y8v" path="res://enemies/enemies_assents/hit1.wav" id="3_flmjd"]
 [ext_resource type="AudioStream" uid="uid://bblngq81iwdtt" path="res://enemies/enemies_assents/hit2.wav" id="4_augsw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fomvx"]
-atlas = ExtResource("1_ljt36")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bmju"]
-atlas = ExtResource("1_ljt36")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_flmjd"]
-atlas = ExtResource("1_ljt36")
-region = Rect2(64, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_augsw"]
-atlas = ExtResource("1_ljt36")
-region = Rect2(96, 0, 32, 32)
+atlas = ExtResource("2_flmjd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v66jw"]
+atlas = ExtResource("2_flmjd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfdnp"]
+atlas = ExtResource("2_flmjd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uvc3"]
+atlas = ExtResource("2_flmjd")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v66jw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fomvx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1bmju")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_flmjd")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_augsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v66jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfdnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uvc3")
 }],
 "loop": true,
 "name": &"default",
 "speed": 30.0
 }]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_1bmju"]
-points = PackedVector2Array(0, 16, 16, 9, 15, -13, 0, -16, -15, -13, -16, 9)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_luwoq"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fomvx"]
-size = Vector2(34, 32)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bmju"]
-size = Vector2(34, 14.25)
+size = Vector2(18, 10)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v66jw"]
 random_pitch = 1.0594631
@@ -60,7 +61,7 @@ stream_1/stream = ExtResource("4_augsw")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flmjd"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(15.68, 1, 1)
+emission_box_extents = Vector3(7.63, 1, 1)
 direction = Vector3(0, 1, 0)
 spread = 0.0
 initial_velocity_min = -5.0
@@ -82,7 +83,7 @@ autoplay = "default"
 frame_progress = 0.058369834
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1143762257]
-shape = SubResource("ConvexPolygonShape2D_1bmju")
+shape = SubResource("CapsuleShape2D_luwoq")
 
 [node name="HurtBoxArea" type="Area2D" parent="." unique_id=63851809]
 collision_layer = 16
@@ -97,7 +98,7 @@ collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1407653467]
-position = Vector2(0, 9.125)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_1bmju")
 
 [node name="TakeDamage" type="AudioStreamPlayer2D" parent="." unique_id=1548087875]
@@ -105,7 +106,8 @@ stream = SubResource("AudioStreamRandomizer_v66jw")
 bus = &"Sounds"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1055117521]
-position = Vector2(0, -12)
+z_index = -1
+position = Vector2(0, -7)
 process_material = SubResource("ParticleProcessMaterial_flmjd")
 
 [connection signal="area_entered" from="HurtBoxArea" to="." method="_on_hurt_box_area_entered"]

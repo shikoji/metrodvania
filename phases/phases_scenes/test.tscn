@@ -105,7 +105,7 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -10.068422)
+offset = Vector2(0, -10.386036)
 
 [node name="spikeys" type="Node2D" parent="." unique_id=693331304]
 
@@ -120,6 +120,54 @@ position = Vector2(512, 517)
 
 [node name="Spikey4" parent="spikeys" unique_id=632257516 instance=ExtResource("20_6qica")]
 position = Vector2(435, 408)
+
+[node name="Spikey5" parent="spikeys" unique_id=422563937 instance=ExtResource("20_6qica")]
+position = Vector2(542, 542)
+
+[node name="Spikey6" parent="spikeys" unique_id=1024864708 instance=ExtResource("20_6qica")]
+position = Vector2(559, 474)
+
+[node name="Spikey7" parent="spikeys" unique_id=28914793 instance=ExtResource("20_6qica")]
+position = Vector2(582, 515)
+
+[node name="Spikey8" parent="spikeys" unique_id=709300362 instance=ExtResource("20_6qica")]
+position = Vector2(505, 406)
+
+[node name="Spikey9" parent="spikeys" unique_id=1762443279 instance=ExtResource("20_6qica")]
+position = Vector2(698, 478)
+
+[node name="Spikey10" parent="spikeys" unique_id=346878177 instance=ExtResource("20_6qica")]
+position = Vector2(715, 410)
+
+[node name="Spikey11" parent="spikeys" unique_id=1824533999 instance=ExtResource("20_6qica")]
+position = Vector2(738, 451)
+
+[node name="Spikey12" parent="spikeys" unique_id=1510860977 instance=ExtResource("20_6qica")]
+position = Vector2(661, 342)
+
+[node name="Spikey13" parent="spikeys" unique_id=9974015 instance=ExtResource("20_6qica")]
+position = Vector2(1570, 482)
+
+[node name="Spikey14" parent="spikeys" unique_id=1268965920 instance=ExtResource("20_6qica")]
+position = Vector2(1587, 414)
+
+[node name="Spikey15" parent="spikeys" unique_id=574717921 instance=ExtResource("20_6qica")]
+position = Vector2(1610, 455)
+
+[node name="Spikey16" parent="spikeys" unique_id=112071123 instance=ExtResource("20_6qica")]
+position = Vector2(1533, 346)
+
+[node name="Spikey17" parent="spikeys" unique_id=494937832 instance=ExtResource("20_6qica")]
+position = Vector2(1364, 579)
+
+[node name="Spikey18" parent="spikeys" unique_id=55359482 instance=ExtResource("20_6qica")]
+position = Vector2(1381, 511)
+
+[node name="Spikey19" parent="spikeys" unique_id=992742955 instance=ExtResource("20_6qica")]
+position = Vector2(1404, 552)
+
+[node name="Spikey20" parent="spikeys" unique_id=1965326268 instance=ExtResource("20_6qica")]
+position = Vector2(1327, 443)
 
 [node name="boxes" type="Node2D" parent="." unique_id=1846035718]
 
