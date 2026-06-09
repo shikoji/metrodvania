@@ -6,7 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bsy42c3aoykqc" path="res://bombs/bomb/bomb_wizz.wav" id="4_jow2a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_10bhw"]
-bounce = 0.5
+friction = 0.9
+bounce = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jow2a"]
 shader = ExtResource("2_10bhw")

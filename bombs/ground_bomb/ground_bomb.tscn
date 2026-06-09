@@ -6,7 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://dwdcvuverm0bo" path="res://bombs/ground_bomb/bomb_wizz2.wav" id="4_c6mwu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_10bhw"]
-bounce = 0.5
+friction = 0.9
+bounce = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jow2a"]
 resource_local_to_scene = true

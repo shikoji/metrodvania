@@ -64,6 +64,7 @@ script = ExtResource("1_7p5be")
 shape = SubResource("CircleShape2D_7p5be")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=539331829]
+z_index = 1
 emitting = false
 amount = 100
 lifetime = 2.0
@@ -72,6 +73,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_la7in")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=650500641]
+z_index = 1
 emitting = false
 amount = 30
 lifetime = 0.5
