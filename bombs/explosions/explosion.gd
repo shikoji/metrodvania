@@ -31,6 +31,9 @@ func _physics_process(delta: float) -> void:
 					body.break_sprite()
 				else:
 					body.animation_player.play("hit")
+			if body is RigidBody2D:
+				var direction = global_position.direction_to(body.global_position)
+				body.apply_central_impulse(direction * 1000.0)
 
 func get_surrounding_cells(cell: Vector2i):
 	var res = []

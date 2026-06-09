@@ -1,17 +1,18 @@
-[gd_scene format=3 uid="uid://b6neqq8m2me8x"]
+[gd_scene format=3 uid="uid://4rmke8kcund3"]
 
-[ext_resource type="Script" uid="uid://ccs1aaxfg84in" path="res://bombs/bomb/bomb.gd" id="1_7or1l"]
-[ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="1_o1hb0"]
-[ext_resource type="Shader" uid="uid://c25py38uwv0i2" path="res://bombs/bomb.gdshader" id="2_10bhw"]
-[ext_resource type="AudioStream" uid="uid://bsy42c3aoykqc" path="res://bombs/bomb/bomb_wizz.wav" id="4_jow2a"]
+[ext_resource type="Script" uid="uid://4k5cnsq8h54k" path="res://bombs/ground_bomb/ground_bomb.gd" id="1_c6mwu"]
+[ext_resource type="Shader" uid="uid://c25py38uwv0i2" path="res://bombs/bomb.gdshader" id="2_xi5vb"]
+[ext_resource type="Texture2D" uid="uid://dd5r5wif00a0l" path="res://bombs/ground_bomb/green_bomb.png" id="3_c6mwu"]
+[ext_resource type="AudioStream" uid="uid://dwdcvuverm0bo" path="res://bombs/ground_bomb/bomb_wizz2.wav" id="4_c6mwu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_10bhw"]
 bounce = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jow2a"]
-shader = ExtResource("2_10bhw")
+resource_local_to_scene = true
+shader = ExtResource("2_xi5vb")
 shader_parameter/speed = 15.000000223518
-shader_parameter/color = Color(0, 1, 1, 1)
+shader_parameter/color = Color(0, 1, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7or1l"]
 radius = 8.0
@@ -31,16 +32,16 @@ initial_velocity_max = 1.0
 gravity = Vector3(0, -10, 0)
 color_ramp = SubResource("GradientTexture1D_jow2a")
 
-[node name="Bomb" type="RigidBody2D" unique_id=860001031]
-collision_layer = 0
-collision_mask = 2
+[node name="GroundBomb" type="RigidBody2D" unique_id=860001031]
+collision_layer = 128
+collision_mask = 130
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_10bhw")
-script = ExtResource("1_7or1l")
+script = ExtResource("1_c6mwu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876163235]
 material = SubResource("ShaderMaterial_jow2a")
-texture = ExtResource("1_o1hb0")
+texture = ExtResource("3_c6mwu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106160680]
 shape = SubResource("CircleShape2D_7or1l")
@@ -52,7 +53,7 @@ lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_jrcn5")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=960877971]
-stream = ExtResource("4_jow2a")
+stream = ExtResource("4_c6mwu")
 volume_db = -10.0
 pitch_scale = 1.5
 autoplay = true

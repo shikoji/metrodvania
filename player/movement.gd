@@ -292,10 +292,16 @@ func read_action_inputs() -> void:
 			current_bomb.explode()
 	
 	if Input.is_action_just_pressed("throw_ground"):
-		pass
-
+		if current_ground_bomb == null:
+			throw_ground_bomb()
+		else:
+			current_ground_bomb.explode()
 
 const BOMB = preload("res://bombs/bomb/bomb.tscn")
+const GROUND_BOMB = preload("res://bombs/ground_bomb/ground_bomb.tscn")
+
+var current_bomb: Bomb
+var current_ground_bomb: GroundBomb
 
 func throw_bomb() -> void:
 	is_throwing = true
@@ -304,20 +310,35 @@ func throw_bomb() -> void:
 
 	await get_tree().create_timer(0.08).timeout
 	
-	var facing_left = animation_sprite.flip_h
-	var instance: Bomb = BOMB.instantiate()
-	instance.position = position
-	add_sibling(instance)
-	var forward_force = -300.0 if facing_left else 300.0
-	instance.apply_impulse(Vector2(forward_force, -250.0))
-	instance.angular_velocity = -20.0 if facing_left else 20.0
-	current_bomb = instance
+	current_bomb = spawn_bomb(BOMB)
 
 	await animation_sprite.animation_finished
 	
 	is_throwing = false
 
-var current_bomb: Bomb
+
+func throw_ground_bomb() -> void:
+	is_throwing = true
+	animation_sprite.play("throw")
+	animation_sprite.frame = 0
+
+	await get_tree().create_timer(0.08).timeout
+	
+	current_ground_bomb = spawn_bomb(GROUND_BOMB)
+
+	await animation_sprite.animation_finished
+	
+	is_throwing = false
+
+func spawn_bomb(bomb_resource: Resource) -> RigidBody2D:
+	var facing_left = animation_sprite.flip_h
+	var instance: RigidBody2D = bomb_resource.instantiate()
+	instance.position = position
+	add_sibling(instance)
+	var forward_force = -300.0 if facing_left else 300.0
+	instance.apply_impulse(Vector2(forward_force, -250.0))
+	instance.angular_velocity = -20.0 if facing_left else 20.0
+	return instance
 
 func request_attack() -> void:
 	if is_rolling:
