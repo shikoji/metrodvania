@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ccs1aaxfg84in" path="res://bombs/bomb/bomb.gd" id="1_7or1l"]
 [ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="1_o1hb0"]
 [ext_resource type="Shader" uid="uid://c25py38uwv0i2" path="res://bombs/bomb/bomb.gdshader" id="2_10bhw"]
+[ext_resource type="AudioStream" uid="uid://bsy42c3aoykqc" path="res://bombs/bomb/bomb_wizz.wav" id="4_jow2a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_10bhw"]
 bounce = 0.5
@@ -48,3 +49,13 @@ position = Vector2(0, -7)
 amount = 100
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_jrcn5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=960877971]
+stream = ExtResource("4_jow2a")
+volume_db = -10.0
+pitch_scale = 1.5
+autoplay = true
+max_distance = 1000.0
+attenuation = 11.313642
+panning_strength = 0.5
+bus = &"Sounds"
