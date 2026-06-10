@@ -282,7 +282,7 @@ func read_action_inputs() -> void:
 	if Input.is_action_just_pressed("attack"):
 		request_attack()
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and Abilities.roll:
 		request_roll()
 	
 	if Input.is_action_just_pressed("throw_bomb") and Abilities.bomb:

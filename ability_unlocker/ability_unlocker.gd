@@ -10,7 +10,8 @@ enum Ability {
 	PowerMode,
 	DoubleJump,
 	Bomb,
-	GroundBomb
+	GroundBomb,
+	Roll
 }
 
 @export var ability = Ability.PowerMode
@@ -46,5 +47,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 				Abilities.bomb = true
 			Ability.GroundBomb:
 				Abilities.ground_bomb = true
+			Ability.Roll:
+				Abilities.roll = true
 		play_ability_unlock_sound()
 		queue_free()
