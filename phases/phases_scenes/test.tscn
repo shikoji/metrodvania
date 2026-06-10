@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://bs4hh44mw8g8a" path="res://boxes/boxes_scenes/break_box.tscn" id="12_4kh6q"]
 [ext_resource type="PackedScene" uid="uid://crg0d6vslnp17" path="res://laser/laser_scenes/laser_trap.tscn" id="12_87j01"]
 [ext_resource type="PackedScene" uid="uid://u4qgtror5030" path="res://platforms/platforms_scenes/bounce_platform.tscn" id="13_0b12p"]
+[ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="14_itass"]
 [ext_resource type="PackedScene" uid="uid://b424erbhlfxpn" path="res://potion_collectable/scenes/potion.tscn" id="15_87j01"]
+[ext_resource type="Texture2D" uid="uid://dd5r5wif00a0l" path="res://bombs/ground_bomb/green_bomb.png" id="15_hao8l"]
 [ext_resource type="PackedScene" uid="uid://b3l8vrj37pecb" path="res://spikes/spike_scenes/spike_area.tscn" id="16_8d7md"]
+[ext_resource type="Texture2D" uid="uid://dqcsnv276c3y6" path="res://ability_unlocker/double_jump_icon.png" id="16_hao8l"]
 [ext_resource type="PackedScene" uid="uid://w8embyvwxk7t" path="res://saws/saws_scenes/saw.tscn" id="16_vctr8"]
 [ext_resource type="PackedScene" uid="uid://chf5wkei53i8l" path="res://ladder/ladder_scenes/ladder.tscn" id="19_onjjn"]
 [ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="20_6qica"]
@@ -31,6 +34,7 @@ size = Vector2(163, 93)
 script = ExtResource("1_ruq0q")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=443476175]
+z_index = -2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -105,7 +109,28 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -10.386036)
+offset = Vector2(0, 1.9338493)
+
+[node name="BombUnlock" parent="abilitys" unique_id=260855048 instance=ExtResource("21_i3geh")]
+position = Vector2(1298, 242)
+texture = ExtResource("14_itass")
+offset = Vector2(0, 1.9338493)
+particle_colors = Color(0, 0.39607844, 0.49411765, 1)
+ability = 2
+
+[node name="GroundBomb" parent="abilitys" unique_id=649823026 instance=ExtResource("21_i3geh")]
+position = Vector2(1331, 242)
+texture = ExtResource("15_hao8l")
+offset = Vector2(0, 1.9338493)
+particle_colors = Color(0, 1, 0, 1)
+ability = 3
+
+[node name="DoubleJump" parent="abilitys" unique_id=1221614001 instance=ExtResource("21_i3geh")]
+position = Vector2(1365, 242)
+texture = ExtResource("16_hao8l")
+offset = Vector2(0, -0.39636934)
+particle_colors = Color(0, 1, 1, 1)
+ability = 1
 
 [node name="spikeys" type="Node2D" parent="." unique_id=693331304]
 

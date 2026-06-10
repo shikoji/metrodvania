@@ -285,13 +285,13 @@ func read_action_inputs() -> void:
 	if Input.is_action_just_pressed("dash"):
 		request_roll()
 	
-	if Input.is_action_just_pressed("throw_bomb"):
+	if Input.is_action_just_pressed("throw_bomb") and Abilities.bomb:
 		if current_bomb == null:
 			throw_bomb()
 		else:
 			current_bomb.explode()
 	
-	if Input.is_action_just_pressed("throw_ground"):
+	if Input.is_action_just_pressed("throw_ground") and Abilities.ground_bomb:
 		if current_ground_bomb == null:
 			throw_ground_bomb()
 		else:
@@ -492,6 +492,7 @@ func horizontal_movement(delta: float) -> void:
 	
 	velocity.x = lerp(velocity.x, target_velocity, target_weight)
 
+var double_jump = false
 
 func jump_buffer(delta: float) -> void:
 	if Input.is_action_just_pressed("move_jump"):
@@ -504,10 +505,18 @@ func vertical_movement(delta: float) -> void:
 	if climbing:
 		return
 	
+	if is_on_floor() and not double_jump and Abilities.double_jump:
+		double_jump = true
+
 	if is_on_floor() and jump_buffer_timer > 0.0:
 		play_footstep(0.5)
 		velocity.y = -sqrt(2.0 * gravity * jump_height)
 		jump_buffer_timer = 0.0
+	
+	if double_jump and jump_buffer_timer > 0.0:
+		velocity.y = -sqrt(2.0 * gravity * jump_height)
+		jump_buffer_timer = 0.0
+		double_jump = false
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta

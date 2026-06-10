@@ -8,12 +8,15 @@ extends Sprite2D
 
 enum Ability {
 	PowerMode,
-	DoubleJump
+	DoubleJump,
+	Bomb,
+	GroundBomb
 }
 
 @export var ability = Ability.PowerMode
 
 func _ready():
+	offset.y = 0.0
 	var tween = create_tween()
 	tween.set_loops()
 	tween.tween_property(self, "offset:y", -2.0, 0.5).as_relative().set_ease(Tween.EASE_OUT)
@@ -37,5 +40,11 @@ func _on_area_body_entered(body: Node2D) -> void:
 		match ability:
 			Ability.PowerMode:
 				Abilities.power_mode = true
+			Ability.DoubleJump:
+				Abilities.double_jump = true
+			Ability.Bomb:
+				Abilities.bomb = true
+			Ability.GroundBomb:
+				Abilities.ground_bomb = true
 		play_ability_unlock_sound()
 		queue_free()
