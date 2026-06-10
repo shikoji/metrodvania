@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://mll3youhj5bf"]
+
+[ext_resource type="Script" uid="uid://b6mr5a7w3kju8" path="res://teleporter/teleporter.gd" id="1_kpnqv"]
+
+[sub_resource type="Gradient" id="Gradient_kj5d8"]
+offsets = PackedFloat32Array(0, 0.1402439, 0.33536586)
+colors = PackedColorArray(1, 1, 1, 1, 0.5529412, 0, 0.7529412, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kpnqv"]
+gradient = SubResource("Gradient_kj5d8")
+
+[sub_resource type="Curve" id="Curve_ky83x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_111yd"]
+curve = SubResource("Curve_ky83x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jn234"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 32.0
+orbit_velocity_min = -0.19999991
+orbit_velocity_max = 0.2000001
+radial_velocity_min = -35.000023
+radial_velocity_max = 9.999977
+gravity = Vector3(0, 50, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_111yd")
+color_ramp = SubResource("GradientTexture1D_kpnqv")
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpnqv"]
+radius = 19.104973
+
+[sub_resource type="Gradient" id="Gradient_tn6t4"]
+offsets = PackedFloat32Array(0.46634614, 0.52884614, 0.6057692, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.5529412, 0, 0.7529412, 1, 0.5529412, 0, 0.7529412, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ky2e8"]
+gradient = SubResource("Gradient_tn6t4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.508547)
+
+[node name="Teleporter" type="Area2D" unique_id=877395631]
+script = ExtResource("1_kpnqv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=344468376]
+z_index = 1
+amount = 200
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_jn234")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615094415]
+visible = false
+shape = SubResource("CircleShape2D_kpnqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2039433077]
+texture = SubResource("GradientTexture2D_ky2e8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
