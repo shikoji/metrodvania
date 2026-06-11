@@ -102,7 +102,6 @@ func update_attack_facing() -> void:
 	
 
 func _ready() -> void:
-	$Compass.target = get_parent().get_node("player_start_position")
 	_attack_shape_base_pos = player_attack_shape.position
 	
 	life = max_life
