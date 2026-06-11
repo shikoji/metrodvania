@@ -17,10 +17,10 @@ func generate_tilemap():
 	#		var pattern_position = Vector2i(x * 32, y * 16)
 	#		tilemap.set_pattern(pattern_position, pattern)
 	#tilemap.set_cells_terrain_connect(cells, 0, 0, false)
-	place_pattern(Vector2i(2, 0))
-	place_pattern(Vector2i(2, -1))
-	place_pattern(Vector2i(2, -2))
-	place_pattern(Vector2i(2, -3))
+	#place_pattern(Vector2i(2, 0))
+	#place_pattern(Vector2i(2, -1))
+	#place_pattern(Vector2i(2, -2))
+	#place_pattern(Vector2i(2, -3))
 	tilemap.set_cells_terrain_connect(tilemap.get_used_cells(), 0, 0, false)
 
 func setup_player_globals():
