@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dvv1j84rq1o73" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/FX/RollDust/RollDust01.png" id="15_u6jyk"]
 [ext_resource type="PackedScene" uid="uid://b3l8vrj37pecb" path="res://spikes/spike_scenes/spike_area.tscn" id="16_8d7md"]
 [ext_resource type="Texture2D" uid="uid://dqcsnv276c3y6" path="res://ability_unlocker/double_jump_icon.png" id="16_hao8l"]
+[ext_resource type="Texture2D" uid="uid://jrgxgqkya3db" path="res://ability_unlocker/compass.png" id="16_sua32"]
 [ext_resource type="PackedScene" uid="uid://w8embyvwxk7t" path="res://saws/saws_scenes/saw.tscn" id="16_vctr8"]
 [ext_resource type="PackedScene" uid="uid://chf5wkei53i8l" path="res://ladder/ladder_scenes/ladder.tscn" id="19_onjjn"]
 [ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="20_6qica"]
@@ -111,35 +112,43 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -1.9434253)
+offset = Vector2(0, -0.92168134)
 
 [node name="BombUnlock" parent="abilitys" unique_id=260855048 instance=ExtResource("21_i3geh")]
 position = Vector2(1298, 242)
 texture = ExtResource("14_itass")
-offset = Vector2(0, -1.9434253)
+offset = Vector2(0, -0.92168134)
 particle_colors = Color(0, 0.39607844, 0.49411765, 1)
 ability = 2
 
 [node name="RollUnlock" parent="abilitys" unique_id=445511627 instance=ExtResource("21_i3geh")]
 position = Vector2(1388, 242)
 texture = ExtResource("15_u6jyk")
-offset = Vector2(0, -1.9434253)
+offset = Vector2(0, -0.92168134)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.4248874, 0.33614144, 0.26240724, 1)
 ability = 4
 
+[node name="RollUnlock2" parent="abilitys" unique_id=723763624 instance=ExtResource("21_i3geh")]
+position = Vector2(1472, 163)
+texture = ExtResource("16_sua32")
+offset = Vector2(0, 1.2198613)
+region_rect = Rect2(12, 67, 16, 16)
+particle_colors = Color(1, 1, 1, 1)
+ability = 5
+
 [node name="GroundBomb" parent="abilitys" unique_id=649823026 instance=ExtResource("21_i3geh")]
 position = Vector2(1331, 242)
 texture = ExtResource("15_hao8l")
-offset = Vector2(0, -1.9434253)
+offset = Vector2(0, -0.92168134)
 particle_colors = Color(0, 1, 0, 1)
 ability = 3
 
 [node name="DoubleJump" parent="abilitys" unique_id=1221614001 instance=ExtResource("21_i3geh")]
 position = Vector2(1365, 242)
 texture = ExtResource("16_hao8l")
-offset = Vector2(0, -1.9434253)
+offset = Vector2(0, -0.92168134)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
 

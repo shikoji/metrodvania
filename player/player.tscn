@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://dcbveadjjwe36" path="res://player/assets/sfx/swish-4.wav" id="14_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3tgdw0ytt76n" path="res://player/assets/sfx/hurt.wav" id="15_c35mf"]
 [ext_resource type="AudioStream" uid="uid://skmymikyqs7g" path="res://player/assets/sfx/footstep.wav" id="17_tqiix"]
+[ext_resource type="Script" uid="uid://c42l534p6q7bf" path="res://player/compass.gd" id="21_bjvpn"]
+[ext_resource type="Texture2D" uid="uid://c5jsj7rthpxkg" path="res://globals/assets/Sprites/Icons/ArrowRight.png" id="21_x7c3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
 size = Vector2(12, 26)
@@ -824,5 +826,13 @@ emitting = false
 amount = 50
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_x7c3f")
+
+[node name="Compass" type="Node2D" parent="." unique_id=1467121155]
+visible = false
+script = ExtResource("21_bjvpn")
+
+[node name="Arrow" type="Sprite2D" parent="Compass" unique_id=650676368]
+position = Vector2(47, 0)
+texture = ExtResource("21_x7c3f")
 
 [connection signal="body_entered" from="AttackArea2d" to="." method="_on_attack_area_2d_body_entered"]

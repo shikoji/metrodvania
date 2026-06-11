@@ -24,7 +24,7 @@ color_ramp = SubResource("GradientTexture1D_5v4ug")
 
 [node name="AbilityUnlocker" type="Sprite2D" unique_id=1219678768]
 texture = ExtResource("1_cnkvh")
-offset = Vector2(0, 1.5259516)
+offset = Vector2(0, -1.8302734)
 script = ExtResource("2_rdf3u")
 
 [node name="Area" type="Area2D" parent="." unique_id=176510074]
