@@ -62,3 +62,4 @@ max_distance = 1000.0
 attenuation = 11.313642
 panning_strength = 0.5
 bus = &"Sounds"
+playback_type = 1
