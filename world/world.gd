@@ -113,7 +113,7 @@ func fill_first_ring(ignore_positions: Array) -> void:
 
 func place_pattern(room_position: Vector2i, pattern: TileMapPattern = null) -> void:
 	if pattern == null:
-		pattern = tileset.get_pattern(randi_range(0, tileset.get_patterns_count()))
+		pattern = tileset.get_pattern(randi_range(0, tileset.get_patterns_count() - 1))
 	var tileset_position = Vector2i(room_position.x * 32, room_position.y * 16)
 	tilemap.set_pattern(tileset_position, pattern)
 
