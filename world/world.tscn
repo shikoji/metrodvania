@@ -127,7 +127,8 @@ metadata/_edit_vertical_guides_ = [5637.0]
 metadata/_edit_horizontal_guides_ = [540.0]
 
 [node name="DebugCamera" type="Camera2D" parent="." unique_id=1144801757]
-position = Vector2(4421, -117)
+position = Vector2(1233, -502)
+enabled = false
 zoom = Vector2(0.5, 0.5)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=945644285]
@@ -172,7 +173,7 @@ max_life = 100
 [node name="RollUnlock" parent="." unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, -0.7478827)
+offset = Vector2(0, 1.1793734)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -181,7 +182,7 @@ ability = 4
 [node name="DoubleJump" parent="." unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-133, -369)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, -0.7478827)
+offset = Vector2(0, 1.1793734)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -189,21 +190,21 @@ ability = 1
 [node name="Bombs" parent="." unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, -0.7478827)
+offset = Vector2(0, 1.1793734)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="." unique_id=1675917156 instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, -0.7478827)
+offset = Vector2(0, 1.1793734)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
 [node name="GroundBomb" parent="." unique_id=1219678768 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, -0.7478827)
+offset = Vector2(0, 1.1793734)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
 
