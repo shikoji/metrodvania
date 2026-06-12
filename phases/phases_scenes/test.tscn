@@ -112,19 +112,19 @@ position = Vector2(1136, 576)
 
 [node name="AbilityUnlocker" parent="abilitys" unique_id=1219678768 instance=ExtResource("21_i3geh")]
 position = Vector2(1318, 334)
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 
 [node name="BombUnlock" parent="abilitys" unique_id=260855048 instance=ExtResource("21_i3geh")]
 position = Vector2(1298, 242)
 texture = ExtResource("14_itass")
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 particle_colors = Color(0, 0.39607844, 0.49411765, 1)
 ability = 2
 
 [node name="RollUnlock" parent="abilitys" unique_id=445511627 instance=ExtResource("21_i3geh")]
 position = Vector2(1388, 242)
 texture = ExtResource("15_u6jyk")
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.4248874, 0.33614144, 0.26240724, 1)
@@ -133,7 +133,7 @@ ability = 4
 [node name="Compass" parent="abilitys" unique_id=723763624 instance=ExtResource("21_i3geh")]
 position = Vector2(1472, 163)
 texture = ExtResource("16_sua32")
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(1, 1, 1, 1)
 ability = 5
@@ -141,14 +141,14 @@ ability = 5
 [node name="GroundBomb" parent="abilitys" unique_id=649823026 instance=ExtResource("21_i3geh")]
 position = Vector2(1331, 242)
 texture = ExtResource("15_hao8l")
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 particle_colors = Color(0, 1, 0, 1)
 ability = 3
 
 [node name="DoubleJump" parent="abilitys" unique_id=1221614001 instance=ExtResource("21_i3geh")]
 position = Vector2(1365, 242)
 texture = ExtResource("16_hao8l")
-offset = Vector2(0, -1.6966226)
+offset = Vector2(0, 0.4555769)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
 
@@ -345,7 +345,7 @@ dialog_offset = Vector2(-30, -50)
 dialog_lines = Array[String](["Hi!, how are you?", "nice"])
 
 [node name="player_start_position" type="Marker2D" parent="." unique_id=1636481879]
-position = Vector2(1252, 234)
+position = Vector2(1235, 239)
 
 [node name="player" parent="." unique_id=1819110571 instance=ExtResource("1_qmcui")]
 position = Vector2(30, 600)

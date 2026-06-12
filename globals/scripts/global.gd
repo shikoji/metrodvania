@@ -16,6 +16,9 @@ var potion_increase:int = 40
 var current_checkpoint_position: Vector2
 var has_checkpoint := false
 
+# tilemap
+var tilemap: TileMapLayer
+
 func respawn_player():
 	if player == null:
 		return

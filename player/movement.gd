@@ -103,17 +103,16 @@ func update_attack_facing() -> void:
 
 func _ready() -> void:
 	_attack_shape_base_pos = player_attack_shape.position
-	
+
 	life = max_life
 	Global.player_life = life
 
 	# mantém seu connect atual
 	if not animation_sprite.animation_finished.is_connected(_on_animation_finished):
 		animation_sprite.animation_finished.connect(_on_animation_finished)
-		
-	
+
 	box_ray_head.add_exception(self)
-	
+
 	# >>> ADICIONE ISTO:
 	player_attack_area.monitoring = false
 	player_attack_area.monitorable = true
@@ -331,12 +330,13 @@ func throw_ground_bomb() -> void:
 	is_throwing = false
 
 func spawn_bomb(bomb_resource: Resource) -> RigidBody2D:
+	const THROW_FORCE = Vector2(250.0, 300.0)
 	var facing_left = animation_sprite.flip_h
 	var instance: RigidBody2D = bomb_resource.instantiate()
 	instance.position = position
 	add_sibling(instance)
-	var forward_force = -300.0 if facing_left else 300.0
-	instance.apply_impulse(Vector2(forward_force, -250.0))
+	var forward_force = -THROW_FORCE.x if facing_left else THROW_FORCE.x
+	instance.apply_impulse(Vector2(forward_force, -THROW_FORCE.y))
 	instance.angular_velocity = -20.0 if facing_left else 20.0
 	return instance
 

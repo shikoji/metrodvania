@@ -27,8 +27,9 @@ func _ready() -> void:
 	Global.respawn_player()
 	
 	Global.player.player_has_died.connect(game_over)
-	
+
 	SceneManager.play_transition_out()
+	Global.tilemap = $TileMapLayer
 
 func reload_game():
 	if game_over_started:

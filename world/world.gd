@@ -20,7 +20,7 @@ var path_a = [
 	Vector2i(3, -4)
 ]
 
-var path_a_rooms = [7, 5, 4, [8, 9], 7, 5, 7, 4, 7]
+var path_a_rooms = [11, 5, 4, [8, 9], [7, 11], 5, [7, 10], 4, 10]
 
 var path_b = [
 	Vector2i(2, -1),
@@ -36,7 +36,7 @@ var path_b = [
 	Vector2i(3, -4)
 ]
 
-var path_b_rooms = [[1, 2], [1, 2], 4, [8, 9], 7, 7, 4, 5, [8, 9], 7, [1, 2]]
+var path_b_rooms = [[1, 2], [1, 2], 4, [8, 9], 11, 10, 4, 5, [8, 9], [7, 10], [1, 2]]
 
 var path_c = [
 	Vector2i(2, -1),
@@ -52,7 +52,7 @@ var path_c = [
 	Vector2i(3, -4)
 ]
 
-var path_c_rooms = [[1, 2], 4, 7, 4, 7, [1, 2], 5, [8, 9], 7, 7, 5]
+var path_c_rooms = [[1, 2], 4, [7, 10], 4, [7, 11], [1, 2], 5, [8, 9], 10, 11, 5]
 
 var starting_room = [
 	Vector2i(0, -1),
@@ -66,6 +66,10 @@ var starting_room = [
 var bomb_room = [
 	Vector2i(4, -4),
 	Vector2i(5, -4)
+]
+
+var ground_bomb_room = [
+	Vector2i(6, -7)
 ]
 
 # Throughout this function and the ones descending, we use a coordinate system
@@ -85,7 +89,11 @@ func generate_tilemap():
 			to_ignore.append_array(path_c)
 			draw_path(path_c, path_c_rooms)
 	fill_first_ring(to_ignore)
+	to_ignore = ground_bomb_room
+	to_ignore.append_array(bomb_room)
+	fill_second_ring(to_ignore)
 	tilemap.set_cells_terrain_connect(tilemap.get_used_cells(), 0, 0, false)
+	print("generation done")
 
 func setup_player_globals():
 	
@@ -99,6 +107,8 @@ func setup_player_globals():
 	Global.player.player_has_died.connect(game_over)
 	
 	SceneManager.play_transition_out()
+	
+	Global.tilemap = $TileMapLayer
 
 func _ready() -> void:
 	setup_player_globals()
@@ -110,6 +120,40 @@ func fill_first_ring(ignore_positions: Array) -> void:
 			var pattern_pos = Vector2i(x, y)
 			if pattern_pos not in ignore_positions:
 				place_pattern(pattern_pos)
+
+func fill_second_ring(ignore_positions:Array) -> void:
+	for x in range(-3, 7):
+		for y in range(-7, -5):
+			var pattern_pos = Vector2i(x, y)
+			if pattern_pos not in ignore_positions:
+				place_pattern(pattern_pos)
+				sprinkle_on_pattern(pattern_pos)
+	for x in range(5, 7):
+		for y in range(-5, 1):
+			var pattern_pos = Vector2i(x, y)
+			if pattern_pos not in ignore_positions:
+				place_pattern(pattern_pos)
+				sprinkle_on_pattern(pattern_pos)
+	for x in range(0, 7):
+		var y = 1
+		var pattern_pos = Vector2i(x, y)
+		if pattern_pos not in ignore_positions:
+			place_pattern(pattern_pos)
+			sprinkle_on_pattern(pattern_pos)
+
+func sprinkle_on_pattern(room_position: Vector2i) -> void:
+	const SINGLE_TILE = Vector2i(15, 3)
+	var tilemap_pos = room_position * Vector2i(32, 16)
+	var cells = []
+
+	for x in range(tilemap_pos.x, tilemap_pos.x + 32):
+		for y in range(tilemap_pos.y, tilemap_pos.y + 16):
+			var rng = randi_range(0, 4)
+			if rng == 0:
+				tilemap.set_cell(Vector2i(x, y), 0, SINGLE_TILE)
+			elif rng == 1:
+				tilemap.set_cell(Vector2i(x, y))
+	tilemap.set_cells_terrain_connect(cells, 0, 0, true)
 
 func place_pattern(room_position: Vector2i, pattern: TileMapPattern = null) -> void:
 	if pattern == null:

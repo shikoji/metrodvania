@@ -11,10 +11,8 @@ var tick = 0
 func _physics_process(delta: float) -> void:
 	tick += 1
 	if tick == 2:
+		break_cells(Global.tilemap)
 		for body in get_overlapping_bodies():
-			if body is TileMapLayer:
-				break_cells(body)
-
 			if body is Player:
 				body.take_damage(20)
 			if body.is_in_group("enemies"):
@@ -51,6 +49,7 @@ func get_surrounding_cells(cell: Vector2i):
 	var res = []
 	res.append(cell)
 	res.append(cell + Vector2i.UP)
+	res.append(cell + (Vector2i.UP * 2))
 	res.append(cell + Vector2i.DOWN)
 	res.append(cell + Vector2i.LEFT)
 	res.append(cell + Vector2i.RIGHT)
