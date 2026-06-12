@@ -29,8 +29,8 @@ size = Vector2(12, 26)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4c7l"]
 shader = ExtResource("2_s7qer")
-shader_parameter/base_color = Color(0, 0, 0.69411767, 1)
-shader_parameter/gradient_color = Color(0, 0, 0, 1)
+shader_parameter/base_color = Color(0.10779791, 0.34480324, 0.9999967, 1)
+shader_parameter/gradient_color = Color(0, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
 atlas = ExtResource("2_rgyib")

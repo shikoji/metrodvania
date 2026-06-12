@@ -92,6 +92,7 @@ func generate_tilemap():
 	to_ignore = ground_bomb_room
 	to_ignore.append_array(bomb_room)
 	fill_second_ring(to_ignore)
+	fill_last_ring()
 	tilemap.set_cells_terrain_connect(tilemap.get_used_cells(), 0, 0, false)
 	print("generation done")
 
@@ -141,8 +142,9 @@ func fill_second_ring(ignore_positions:Array) -> void:
 			place_pattern(pattern_pos)
 			sprinkle_on_pattern(pattern_pos)
 
+const SINGLE_TILE = Vector2i(15, 3)
+
 func sprinkle_on_pattern(room_position: Vector2i) -> void:
-	const SINGLE_TILE = Vector2i(15, 3)
 	var tilemap_pos = room_position * Vector2i(32, 16)
 	var cells = []
 
@@ -155,11 +157,38 @@ func sprinkle_on_pattern(room_position: Vector2i) -> void:
 				tilemap.set_cell(Vector2i(x, y))
 	tilemap.set_cells_terrain_connect(cells, 0, 0, true)
 
+func fill_last_ring() -> void:
+	for x in range(0, 319):
+		for y in range(113, 176):
+			y = -y
+			if randi_range(0, 10) == 0:
+				tilemap.set_cell(Vector2i(x, y), 0, SINGLE_TILE)
+	
+	for x in range(224, 351):
+		for y in range(-112, 31):
+			if randi_range(0, 10) == 0:
+				tilemap.set_cell(Vector2i(x, y), 0, SINGLE_TILE)
+
 func place_pattern(room_position: Vector2i, pattern: TileMapPattern = null) -> void:
 	if pattern == null:
 		pattern = tileset.get_pattern(randi_range(0, tileset.get_patterns_count() - 1))
 	var tileset_position = Vector2i(room_position.x * 32, room_position.y * 16)
 	tilemap.set_pattern(tileset_position, pattern)
+	
+	# try spawn enemy
+	var x = randi_range(tileset_position.x, tileset_position.x + 32)
+	var y = randi_range(tileset_position.y, tileset_position.y + 16)
+	for i in range(0, 5):
+		for j in range(0, 3):
+			if tilemap.get_cell_source_id(Vector2i(x + i, y + j)) != -1:
+				return # check failed, don't spawn enemy
+	x += 2
+	y += 1
+	var instance = ALICE.instantiate()
+	instance.position = tilemap.map_to_local(Vector2i(x, y))
+	add_child(instance)
+
+const ALICE = preload("res://enemies/enemies_scenes/alice.tscn")
 
 func draw_path(room_positions, room_indexs) -> void:
 	for i in range(room_positions.size()):
