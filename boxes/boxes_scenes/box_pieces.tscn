@@ -23,5 +23,6 @@ script = ExtResource("1_lnptf")
 [node name="BreakingSound" type="AudioStreamPlayer2D" parent="." unique_id=1343084613]
 stream = SubResource("AudioStreamRandomizer_kxbk3")
 autoplay = true
+bus = &"Sounds"
 
 [connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]

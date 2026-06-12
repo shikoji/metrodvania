@@ -114,3 +114,4 @@ frame_progress = 0.76651114
 stream = SubResource("AudioStreamMP3_n08hq")
 volume_db = -30.0
 attenuation = 5.0
+bus = &"Sounds"

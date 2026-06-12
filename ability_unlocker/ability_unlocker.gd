@@ -32,6 +32,7 @@ func play_ability_unlock_sound():
 	var audio_player = AudioStreamPlayer2D.new()
 	audio_player.position = position
 	audio_player.stream = STREAM
+	audio_player.bus = "Sounds"
 	add_sibling(audio_player)
 	audio_player.play()
 	audio_player.connect("finished", audio_player.queue_free)

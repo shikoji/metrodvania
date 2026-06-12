@@ -82,3 +82,4 @@ shape = SubResource("CircleShape2D_01l2j")
 
 [node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=1743212046]
 stream = ExtResource("3_6iord")
+bus = &"Sounds"

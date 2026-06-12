@@ -118,6 +118,8 @@ func play_letter_sound():
 	add_child(player)
 
 	player.stream = audio_stream_player_2d.stream
+
+	player.bus = "Sounds"
 	
 	player.volume_db = audio_stream_player_2d.volume_db
 

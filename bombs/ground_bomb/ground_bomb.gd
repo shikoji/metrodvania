@@ -23,6 +23,7 @@ func explode():
 	var sound = AudioStreamPlayer2D.new()
 	sound.position = position
 	sound.stream = load("res://bombs/ground_bomb/creating_ground.wav")
+	sound.bus = "Sounds"
 	add_sibling(sound)
 	sound.play()
 	sound.connect("finished", sound.queue_free)

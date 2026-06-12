@@ -818,6 +818,7 @@ func play_footstep(pitch_scale: float = 1.0, volume_db :float = 0.0):
 	add_child(instance)
 	instance.pitch_scale = pitch_scale
 	instance.volume_db = volume_db
+	instance.bus = "Sounds"
 	instance.play()
 	instance.connect("finished", instance.queue_free)
 
