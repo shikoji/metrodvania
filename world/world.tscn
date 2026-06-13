@@ -166,14 +166,15 @@ occlusion_enabled = false
 collision_enabled = false
 navigation_enabled = false
 
-[node name="player" parent="." unique_id=1819110571 instance=ExtResource("3_4717r")]
+[node name="player" parent="." unique_id=1819110571 node_paths=PackedStringArray("compass_target") instance=ExtResource("3_4717r")]
 position = Vector2(74, -63)
+compass_target = NodePath("../Teleporter")
 max_life = 100
 
 [node name="RollUnlock" parent="." unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 1.1793734)
+offset = Vector2(0, 0.9533938)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -182,7 +183,7 @@ ability = 4
 [node name="DoubleJump" parent="." unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-133, -369)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 1.1793734)
+offset = Vector2(0, 0.9533938)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -190,21 +191,21 @@ ability = 1
 [node name="Bombs" parent="." unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, 1.1793734)
+offset = Vector2(0, 0.9533938)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="." unique_id=1675917156 instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, 1.1793734)
+offset = Vector2(0, 0.9533938)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
 [node name="GroundBomb" parent="." unique_id=1219678768 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, 1.1793734)
+offset = Vector2(0, 0.9533938)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
 

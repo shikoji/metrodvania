@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 @onready var animation_sprite: AnimatedSprite2D = $animation_sprite
 
+@export_group("help")
+@export var compass_target: Node2D
 
 @export_group("Horizontal Movement X")
 @export var horizontal_max_speed: float = 240.0
