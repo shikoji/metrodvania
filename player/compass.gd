@@ -2,6 +2,9 @@ extends Node2D
 
 @export var rotation_offset_degrees: float = 0.0
 
+@onready var target: Node2D = get_parent().compass_target
+
+
 var target: Node2D = null
 var active: bool = false
 
