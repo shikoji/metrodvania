@@ -558,14 +558,16 @@ func _setup_manual_navigation() -> void:
 		jump_bind,
 		attack_bind,
 		dash_bind,
-		potion_bind
+		potion_bind,
+		bomb_bind
 	]
 
 	var right_buttons: Array[Button] = [
 		parasite_bind,
 		interact_bind,
 		advance_dialog_bind,
-		pause_bind
+		pause_bind,
+		grass_bind
 	]
 
 	for i in range(left_buttons.size()):
@@ -591,8 +593,8 @@ func _setup_manual_navigation() -> void:
 		right_button.focus_neighbor_top = right_button.get_path_to(right_buttons[previous_i])
 		right_button.focus_neighbor_bottom = right_button.get_path_to(right_buttons[next_i])
 
-	potion_bind.focus_neighbor_bottom = potion_bind.get_path_to(restore_button)
-	pause_bind.focus_neighbor_bottom = pause_bind.get_path_to(restore_button)
+	bomb_bind.focus_neighbor_bottom = bomb_bind.get_path_to(restore_button)
+	grass_bind.focus_neighbor_bottom = grass_bind.get_path_to(restore_button)
 
 	restore_button.focus_neighbor_top = restore_button.get_path_to(potion_bind)
 	restore_button.focus_neighbor_bottom = restore_button.get_path_to(back_button)
