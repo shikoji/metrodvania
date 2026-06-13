@@ -8,6 +8,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body in teleport_protection:
 		return
 	if body is Player:
+		if body.has_method("disable_compass"):
+			body.disable_compass()
 		target.teleport_protection.append(body)
 		body.global_position = target.global_position
 		

@@ -1,6 +1,9 @@
 @tool
 extends Sprite2D
 
+@export var next_compass_target: Node2D
+
+
 @export var particle_colors: Color:
 	set(new_color):
 		$GPUParticles2D.process_material.color = new_color
@@ -16,6 +19,16 @@ enum Ability {
 }
 
 @export var ability = Ability.PowerMode
+
+func change_compass_target(body: Node2D) -> void:
+	if next_compass_target == null:
+		print("Esse item não tem alvo de bússola configurado.")
+		return
+	
+	if body.has_method("set_compass_target"):
+		body.set_compass_target(next_compass_target)
+	else:
+		print("O player não tem a função set_compass_target")
 
 func _ready():
 	offset.y = 0.0
@@ -58,7 +71,12 @@ func _on_area_body_entered(body: Node2D) -> void:
 				Abilities.roll = true
 			Ability.Compass:
 				$CanvasLayer/AbilityName.text = "You've unlocked the Compass! (ARROW)"
-				body.get_node("Compass").show()
+				Abilities.compass = true
+				
+				if body.has_method("enable_compass"):
+					body.enable_compass()
+					
+		change_compass_target(body)
 		play_ability_unlock_sound()
 		start_text_fade_sequence()
 

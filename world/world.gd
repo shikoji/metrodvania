@@ -206,8 +206,3 @@ func game_over():
 		player.set_process(false)
 	
 	SceneManager.play_transition_in(SCENE)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE:
-			get_tree().quit()
