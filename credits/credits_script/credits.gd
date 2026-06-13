@@ -24,38 +24,35 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"title": "ARTISTS",
 		"color": Color(1.0, 0.25, 0.20),
 		"names": [
-			"Alex Arroyo",
-			"Danilo Cavedon",
-			"Ruan Lima"
+			"Alex",
+			"Kyryl",
+			"Visclo"
 		]
 	},
 	{
 		"title": "PROGRAMMING",
 		"color": Color(0.25, 0.70, 1.0),
 		"names": [
-			"Your Name"
+			"Robson",
+			"Kyryl",
+			"Visclo"
 		]
 	},
 	{
 		"title": "MUSIC AND SOUND",
 		"color": Color(0.85, 0.45, 1.0),
 		"names": [
-			"Sound Designer Name",
-			"Composer Name"
+			"Danny",
+			"Kyryl",
+			"Visclo",
+			"Robson"
 		]
 	},
 	{
 		"title": "LEVEL DESIGN",
 		"color": Color(1.0, 0.80, 0.25),
 		"names": [
-			"Level Designer Name"
-		]
-	},
-	{
-		"title": "SPECIAL THANKS",
-		"color": Color(0.45, 1.0, 0.45),
-		"names": [
-			"And everyone who supported this project!"
+			"Visclo"
 		]
 	}
 ]
@@ -121,6 +118,8 @@ func _build_credits() -> void:
 			_add_label(str(person_name), Color(0.88, 0.88, 0.88), name_size, false)
 		
 		_add_spacer(50)
+	
+	_add_spacer(200)
 	
 	_last_credit_label = _add_label("THANK YOU FOR PLAYING", Color.WHITE, 32, true)
 
