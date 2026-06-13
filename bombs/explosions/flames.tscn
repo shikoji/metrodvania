@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://byg1s7et5ch38"]
+
+[sub_resource type="Gradient" id="Gradient_la7in"]
+offsets = PackedFloat32Array(0, 0.21606648, 0.64819944, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0.20511743, 0.20511743, 0.20511743, 1, 0.20392157, 0.20392157, 0.20392157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c4on8"]
+gradient = SubResource("Gradient_la7in")
+
+[sub_resource type="Curve" id="Curve_4qs0h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3bcrd"]
+curve = SubResource("Curve_4qs0h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gmfl7"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_3bcrd")
+color_ramp = SubResource("GradientTexture1D_c4on8")
+
+[node name="Flames" type="GPUParticles2D" unique_id=384177480]
+z_index = 1
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_gmfl7")

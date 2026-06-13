@@ -23,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://mll3youhj5bf" path="res://teleporter/teleporter.tscn" id="20_aysyn"]
 [ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="22_o1net"]
 [ext_resource type="PackedScene" uid="uid://bbljtl0gbg1xn" path="res://fall_zone/fall_zone_scenes/fall_zone.tscn" id="23_3ljsx"]
+[ext_resource type="PackedScene" uid="uid://8a7s4ydjylps" path="res://bombs/explosions/ground_particles.tscn" id="25_llyeo"]
+[ext_resource type="PackedScene" uid="uid://cd6bavn4760w5" path="res://fx/death_fx/death_fx.tscn" id="26_2tavo"]
+[ext_resource type="PackedScene" uid="uid://byg1s7et5ch38" path="res://bombs/explosions/flames.tscn" id="26_k8wd0"]
+[ext_resource type="PackedScene" uid="uid://ddh3s64k18clu" path="res://bombs/explosions/sparks.tscn" id="27_j7vgi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("2_ysn08")
@@ -180,7 +184,7 @@ max_life = 100
 [node name="RollUnlock" parent="." unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 0.1993947)
+offset = Vector2(0, -0.060604453)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -189,7 +193,7 @@ ability = 4
 [node name="DoubleJump" parent="." unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-133, -369)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 0.1993947)
+offset = Vector2(0, -0.060604453)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -197,14 +201,14 @@ ability = 1
 [node name="Bombs" parent="." unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, 0.1993947)
+offset = Vector2(0, -0.060604453)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="." unique_id=1675917156 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, 0.1993947)
+offset = Vector2(0, -0.060604453)
 next_compass_target = NodePath("../GroundBomb")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
@@ -212,7 +216,7 @@ ability = 5
 [node name="GroundBomb" parent="." unique_id=1219678768 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, 0.1993947)
+offset = Vector2(0, -0.060604453)
 next_compass_target = NodePath("../CompassTarget_Portal")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
@@ -224,7 +228,7 @@ position = Vector2(254, -280)
 position = Vector2(664, -576)
 
 [node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1139488191]
-position = Vector2(2145, -925)
+position = Vector2(93, -70)
 
 [node name="CompassTarget_Portal" type="Marker2D" parent="." unique_id=2095957082]
 position = Vector2(5376, -2704)
@@ -390,3 +394,15 @@ position = Vector2(1136, 789)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fall_zone" unique_id=1787659876]
 shape = SubResource("RectangleShape2D_gi7ib")
+
+[node name="ParticleLoading" type="Node2D" parent="." unique_id=1586309890]
+z_index = -50
+position = Vector2(-74, -92)
+
+[node name="GroundParticles" parent="ParticleLoading" unique_id=1899064787 instance=ExtResource("25_llyeo")]
+
+[node name="DeathFx" parent="ParticleLoading" unique_id=1086093884 instance=ExtResource("26_2tavo")]
+
+[node name="Flames" parent="ParticleLoading" unique_id=384177480 instance=ExtResource("26_k8wd0")]
+
+[node name="Sparks" parent="ParticleLoading" unique_id=672975273 instance=ExtResource("27_j7vgi")]
