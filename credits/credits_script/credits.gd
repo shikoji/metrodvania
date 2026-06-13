@@ -54,6 +54,33 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"names": [
 			"Visclo"
 		]
+	},
+	{
+		"title": "MECHANICS",
+		"color": Color(0.45, 1.0, 0.45),
+		"names": [
+			"Robson",
+			"Kyryl",
+			"Visclo"
+		]
+	},
+	{
+		"title": "ENEMIES AND BOSS",
+		"color": Color(1.0, 0.25, 0.20),
+		"names": [
+			"Erick",
+			"Kyryl",
+			"Visclo"
+		]
+	},
+	{
+		"title": "USER INTERFACE",
+		"color": Color(0.65, 0.85, 1.0),
+		"names": [
+			"Robson",
+			"Kyryl",
+			"Visclo"
+		]
 	}
 ]
 
@@ -105,8 +132,6 @@ func _build_credits() -> void:
 	
 	credits_content.add_theme_constant_override("separation", line_separation)
 	
-	_add_spacer(120)
-	_add_label("CREDITS", Color.WHITE, main_title_size, true)
 	_add_spacer(80)
 	
 	for section: Dictionary in CREDIT_SECTIONS:
