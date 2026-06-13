@@ -94,6 +94,21 @@ var ladders_touching: int = 0
 
 const POWER_MODE_SHADER = preload("res://player/power_mode.tres")
 
+
+
+@onready var compass: Node2D = $Compass
+
+func enable_compass() -> void:
+	compass.enable_compass()
+
+func set_compass_target(target: Node2D) -> void:
+	compass.set_target(target)
+
+func disable_compass() -> void:
+	compass.disable_compass()
+
+
+
 func update_attack_facing() -> void:
 	# Se flip_h = true, player está olhando pra ESQUERDA.
 	var xsign := -1.0 if animation_sprite.flip_h else 1.0

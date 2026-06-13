@@ -5,3 +5,4 @@ var bomb: bool = false
 var ground_bomb: bool = false
 var double_jump: bool = false
 var roll: bool = false
+var compass: bool = false
