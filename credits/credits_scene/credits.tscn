@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m4r1j")
 main_menu_scene = "uid://y2mqmq6y1kjc"
-scroll_speed = 150.0
+scroll_speed = 120.0
 start_delay = 0.0
 end_delay = 1.0
 

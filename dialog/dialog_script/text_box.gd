@@ -26,7 +26,7 @@ var fast_forward := false
 @onready var continue_label: AnimatedSprite2D = $MarginContainer/MarginContainer/ContinueLabel
 
 func _ready():
-	audio_stream_player_2d.volume_db = -25
+	audio_stream_player_2d.volume_db = -10
 
 func display_text(text_to_display: String):
 	continue_label.hide()

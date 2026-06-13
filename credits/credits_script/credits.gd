@@ -24,38 +24,62 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"title": "ARTISTS",
 		"color": Color(1.0, 0.25, 0.20),
 		"names": [
-			"Alex Arroyo",
-			"Danilo Cavedon",
-			"Ruan Lima"
+			"Alex",
+			"Kyryl",
+			"Visclo"
 		]
 	},
 	{
 		"title": "PROGRAMMING",
 		"color": Color(0.25, 0.70, 1.0),
 		"names": [
-			"Your Name"
+			"Robson",
+			"Kyryl",
+			"Visclo"
 		]
 	},
 	{
 		"title": "MUSIC AND SOUND",
 		"color": Color(0.85, 0.45, 1.0),
 		"names": [
-			"Sound Designer Name",
-			"Composer Name"
+			"Danny",
+			"Kyryl",
+			"Visclo",
+			"Robson"
 		]
 	},
 	{
 		"title": "LEVEL DESIGN",
 		"color": Color(1.0, 0.80, 0.25),
 		"names": [
-			"Level Designer Name"
+			"Visclo"
 		]
 	},
 	{
-		"title": "SPECIAL THANKS",
+		"title": "MECHANICS",
 		"color": Color(0.45, 1.0, 0.45),
 		"names": [
-			"And everyone who supported this project!"
+			"Robson",
+			"Kyryl",
+			"Visclo"
+		]
+	},
+	{
+		"title": "ENEMIES AND BOSS",
+		"color": Color(1.0, 0.25, 0.20),
+		"names": [
+			"Erick",
+			"Kyryl",
+			"Visclo"
+		]
+	},
+	{
+		"title": "USER INTERFACE",
+		"color": Color(0.65, 0.85, 1.0),
+		"names": [
+			"Robson",
+			"Kyryl",
+			"Visclo"
 		]
 	}
 ]
@@ -108,8 +132,6 @@ func _build_credits() -> void:
 	
 	credits_content.add_theme_constant_override("separation", line_separation)
 	
-	_add_spacer(120)
-	_add_label("CREDITS", Color.WHITE, main_title_size, true)
 	_add_spacer(80)
 	
 	for section: Dictionary in CREDIT_SECTIONS:
@@ -121,6 +143,8 @@ func _build_credits() -> void:
 			_add_label(str(person_name), Color(0.88, 0.88, 0.88), name_size, false)
 		
 		_add_spacer(50)
+	
+	_add_spacer(200)
 	
 	_last_credit_label = _add_label("THANK YOU FOR PLAYING", Color.WHITE, 32, true)
 
