@@ -42,16 +42,36 @@ func _on_area_body_entered(body: Node2D) -> void:
 	if body == Global.player:
 		match ability:
 			Ability.PowerMode:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Power Mode!"
 				Abilities.power_mode = true
 			Ability.DoubleJump:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Double Jump!"
 				Abilities.double_jump = true
 			Ability.Bomb:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Bomb! (E)"
 				Abilities.bomb = true
 			Ability.GroundBomb:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Ground Bomb! (Q)"
 				Abilities.ground_bomb = true
 			Ability.Roll:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Roll! (SHIFT)"
 				Abilities.roll = true
 			Ability.Compass:
+				$CanvasLayer/AbilityName.text = "You've unlocked the Compass! (ARROW)"
 				body.get_node("Compass").show()
 		play_ability_unlock_sound()
-		queue_free()
+		start_text_fade_sequence()
+
+
+func start_text_fade_sequence() -> void:
+	var label = $CanvasLayer/AbilityName
+	var tween = create_tween()
+	
+	tween.tween_property(label, "modulate:a", 1.0, 0.5).from(0.0)
+	
+	tween.tween_interval(0.4)
+	
+	tween.tween_property(label, "modulate:a", 0.0, 0.5)
+	
+	await tween.finished
+	queue_free()

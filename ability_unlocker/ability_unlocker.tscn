@@ -22,9 +22,11 @@ gravity = Vector3(0, 0, 0)
 color = Color(0, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_5v4ug")
 
+[sub_resource type="Theme" id="Theme_rdf3u"]
+
 [node name="AbilityUnlocker" type="Sprite2D" unique_id=1219678768]
 texture = ExtResource("1_cnkvh")
-offset = Vector2(0, -1.8302734)
+offset = Vector2(0, -0.67631465)
 script = ExtResource("2_rdf3u")
 
 [node name="Area" type="Area2D" parent="." unique_id=176510074]
@@ -37,5 +39,24 @@ z_index = -1
 amount = 30
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_1q5et")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1141619827]
+
+[node name="AbilityName" type="Label" parent="CanvasLayer" unique_id=1391930302]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -107.0
+offset_right = 261.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_rdf3u")
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
