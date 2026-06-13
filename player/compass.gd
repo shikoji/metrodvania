@@ -5,7 +5,7 @@ extends Node2D
 @onready var target: Node2D = get_parent().compass_target
 
 
-var target: Node2D = null
+#var target: Node2D = null
 var active: bool = false
 
 
