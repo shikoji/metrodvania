@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://oveiuty3vfbu" path="res://music/Stage1.mp3" id="13_dqqhb"]
 [ext_resource type="AudioStream" uid="uid://bfjtbuqob3o0" path="res://music/Stage2.mp3" id="14_b2suy"]
 [ext_resource type="PackedScene" uid="uid://mll3youhj5bf" path="res://teleporter/teleporter.tscn" id="20_aysyn"]
+[ext_resource type="PackedScene" uid="uid://chsc5w46rdemo" path="res://spikey/spikey.tscn" id="22_o1net"]
+[ext_resource type="PackedScene" uid="uid://bbljtl0gbg1xn" path="res://fall_zone/fall_zone_scenes/fall_zone.tscn" id="23_3ljsx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("2_ysn08")
@@ -121,6 +123,9 @@ stream_count = 2
 stream_0 = ExtResource("13_dqqhb")
 stream_1 = ExtResource("14_b2suy")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi7ib"]
+size = Vector2(20000, 500)
+
 [node name="World" type="Node2D" unique_id=1938931949]
 script = ExtResource("1_tcf2h")
 metadata/_edit_vertical_guides_ = [5637.0]
@@ -174,7 +179,7 @@ max_life = 100
 [node name="RollUnlock" parent="." unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 0.9533938)
+offset = Vector2(0, 1.5527227)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -183,7 +188,7 @@ ability = 4
 [node name="DoubleJump" parent="." unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-133, -369)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 0.9533938)
+offset = Vector2(0, 1.5527227)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -191,21 +196,21 @@ ability = 1
 [node name="Bombs" parent="." unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, 0.9533938)
+offset = Vector2(0, 1.5527227)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="." unique_id=1675917156 instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, 0.9533938)
+offset = Vector2(0, 1.5527227)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
 [node name="GroundBomb" parent="." unique_id=1219678768 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, 0.9533938)
+offset = Vector2(0, 1.5527227)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
 
@@ -297,3 +302,84 @@ target = NodePath("../Teleporter")
 [node name="warning_sing2" parent="." unique_id=2017944471 instance=ExtResource("11_ov2xu")]
 position = Vector2(137, -3871.5)
 dialog_lines = Array[String](["You won", "This is the end of the game"])
+
+[node name="Spikey" parent="." unique_id=1775360366 instance=ExtResource("22_o1net")]
+position = Vector2(2118, -919)
+
+[node name="Spikey2" parent="." unique_id=489628228 instance=ExtResource("22_o1net")]
+position = Vector2(2711, -845)
+
+[node name="Spikey3" parent="." unique_id=1616766483 instance=ExtResource("22_o1net")]
+position = Vector2(3849, 134)
+
+[node name="Spikey4" parent="." unique_id=1099589063 instance=ExtResource("22_o1net")]
+position = Vector2(4251, -152)
+
+[node name="Spikey5" parent="." unique_id=1286048674 instance=ExtResource("22_o1net")]
+position = Vector2(3865, -114)
+
+[node name="Spikey6" parent="." unique_id=1287018384 instance=ExtResource("22_o1net")]
+position = Vector2(5264, -382)
+
+[node name="Spikey7" parent="." unique_id=220220924 instance=ExtResource("22_o1net")]
+position = Vector2(4853, -382)
+
+[node name="Spikey9" parent="." unique_id=1178321087 instance=ExtResource("22_o1net")]
+position = Vector2(5291, -1384)
+
+[node name="Spikey10" parent="." unique_id=117464819 instance=ExtResource("22_o1net")]
+position = Vector2(4860, -1196)
+
+[node name="Spikey8" parent="." unique_id=86629320 instance=ExtResource("22_o1net")]
+position = Vector2(4258, -686)
+
+[node name="Spikey11" parent="." unique_id=1071638041 instance=ExtResource("22_o1net")]
+position = Vector2(5399, -2413)
+
+[node name="Spikey12" parent="." unique_id=1295060688 instance=ExtResource("22_o1net")]
+position = Vector2(4968, -2225)
+
+[node name="Spikey13" parent="." unique_id=1537658283 instance=ExtResource("22_o1net")]
+position = Vector2(4366, -1715)
+
+[node name="Spikey14" parent="." unique_id=2145176591 instance=ExtResource("22_o1net")]
+position = Vector2(3817, -2922)
+
+[node name="Spikey15" parent="." unique_id=1142246888 instance=ExtResource("22_o1net")]
+position = Vector2(3386, -2734)
+
+[node name="Spikey16" parent="." unique_id=1933030811 instance=ExtResource("22_o1net")]
+position = Vector2(2784, -2224)
+
+[node name="Spikey17" parent="." unique_id=1720342875 instance=ExtResource("22_o1net")]
+position = Vector2(5226, -3128)
+
+[node name="Spikey18" parent="." unique_id=489220088 instance=ExtResource("22_o1net")]
+position = Vector2(4795, -2940)
+
+[node name="Spikey19" parent="." unique_id=318603113 instance=ExtResource("22_o1net")]
+position = Vector2(4193, -2430)
+
+[node name="Spikey20" parent="." unique_id=14026760 instance=ExtResource("22_o1net")]
+position = Vector2(1423, -3095)
+
+[node name="Spikey21" parent="." unique_id=1590602969 instance=ExtResource("22_o1net")]
+position = Vector2(992, -2907)
+
+[node name="Spikey22" parent="." unique_id=1543795446 instance=ExtResource("22_o1net")]
+position = Vector2(390, -2397)
+
+[node name="Spikey23" parent="." unique_id=1877854725 instance=ExtResource("22_o1net")]
+position = Vector2(2723, -3106)
+
+[node name="Spikey24" parent="." unique_id=1336060357 instance=ExtResource("22_o1net")]
+position = Vector2(2292, -2918)
+
+[node name="Spikey25" parent="." unique_id=1310843469 instance=ExtResource("22_o1net")]
+position = Vector2(1690, -2408)
+
+[node name="fall_zone" parent="." unique_id=1325688696 instance=ExtResource("23_3ljsx")]
+position = Vector2(1136, 789)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fall_zone" unique_id=1787659876]
+shape = SubResource("RectangleShape2D_gi7ib")

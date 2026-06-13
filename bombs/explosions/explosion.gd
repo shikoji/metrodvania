@@ -14,7 +14,8 @@ func _physics_process(delta: float) -> void:
 		break_cells(Global.tilemap)
 		for body in get_overlapping_bodies():
 			if body is Player:
-				body.take_damage(20)
+				#body.take_damage(20)
+				continue
 			if body.is_in_group("enemies"):
 				body.take_damage(3)
 			if body.has_method("break_sprite"):

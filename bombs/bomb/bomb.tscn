@@ -33,10 +33,13 @@ gravity = Vector3(0, -10, 0)
 color_ramp = SubResource("GradientTexture1D_jow2a")
 
 [node name="Bomb" type="RigidBody2D" unique_id=860001031]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 128
+collision_mask = 130
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_10bhw")
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_7or1l")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876163235]
@@ -62,3 +65,5 @@ attenuation = 11.313642
 panning_strength = 0.5
 bus = &"Sounds"
 playback_type = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
