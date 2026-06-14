@@ -135,7 +135,7 @@ sources/0 = SubResource("TileSetAtlasSource_o1net")
 size = Vector2(20000, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avd5l"]
-size = Vector2(163, 93)
+size = Vector2(78.25, 153.5)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_h8lre"]
 fade_time = 0.5
@@ -199,9 +199,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-
-offset = Vector2(0, -1.9053831)
-
+offset = Vector2(0, -0.18408668)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -210,9 +208,7 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-1321, -147)
 texture = ExtResource("6_ai45w")
-
-offset = Vector2(0, -1.9053831)
-
+offset = Vector2(0, -0.18408668)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -220,16 +216,14 @@ ability = 1
 [node name="Bombs" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-
-offset = Vector2(0, -1.9053831)
-
+offset = Vector2(0, -0.18408668)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="abilits" unique_id=1675917156 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, -1.9053831)
+offset = Vector2(0, -0.18408668)
 next_compass_target = NodePath("../GroundBomb")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
@@ -237,7 +231,7 @@ ability = 5
 [node name="GroundBomb" parent="abilits" unique_id=1219678768 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, -1.9053831)
+offset = Vector2(0, -0.18408668)
 next_compass_target = NodePath("../../CompassTarget_Portal")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
@@ -251,7 +245,7 @@ position = Vector2(254, -280)
 position = Vector2(664, -576)
 
 [node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1139488191]
-position = Vector2(-1295, 406)
+position = Vector2(-1295, 405)
 
 [node name="CompassTarget_Portal" type="Marker2D" parent="." unique_id=2095957082]
 position = Vector2(5376, -2704)
@@ -494,7 +488,7 @@ max_life = 100
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area_zoom/Area2D" unique_id=1623707517]
-position = Vector2(1309.5, 329.5)
+position = Vector2(870.875, -666.25)
 shape = SubResource("RectangleShape2D_avd5l")
 
 [node name="ui" parent="." unique_id=359356806 instance=ExtResource("9_fyhu2")]

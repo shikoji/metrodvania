@@ -206,8 +206,9 @@ func draw_path(room_positions, room_indexs) -> void:
 			room_id = room_indexs[i].pick_random()
 		place_pattern(room_positions[i], tileset.get_pattern(room_id))
 
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	if player_camera:
+		player_camera.zoom = player_camera.zoom.lerp(zoom_alvo, delta * suavidade)
 
 func game_over():
 	if player != null:
