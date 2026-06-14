@@ -190,6 +190,7 @@ func place_pattern(room_position: Vector2i, pattern: TileMapPattern = null) -> v
 
 const ALICE = preload("res://enemies/enemies_scenes/alice.tscn")
 
+
 func draw_path(room_positions, room_indexs) -> void:
 	for i in range(room_positions.size()):
 		var room_id = room_indexs[i]

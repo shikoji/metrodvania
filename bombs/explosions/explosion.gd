@@ -3,8 +3,8 @@ extends Area2D
 const GROUND_EXPLOSION = preload("res://bombs/explosions/ground_particles.tscn")
 
 func _ready() -> void:
-	$GPUParticles2D.emitting = true
-	$GPUParticles2D2.emitting = true
+	$Sparks.emitting = true
+	$Flames.emitting = true
 
 var tick = 0
 
