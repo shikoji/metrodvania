@@ -223,5 +223,5 @@ func _on_quit_pressed() -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://world/world.tscn")
+	get_tree().change_scene_to_file("res://instructions/instructions.tscn")
 #	get_tree().change_scene_to_file("res://phases/phases_scenes/test.tscn")
