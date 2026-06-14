@@ -1,5 +1,13 @@
 extends Node2D
 
+#camera zoom
+var zoom_perto = Vector2(7.0, 7.0)
+var zoom_normal = Vector2(3.0, 3.0)
+var zoom_alvo = Vector2(7.0, 7.0)
+var suavidade = 3.0  # valores maiores = transição mais rápida
+var player_camera : Camera2D = null
+
+
 @onready var player_start_position = $PlayerStartPosition
 @onready var player = $player
 const SCENE: PackedScene = preload("res://world/world.tscn")
@@ -207,3 +215,15 @@ func game_over():
 		player.set_process(false)
 	
 	SceneManager.play_transition_in(SCENE)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = zoom_perto
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = zoom_normal

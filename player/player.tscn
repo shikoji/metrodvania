@@ -755,7 +755,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1669307531]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("11_32hag")
