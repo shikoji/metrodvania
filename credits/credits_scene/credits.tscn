@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://darrbmttijqle"]
 
 [ext_resource type="Script" uid="uid://8fokagx3h4as" path="res://credits/credits_script/credits.gd" id="1_m4r1j"]
+[ext_resource type="AudioStream" uid="uid://dndt6p1jf40u6" path="res://credits/credits_assents/Lingering.mp3" id="2_7vrl4"]
 
 [node name="credits" type="Control" unique_id=838778605]
 layout_mode = 3
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m4r1j")
 main_menu_scene = "uid://y2mqmq6y1kjc"
-scroll_speed = 120.0
+scroll_speed = 80.0
 start_delay = 0.0
 end_delay = 1.0
 
@@ -37,3 +38,8 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1484081036]
+stream = ExtResource("2_7vrl4")
+volume_db = 10.0
+autoplay = true

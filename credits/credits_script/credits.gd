@@ -24,7 +24,6 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"title": "ARTISTS",
 		"color": Color(1.0, 0.25, 0.20),
 		"names": [
-			"Alex",
 			"Kyryl",
 			"Visclo"
 		]
@@ -68,9 +67,9 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"title": "ENEMIES AND BOSS",
 		"color": Color(1.0, 0.25, 0.20),
 		"names": [
-			"Erick",
 			"Kyryl",
-			"Visclo"
+			"Visclo",
+			"Robson"
 		]
 	},
 	{
