@@ -42,9 +42,6 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 		"color": Color(0.85, 0.45, 1.0),
 		"names": [
 			"Danny",
-			"Kyryl",
-			"Visclo",
-			"Robson"
 		]
 	},
 	{
