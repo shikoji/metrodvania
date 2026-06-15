@@ -1,5 +1,7 @@
 extends Node
+ 
 
+var player_damage = 1
 
 var coins = 0
 var score = 0

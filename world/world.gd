@@ -80,6 +80,10 @@ var ground_bomb_room = [
 	Vector2i(6, -7)
 ]
 
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var boss_batle: AudioStreamPlayer2D = $boss_batle
+
+
 # Throughout this function and the ones descending, we use a coordinate system
 # that relates to the room sizes. A room is x32 and y16 in term of cell size
 func generate_tilemap():
@@ -120,6 +124,7 @@ func setup_player_globals():
 	Global.tilemap = $TileMapLayer
 
 func _ready() -> void:
+	door.enabled = false
 	setup_player_globals()
 	generate_tilemap()
 
@@ -228,3 +233,20 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_node("Camera2D"):
 		player_camera = body.get_node("Camera2D")
 		zoom_alvo = zoom_normal
+
+
+
+@onready var door: TileMapLayer = $door
+
+func _on_damage_area_body_entered(_body: Node2D) -> void:
+	music_player.playing = false
+	boss_batle.playing = true
+	door.enabled = true
+	Global.player_damage = 10
+
+
+func _on_damage_area_body_exited(_body: Node2D) -> void:
+	music_player.playing = true
+	boss_batle.playing = false
+	door.enabled = false
+	Global.player_damage = 1
