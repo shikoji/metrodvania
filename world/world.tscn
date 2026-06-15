@@ -192,7 +192,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, -0.7372467)
+offset = Vector2(0, 0.27555728)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -201,7 +201,7 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-134, -92)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, -0.7372467)
+offset = Vector2(0, 0.27555728)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -209,14 +209,14 @@ ability = 1
 [node name="Bombs" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, -0.7372467)
+offset = Vector2(0, 0.27555728)
 particle_colors = Color(0, 0.2509804, 0.34509805, 1)
 ability = 2
 
 [node name="Compass" parent="abilits" unique_id=1675917156 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, -0.7372467)
+offset = Vector2(0, 0.27555728)
 next_compass_target = NodePath("../GroundBomb")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
@@ -224,7 +224,7 @@ ability = 5
 [node name="GroundBomb" parent="abilits" unique_id=1219678768 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, -0.7372467)
+offset = Vector2(0, 0.27555728)
 next_compass_target = NodePath("../../CompassTarget_Portal")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 3
@@ -413,7 +413,16 @@ position = Vector2(-532, -1084)
 [node name="potions" type="Node2D" parent="." unique_id=585856592]
 
 [node name="Potion" parent="potions" unique_id=1326953496 instance=ExtResource("23_k8wd0")]
-position = Vector2(398, -92)
+position = Vector2(307, -93)
+
+[node name="Potion2" parent="potions" unique_id=1559456788 instance=ExtResource("23_k8wd0")]
+position = Vector2(2484, -963)
+
+[node name="Potion3" parent="potions" unique_id=304745561 instance=ExtResource("23_k8wd0")]
+position = Vector2(3177, -1655)
+
+[node name="Potion4" parent="potions" unique_id=432982368 instance=ExtResource("23_k8wd0")]
+position = Vector2(201, -3924)
 
 [node name="checkpoints" type="Node2D" parent="." unique_id=1125107528]
 
@@ -469,5 +478,8 @@ bus = &"Music"
 playback_type = 1
 
 [connection signal="body_entered" from="potions/Potion" to="potions/Potion" method="_on_body_entered"]
+[connection signal="body_entered" from="potions/Potion2" to="potions/Potion2" method="_on_body_entered"]
+[connection signal="body_entered" from="potions/Potion3" to="potions/Potion3" method="_on_body_entered"]
+[connection signal="body_entered" from="potions/Potion4" to="potions/Potion4" method="_on_body_entered"]
 [connection signal="body_entered" from="area_zoom/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="area_zoom/Area2D" to="." method="_on_area_2d_body_exited"]
