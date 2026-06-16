@@ -86,6 +86,7 @@ func update_selector_positions(button: Button) -> void:
 
 	# Como o botão selecionado dá zoom,
 	# calculamos a largura visual final dele
+	$select.play()
 	var expanded_width := button.size.x * selected_button_scale.x
 	var expanded_left_x := button.global_position.x - ((expanded_width - button.size.x) / 2.0)
 
@@ -211,17 +212,25 @@ func focus_first_button() -> void:
 	select_button(play, false)
 
 func _on_settings_pressed() -> void:
+	$select2.play()
+	await $select2.finished
 	open_options.emit()
 
 
 func _on_credits_pressed() -> void:
-	get_tree().change_scene_to_file("res://credits/credits_scene/credits.tscn")
-
+	$select2.play()
+	await $select2.finished
+	SceneManager.play_transition_in(preload("res://credits/credits_scene/credits.tscn"))
+	SceneManager.play_transition_out()
 
 func _on_quit_pressed() -> void:
+	$select2.play()
+	await $select2.finished
 	get_tree().quit()
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://instructions/instructions.tscn")
+	$select2.play()
+	await $select2.finished
+	SceneManager.play_transition_in(preload("res://instructions/instructions.tscn"))
 #	get_tree().change_scene_to_file("res://phases/phases_scenes/test.tscn")

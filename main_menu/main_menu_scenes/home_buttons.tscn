@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://b74hn360xwf07" path="res://main_menu/main_menu_scripts/home_buttons.gd" id="1_wubda"]
 [ext_resource type="Texture2D" uid="uid://bh6ggp4558efs" path="res://globals/assets/PNG/Double/Divider Fade/divider-fade-003.png" id="2_wubda"]
 [ext_resource type="Texture2D" uid="uid://c6iajmk1cd88y" path="res://main_menu/main_menu_assets/controller.png" id="4_j5x7d"]
+[ext_resource type="AudioStream" uid="uid://3qxbxxm2tscd" path="res://main_menu/main_menu_scripts/select1.mp3" id="5_1xjg0"]
+[ext_resource type="AudioStream" uid="uid://calnh6wcpeisn" path="res://main_menu/main_menu_scripts/select2.mp3" id="5_b8awx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5x7d"]
 
@@ -226,6 +228,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_g8f6d")
 text = "Controller support!"
+
+[node name="select2" type="AudioStreamPlayer" parent="." unique_id=206442782]
+stream = ExtResource("5_b8awx")
+
+[node name="select" type="AudioStreamPlayer" parent="." unique_id=2107595980]
+stream = ExtResource("5_1xjg0")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
