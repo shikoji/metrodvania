@@ -18,73 +18,126 @@ var zoom_alvo = Vector2(7.0, 7.0)
 var suavidade = 3.0  # valores maiores = transição mais rápida
 var player_camera : Camera2D = null
 
+# --- SHADER VARIABLES ---
+@export var tilemap_material : ShaderMaterial
+var current_corruption : float = 0.0
 
 @onready var player_start_position = $PlayerStartPosition
 @onready var player = $player
 const SCENE: PackedScene = preload("res://world/world.tscn")
 
-
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var tileset: TileSet = tilemap.tile_set
 
 var path_a = [
+
 	Vector2i(2, -1),
+
 	Vector2i(2, 0),
+
 	Vector2i(3, 0),
+
 	Vector2i(3, -1),
+
 	Vector2i(3, -2),
+
 	Vector2i(2, -2),
+
 	Vector2i(2, -3),
+
 	Vector2i(3, -3),
+
 	Vector2i(3, -4)
+
 ]
+
 
 var path_a_rooms = [11, 5, 4, [8, 9], [7, 11], 5, [7, 10], 4, 10]
 
+
 var path_b = [
+
 	Vector2i(2, -1),
+
 	Vector2i(3, -1),
+
 	Vector2i(4, -1),
+
 	Vector2i(4, -2),
+
 	Vector2i(4, -3),
+
 	Vector2i(3, -3),
+
 	Vector2i(3, -2),
+
 	Vector2i(2, -2),
+
 	Vector2i(2, -3),
+
 	Vector2i(2, -4),
+
 	Vector2i(3, -4)
+
 ]
+
 
 var path_b_rooms = [[1, 2], [1, 2], 4, [8, 9], 11, 10, 4, 5, [8, 9], [7, 10], [1, 2]]
 
+
 var path_c = [
+
 	Vector2i(2, -1),
+
 	Vector2i(3, -1),
+
 	Vector2i(3, -2),
+
 	Vector2i(4, -2),
+
 	Vector2i(4, -3),
+
 	Vector2i(3, -3),
+
 	Vector2i(2, -3),
+
 	Vector2i(2, -4),
+
 	Vector2i(2, -5),
+
 	Vector2i(3, -5),
+
 	Vector2i(3, -4)
+
 ]
+
 
 var path_c_rooms = [[1, 2], 4, [7, 10], 4, [7, 11], [1, 2], 5, [8, 9], 10, 11, 5]
 
+
 var starting_room = [
+
 	Vector2i(0, -1),
+
 	Vector2i(1, -1),
+
 	Vector2i(0, -2),
+
 	Vector2i(1, -2),
+
 	Vector2i(0, -3),
+
 	Vector2i(1, -3),
+
 ]
 
+
 var bomb_room = [
+
 	Vector2i(4, -4),
+
 	Vector2i(5, -4)
+
 ]
 
 var ground_bomb_room = [
@@ -120,7 +173,6 @@ func generate_tilemap():
 	print("generation done")
 
 func setup_player_globals():
-	
 	Global.player_start_position = player_start_position
 	Global.player = player
 	
@@ -145,8 +197,11 @@ func _ready() -> void:
 	potion_8.monitorable = false
 	potion_8.monitoring = false
 	door.enabled = false
+	$MusicPlayer.play() 
 	setup_player_globals()
 	generate_tilemap()
+	tilemap_material = tilemap.material as ShaderMaterial
+	update_map_corruption(0.0)
 	golem_spawn_timer.wait_time = golem_spawn_time
 	golem_spawn_timer.timeout.connect(_on_golem_spawn_timer_timeout)
 	golem_spawn_timer.start()
@@ -226,7 +281,6 @@ func place_pattern(room_position: Vector2i, pattern: TileMapPattern = null) -> v
 
 const ALICE = preload("res://enemies/enemies_scenes/alice.tscn")
 
-
 func draw_path(room_positions, room_indexs) -> void:
 	for i in range(room_positions.size()):
 		var room_id = room_indexs[i]
@@ -242,6 +296,11 @@ func draw_path(room_positions, room_indexs) -> void:
 var potion_6_spawned: bool = false
 var potion_7_spawned: bool = false
 var potion_8_spawned: bool = false
+func update_map_corruption(factor: float) -> void:
+	if tilemap_material:
+		var safe_factor = clampf(factor, 0.0, 1.0)
+		tilemap_material.set_shader_parameter("darkness", safe_factor * 0.85)
+		tilemap_material.set_shader_parameter("glitch_intensity", safe_factor)
 
 func _process(delta: float) -> void:
 	if Global.boss_death:
@@ -261,6 +320,9 @@ func _process(delta: float) -> void:
 
 	if player_camera:
 		player_camera.zoom = player_camera.zoom.lerp(zoom_alvo, delta * suavidade)
+		
+	current_corruption = move_toward(current_corruption, 1.0, delta * 0.01)
+	update_map_corruption(current_corruption)
 
 func show_potion(potion: Area2D) -> void:
 	potion.visible = true
@@ -274,12 +336,10 @@ func game_over():
 	
 	SceneManager.play_transition_in(SCENE)
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_node("Camera2D"):
 		player_camera = body.get_node("Camera2D")
 		zoom_alvo = zoom_perto
-
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_node("Camera2D"):

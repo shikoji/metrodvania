@@ -31,11 +31,21 @@
 [ext_resource type="PackedScene" uid="uid://ddh3s64k18clu" path="res://bombs/explosions/sparks.tscn" id="27_j7vgi"]
 [ext_resource type="PackedScene" uid="uid://dhjobpj7jdwxf" path="res://checkpoint/checkpoint_scenes/checkpoint.tscn" id="32_cqwbg"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inp7a"]
+shader = ExtResource("2_ysn08")
+shader_parameter/color_count = 0
+shader_parameter/darkness = 0.0
+shader_parameter/glitch_intensity = 0.0
+shader_parameter/glitch_speed = 20.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("2_ysn08")
 shader_parameter/palette = ExtResource("3_j34ew")
 shader_parameter/swap = ExtResource("4_p2iis")
 shader_parameter/color_count = 11
+shader_parameter/darkness = 0.0
+shader_parameter/glitch_intensity = 0.0
+shader_parameter/glitch_speed = 20.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1net"]
 texture = ExtResource("6_aysyn")
@@ -154,6 +164,7 @@ data = PackedByteArray("SUQzAwAAAAAAMFRZRVIAAAAFAAAAMjAyNlRFTkMAAAAXAAAATEFNRSBp
 [node name="World" type="Node2D" unique_id=1938931949]
 script = ExtResource("1_tcf2h")
 max_golems_alive = 10
+tilemap_material = SubResource("ShaderMaterial_inp7a")
 metadata/_edit_vertical_guides_ = [5637.0]
 metadata/_edit_horizontal_guides_ = [540.0]
 
@@ -208,7 +219,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, -0.71506405)
+offset = Vector2(0, 0.22391284)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -217,7 +228,7 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-134, -92)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, -0.71506405)
+offset = Vector2(0, 0.22391284)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -225,14 +236,11 @@ ability = 1
 [node name="Bombs" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -840)
 texture = ExtResource("8_mad0u")
-offset = Vector2(0, -0.71506405)
-particle_colors = Color(0, 0.2509804, 0.34509805, 1)
-ability = 2
-
-[node name="Compass" parent="abilits" unique_id=1675917156 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
+offset = Vector2(0, 0.22391284)
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, -0.71506405)
+
+offset = Vector2(0, 0.22391284)
 next_compass_target = NodePath("../GroundBomb")
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
@@ -240,11 +248,9 @@ ability = 5
 [node name="GroundBomb" parent="abilits" unique_id=1219678768 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, -0.71506405)
-next_compass_target = NodePath("../../CompassTarget_Portal")
-particle_colors = Color(1, 0, 0.105882354, 1)
-ability = 3
 
+offset = Vector2(0, 0.22391284)
+ability = 3
 [node name="enemies" type="Node2D" parent="." unique_id=1030024164]
 
 [node name="alice" parent="enemies" unique_id=880267049 instance=ExtResource("7_sc4t8")]
@@ -331,7 +337,7 @@ position = Vector2(5377, -2719)
 target = NodePath("../Teleporter2")
 
 [node name="Teleporter2" parent="teleports" unique_id=150796505 node_paths=PackedStringArray("target") instance=ExtResource("20_aysyn")]
-position = Vector2(97, -3967)
+position = Vector2(99, -3969)
 target = NodePath("../Teleporter")
 
 [node name="spikes" type="Node2D" parent="." unique_id=1760538358]
@@ -542,7 +548,6 @@ visible = false
 process_mode = 3
 stream = SubResource("AudioStreamPlaylist_h8lre")
 volume_db = 5.0
-autoplay = true
 bus = &"Music"
 playback_type = 1
 

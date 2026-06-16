@@ -82,6 +82,7 @@ const CREDIT_SECTIONS: Array[Dictionary] = [
 
 
 func _ready() -> void:
+	SceneManager.play_transition_out()
 	set_process(false)
 	
 	credits_area.clip_contents = true
