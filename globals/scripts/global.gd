@@ -4,6 +4,7 @@ extends Node
 var player_damage = 1
 var boss_life = 400
 var boss_death = false
+var fx_boss_finished = false
 
 var coins = 0
 var score = 0

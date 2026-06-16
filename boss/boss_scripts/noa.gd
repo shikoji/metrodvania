@@ -84,8 +84,6 @@ func _ready() -> void:
 	update_facing()
 	_play_walk()
 
-func _process(delta: float) -> void:
-	max_hp = Global.boss_life
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(texture_progress_bar):
@@ -262,7 +260,11 @@ func free_and_explode():
 	var instance = DEATH_FX.instantiate()
 	instance.position = position + (Vector2.UP * 16.0)
 	add_sibling(instance)
+	await get_tree().create_timer(0.7).timeout
+	Global.fx_boss_finished = true
 	queue_free()
+	
+	
 
 func _apply_damage_to_player(player: Node) -> void:
 	if player and player.has_method("take_damage"):

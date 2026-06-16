@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dvv1j84rq1o73" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/FX/RollDust/RollDust01.png" id="6_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://d1cckj3p1spci" path="res://enemies/enemies_scenes/alice.tscn" id="7_sc4t8"]
 [ext_resource type="Texture2D" uid="uid://jrgxgqkya3db" path="res://ability_unlocker/compass.png" id="8_b2suy"]
-[ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="8_mad0u"]
 [ext_resource type="PackedScene" uid="uid://dw2g72c6e2oty" path="res://ui/ui_scenes/ui.tscn" id="9_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dd5r5wif00a0l" path="res://bombs/ground_bomb/green_bomb.png" id="9_h8lre"]
 [ext_resource type="PackedScene" uid="uid://dphu5nb62rm2s" path="res://main_menu/main_menu_scenes/paused_menu.tscn" id="10_ov2xu"]
@@ -164,6 +163,7 @@ data = PackedByteArray("SUQzAwAAAAAAMFRZRVIAAAAFAAAAMjAyNlRFTkMAAAAXAAAATEFNRSBp
 [node name="World" type="Node2D" unique_id=1938931949]
 script = ExtResource("1_tcf2h")
 max_golems_alive = 10
+golem_spawn_time = 3.0
 tilemap_material = SubResource("ShaderMaterial_inp7a")
 metadata/_edit_vertical_guides_ = [5637.0]
 metadata/_edit_horizontal_guides_ = [540.0]
@@ -219,7 +219,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 0.22391284)
+offset = Vector2(0, -0.5119307)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -228,29 +228,24 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-134, -92)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 0.22391284)
+offset = Vector2(0, -0.5119307)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
 
 [node name="Bombs" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
-position = Vector2(2425, -840)
-texture = ExtResource("8_mad0u")
-offset = Vector2(0, 0.22391284)
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-
-offset = Vector2(0, 0.22391284)
-next_compass_target = NodePath("../GroundBomb")
+offset = Vector2(0, -0.5119307)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
-[node name="GroundBomb" parent="abilits" unique_id=1219678768 node_paths=PackedStringArray("next_compass_target") instance=ExtResource("5_fn3g3")]
+[node name="GroundBomb" parent="abilits" unique_id=1219678768 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-
-offset = Vector2(0, 0.22391284)
+offset = Vector2(0, -0.5119307)
 ability = 3
+
 [node name="enemies" type="Node2D" parent="." unique_id=1030024164]
 
 [node name="alice" parent="enemies" unique_id=880267049 instance=ExtResource("7_sc4t8")]
@@ -263,7 +258,7 @@ position = Vector2(664, -576)
 position = Vector2(1193, -3887)
 
 [node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1139488191]
-position = Vector2(105, -3911)
+position = Vector2(65, -63)
 
 [node name="CompassTarget_Portal" type="Marker2D" parent="." unique_id=2095957082]
 position = Vector2(5376, -2704)
@@ -328,7 +323,7 @@ dialog_lines = Array[String](["What are you doing here?", "Get out and play the 
 
 [node name="warning_sing2" parent="dialog" unique_id=2017944471 instance=ExtResource("11_ov2xu")]
 position = Vector2(225, -3871)
-dialog_lines = Array[String](["You won", "This is the end of the game"])
+dialog_lines = Array[String](["WARNING", "An ancient stone guardian awaits ahead.", "Make sure you are prepared."])
 
 [node name="teleports" type="Node2D" parent="." unique_id=1435603289]
 

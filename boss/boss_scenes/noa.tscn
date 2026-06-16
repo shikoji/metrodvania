@@ -3,19 +3,10 @@
 [ext_resource type="Script" uid="uid://oeiyajun5sjt" path="res://boss/boss_scripts/noa.gd" id="1_pukwc"]
 [ext_resource type="Texture2D" uid="uid://m8hcjj788asj" path="res://boss/boss_assents/gollux_attack_A.png" id="2_pukwc"]
 [ext_resource type="Texture2D" uid="uid://77cwbfvmhopm" path="res://boss/boss_assents/gollux_attack_B.png" id="3_xaneh"]
-[ext_resource type="Texture2D" uid="uid://x2bsjx2ootoc" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die01.png" id="8_cctw8"]
-[ext_resource type="Texture2D" uid="uid://drw3ysdj2afg5" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die02.png" id="9_mh5tv"]
-[ext_resource type="Texture2D" uid="uid://dbe022yy3vdqs" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die03.png" id="10_a4tg4"]
-[ext_resource type="Texture2D" uid="uid://btd2ybxa3bnpx" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die04.png" id="11_cby25"]
-[ext_resource type="Texture2D" uid="uid://rl0u5ihr34ay" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die05.png" id="12_275rp"]
-[ext_resource type="Texture2D" uid="uid://kfrpf8b0t1b6" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die06.png" id="13_kcxmy"]
 [ext_resource type="Texture2D" uid="uid://c5hxkihpdop4n" path="res://boss/boss_assents/gollux_healing.png" id="13_xaneh"]
 [ext_resource type="Texture2D" uid="uid://bhgh37c8avs47" path="res://boss/boss_assents/gollux_hit.png" id="13_y62o1"]
 [ext_resource type="Texture2D" uid="uid://bbq0pgstuwi4k" path="res://boss/boss_assents/gollux_idle.png" id="14_ib8ue"]
-[ext_resource type="Texture2D" uid="uid://c0ut5bh8i7ptx" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die07.png" id="14_weel1"]
-[ext_resource type="Texture2D" uid="uid://cipkdjya8a66u" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die08.png" id="15_5jf4f"]
 [ext_resource type="Texture2D" uid="uid://yhi1rrdum8fi" path="res://boss/boss_assents/gollux_move.png" id="15_07ww5"]
-[ext_resource type="Texture2D" uid="uid://t141uig5xovt" path="res://enemies/enemies_assents/Pixel Prototype Player/Sprites/Die/Die09.png" id="16_ft415"]
 [ext_resource type="Texture2D" uid="uid://dpynfdntl6ak8" path="res://ui/ui_assents/Red/RegularBarABackground.png" id="35_qnpa4"]
 [ext_resource type="Texture2D" uid="uid://b4ijx35fasnva" path="res://ui/ui_assents/Red/RegularBarAForeground.png" id="36_6ew2p"]
 [ext_resource type="Texture2D" uid="uid://bkt33gmjjsdml" path="res://ui/ui_assents/Red/RegularBarAFill.png" id="37_0jsm0"]
@@ -166,6 +157,10 @@ region = Rect2(6528, 0, 384, 128)
 atlas = ExtResource("3_xaneh")
 region = Rect2(6912, 0, 384, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cufan"]
+atlas = ExtResource("14_ib8ue")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_y62o1"]
 atlas = ExtResource("13_xaneh")
 region = Rect2(0, 0, 384, 128)
@@ -281,10 +276,6 @@ region = Rect2(768, 0, 384, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvsl2"]
 atlas = ExtResource("13_y62o1")
 region = Rect2(1152, 0, 384, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cufan"]
-atlas = ExtResource("14_ib8ue")
-region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vtb0"]
 atlas = ExtResource("14_ib8ue")
@@ -456,31 +447,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_cctw8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_mh5tv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_a4tg4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_cby25")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_275rp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_kcxmy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_weel1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_5jf4f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_ft415")
+"texture": SubResource("AtlasTexture_cufan")
 }],
 "loop": false,
 "name": &"death",
@@ -662,10 +629,8 @@ metadata/_edit_horizontal_guides_ = [-45.0]
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1879266000]
 position = Vector2(1, -64)
 sprite_frames = SubResource("SpriteFrames_epted")
-animation = &"attack-b"
+animation = &"death"
 autoplay = "walk"
-frame = 18
-frame_progress = 1.0
 
 [node name="colision" type="CollisionShape2D" parent="." unique_id=1283065198]
 position = Vector2(4.5, -30)
@@ -708,13 +673,13 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -69.0
-offset_right = 12.0
-offset_bottom = -61.0
+offset_left = -27.0
+offset_top = -72.0
+offset_right = -11.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.6)
+scale = Vector2(4, 1)
 max_value = 200.0
 step = 0.0
 texture_under = ExtResource("35_qnpa4")

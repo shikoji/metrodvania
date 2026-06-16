@@ -302,7 +302,14 @@ func update_map_corruption(factor: float) -> void:
 		tilemap_material.set_shader_parameter("darkness", safe_factor * 0.85)
 		tilemap_material.set_shader_parameter("glitch_intensity", safe_factor)
 
+var credits_started: bool = false
+
+
 func _process(delta: float) -> void:
+	if Global.fx_boss_finished and not credits_started:
+		credits_started = true
+		SceneManager.play_transition_in(preload("res://credits/credits_scene/credits.tscn"))
+	
 	if Global.boss_death:
 		stop_golem_spawn()
 	
@@ -360,7 +367,7 @@ func _on_damage_area_body_entered(_body: Node2D) -> void:
 func _on_damage_area_body_exited(_body: Node2D) -> void:
 	boss_batle.playing = false
 	door.enabled = false
-	Global.player_damage = 1
+	Global.player_damage = 20
 
 
 func _on_golem_spawn_timer_timeout() -> void:
