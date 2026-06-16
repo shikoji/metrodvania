@@ -11,16 +11,23 @@ extends CharacterBody2D
 @export var anim_walk: StringName = &"walk"
 @export var anim_attack_a: StringName = &"attack-a"
 @export var anim_attack_b: StringName = &"attack-b"
+@export var anim_attack_c: StringName = &"attack-c"
 @export var anim_hurt: StringName = &"hurt"
 @export var anim_death: StringName = &"death" # você já ajustou o nome
 
-var _next_attack_is_a: bool = true
+@export var fx_attack_a: StringName = &"attack_a_fx"
+@export var fx_attack_b: StringName = &"attack_b_fx"
+@export var fx_attack_c: StringName = &"attack_c_fx"
+
+var _attack_combo_index: int = 0
 var _current_attack_anim: StringName = &"attack-a"
 
 @onready var anim: AnimatedSprite2D = $anim
+@onready var attack_fx: AnimatedSprite2D = $efects
+
 @onready var wall_ray: RayCast2D = $RayCast2D
 @onready var wall_ray2: RayCast2D = $RayCast2D3
-@onready var floor_ray: RayCast2D = $RayCast2D2
+
 
 @onready var hurtbox: Area2D = $HurtBoxArea2d
 @onready var attack_area: Area2D = $AttackArea2d
@@ -43,29 +50,22 @@ var _last_player_swing_id: int = -999999
 # Flip base direita
 var _wall_ray_base_pos: Vector2
 var _wall_ray2_base_pos: Vector2
-var _floor_ray_base_pos: Vector2
 var _wall_ray_base_target: Vector2
 var _wall_ray2_base_target: Vector2
-var _floor_ray_base_target: Vector2
 var _hurt_shape_base_pos: Vector2
 var _attack_shape_base_pos: Vector2
 
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 
-var _last_attacker: Node2D = null
-
 func _ready() -> void:
-	hp = Global.boss_life
-	max_hp = Global.boss_life
-	texture_progress_bar.max_value = max_hp
-	texture_progress_bar.value = hp
+	attack_fx.visible = false
+	texture_progress_bar.value = max_hp
+	hp = max_hp
 
 	_wall_ray_base_pos = wall_ray.position
 	_wall_ray2_base_pos = wall_ray2.position
-	_floor_ray_base_pos = floor_ray.position
 	_wall_ray_base_target = wall_ray.target_position
 	_wall_ray2_base_target = wall_ray2.target_position
-	_floor_ray_base_target = floor_ray.target_position
 	_hurt_shape_base_pos = hurt_shape.position
 	_attack_shape_base_pos = attack_shape.position
 
@@ -74,7 +74,10 @@ func _ready() -> void:
 		attack_area.area_entered.connect(_on_attack_area_area_entered)
 	if not attack_area.area_exited.is_connected(_on_attack_area_area_exited):
 		attack_area.area_exited.connect(_on_attack_area_area_exited)
-
+		
+	if not attack_fx.animation_finished.is_connected(_on_attack_fx_finished):
+		attack_fx.animation_finished.connect(_on_attack_fx_finished)
+		
 	if not hurtbox.area_entered.is_connected(_on_hurtbox_area_entered):
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
@@ -84,8 +87,9 @@ func _ready() -> void:
 	update_facing()
 	_play_walk()
 
-func _process(delta: float) -> void:
-	max_hp = Global.boss_life
+func _on_attack_fx_finished() -> void:
+	attack_fx.visible = false
+	attack_fx.stop()
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(texture_progress_bar):
@@ -121,8 +125,7 @@ func _physics_process(delta: float) -> void:
 	if can_move and is_on_floor() and _turn_cd <= 0.0:
 		wall_ray.force_raycast_update()
 		wall_ray2.force_raycast_update()
-		floor_ray.force_raycast_update()
-		if wall_ray.is_colliding() or wall_ray2.is_colliding() or not floor_ray.is_colliding():
+		if wall_ray.is_colliding() or wall_ray2.is_colliding():
 			flip_direction()
 			_turn_cd = turn_cooldown
 
@@ -165,10 +168,6 @@ func update_facing() -> void:
 	wall_ray2.position = Vector2(_wall_ray2_base_pos.x * xsign, _wall_ray2_base_pos.y)
 	wall_ray.target_position = Vector2(_wall_ray_base_target.x * xsign, _wall_ray_base_target.y)
 	wall_ray2.target_position = Vector2(_wall_ray2_base_target.x * xsign, _wall_ray2_base_target.y)
-
-	floor_ray.position = Vector2(_floor_ray_base_pos.x * xsign, _floor_ray_base_pos.y)
-	floor_ray.target_position = Vector2(_floor_ray_base_target.x * xsign, _floor_ray_base_target.y)
-
 # -------------------------
 # Combate
 # -------------------------
@@ -183,45 +182,60 @@ func attack_player() -> void:
 	_attack_cd = attack_interval
 	velocity.x = 0.0
 
-	# escolhe o ataque alternado
-	if _next_attack_is_a:
+	var current_fx: StringName = &"attack_a_fx"
+
+	if _attack_combo_index == 0:
 		_current_attack_anim = anim_attack_a
-	else:
+		current_fx = fx_attack_a
+	elif _attack_combo_index == 1:
 		_current_attack_anim = anim_attack_b
+		current_fx = fx_attack_b
+	else:
+		_current_attack_anim = anim_attack_c
+		current_fx = fx_attack_c
 
-	_next_attack_is_a = not _next_attack_is_a
+	_attack_combo_index += 1
+	if _attack_combo_index > 2:
+		_attack_combo_index = 0
 
-	# toca animação escolhida
 	if anim.sprite_frames and anim.sprite_frames.has_animation(_current_attack_anim):
 		anim.play(_current_attack_anim)
 
 	await get_tree().create_timer(0.25).timeout
 
-	if _dead:
-		return
-	
-	if not _attacking:
-		return
-	
-	if _player_in_range == null:
+	if _dead or not _attacking or _player_in_range == null:
 		return
 
+	_play_attack_fx(current_fx)
 	_apply_damage_to_player(_player_in_range)
+
+func _spawn_attack_fx(fx_scene: PackedScene) -> void:
+	if fx_scene == null:
+		return
+
+	var fx: Node2D = fx_scene.instantiate()
+	fx.global_position = attack_area.global_position
+	fx.scale.x = abs(fx.scale.x) * facing
+	get_tree().current_scene.add_child(fx)
+
+func _play_attack_fx(fx_anim: StringName) -> void:
+	if attack_fx.sprite_frames == null:
+		return
+
+	if not attack_fx.sprite_frames.has_animation(fx_anim):
+		return
+
+	attack_fx.flip_h = anim.flip_h
+	attack_fx.visible = true
+	attack_fx.play(fx_anim)
 
 func take_damage(amount: int) -> void:
 	if _dead:
 		return
 
 	hp -= amount
-	Global.boss_life = hp
-	
-	if _player_in_range == null and is_instance_valid(_last_attacker):
-		var dir: int = signf(_last_attacker.global_position.x - global_position.x)
-		if dir != 0 and dir != facing:
-			facing = int(dir)
-			update_facing()
 
-	
+	# cancela ataque ao tomar dano (evita travas)
 	_attacking = false
 	_attack_cd = 0.0
 
@@ -234,7 +248,6 @@ func take_damage(amount: int) -> void:
 	if hp <= 0:
 		death()
 
-const DEATH_FX = preload("res://fx/death_fx/death_fx.tscn")
 
 func death() -> void:
 	if _dead:
@@ -254,15 +267,6 @@ func death() -> void:
 
 	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_death):
 		anim.play(anim_death)
-		Global.boss_death = true
-	else:
-		free_and_explode()
-
-func free_and_explode():
-	var instance = DEATH_FX.instantiate()
-	instance.position = position + (Vector2.UP * 16.0)
-	add_sibling(instance)
-	queue_free()
 
 func _apply_damage_to_player(player: Node) -> void:
 	if player and player.has_method("take_damage"):
@@ -302,19 +306,15 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if swing_id == _last_player_swing_id:
 		return
 	_last_player_swing_id = swing_id
-	
-	_last_attacker = area.get_parent() as Node2D
-	
+
 	var dmg := int(area.get_meta("damage", 1))
 	take_damage(dmg)
 
 func _on_anim_finished() -> void:
 	if _dead:
-		if anim.animation == String(anim_death):
-			free_and_explode()
 		return
 
-	if anim.animation == String(anim_attack_a) or anim.animation == String(anim_attack_b):
+	if anim.animation == String(anim_attack_a) or anim.animation == String(anim_attack_b) or anim.animation == String(anim_attack_c):
 		_attacking = false
 		_play_walk()
 		return

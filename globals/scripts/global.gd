@@ -1,5 +1,9 @@
 extends Node
+ 
 
+var player_damage = 1
+var boss_life = 400
+var boss_death = false
 
 var coins = 0
 var score = 0
@@ -11,7 +15,7 @@ var player_start_position = null
 
 #potions
 var potion_amount: int
-var potion_increase:int = 40
+var potion_increase:int = 80
 
 var current_checkpoint_position: Vector2
 var has_checkpoint := false

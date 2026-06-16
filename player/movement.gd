@@ -119,6 +119,8 @@ func update_attack_facing() -> void:
 	
 
 func _ready() -> void:
+	attack_damage = Global.player_damage
+	
 	_attack_shape_base_pos = player_attack_shape.position
 
 	life = max_life
@@ -160,6 +162,8 @@ func RigidBodyCollision() -> void:
 				velocity.x = lerp(velocity.x, 0.0, 0.25)
 			
 func _physics_process(delta: float) -> void:
+	attack_damage = Global.player_damage
+	
 	if is_dead:
 		return
 	update_timers(delta)
