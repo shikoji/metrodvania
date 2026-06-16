@@ -63,3 +63,7 @@ bus = &"Sounds"
 stream = ExtResource("8_q1yjb")
 volume_db = 5.0
 bus = &"Sounds"
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="." unique_id=558817634]
+offset_right = 40.0
+offset_bottom = 40.0

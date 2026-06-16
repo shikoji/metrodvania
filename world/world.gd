@@ -12,8 +12,11 @@ var boss_is_alive: bool = true
 var alive_golems: Array[Node] = []
 
 #camera zoom
+var zoom_perto_boss = Vector2(1.0, 1.0)
+var zoom_alvo_boss = Vector2(1.0, 1.0)
+
 var zoom_perto = Vector2(7.0, 7.0)
-var zoom_normal = Vector2(3.0, 3.0)
+var zoom_normal = Vector2(2.5, 2.5)
 var zoom_alvo = Vector2(7.0, 7.0)
 var suavidade = 3.0  # valores maiores = transição mais rápida
 var player_camera : Camera2D = null
@@ -419,3 +422,15 @@ func _on_lost_bombs_body_entered(_body: Node2D) -> void:
 func _on_lost_bombs_body_exited(_body: Node2D) -> void:
 	Abilities.bomb = true
 	Abilities.ground_bomb = true
+
+
+func _on_zoom_boss_body_entered(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = Vector2(1.7, 1.7) # mostra mais área
+
+
+func _on_zoom_boss_body_exited(body: Node2D) -> void:
+	if body.has_node("Camera2D"):
+		player_camera = body.get_node("Camera2D")
+		zoom_alvo = zoom_normal
