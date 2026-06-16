@@ -89,6 +89,7 @@ func _process(delta: float) -> void:
 		else:
 			show_message(current_message_index + 1)
 		
+"""
 func _on_message_cycle_complete() -> void:
 	if is_loading:
 		return
@@ -105,3 +106,16 @@ func _on_message_cycle_complete() -> void:
 		fade_tween.finished.connect(func(): audioplayer.stop())
 		
 	ResourceLoader.load_threaded_request(target_scene_path)
+"""
+
+func _on_message_cycle_complete() -> void:
+	hide()
+
+	if progress_bar:
+		progress_bar.show()
+		progress_bar.value = 100
+
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	get_tree().change_scene_to_file(target_scene_path)

@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dw2g72c6e2oty" path="res://ui/ui_scenes/ui.tscn" id="9_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dd5r5wif00a0l" path="res://bombs/ground_bomb/green_bomb.png" id="9_h8lre"]
 [ext_resource type="PackedScene" uid="uid://dphu5nb62rm2s" path="res://main_menu/main_menu_scenes/paused_menu.tscn" id="10_ov2xu"]
+[ext_resource type="Texture2D" uid="uid://dw06ikogcon5h" path="res://bombs/bomb/blue_bomb.png" id="11_inp7a"]
 [ext_resource type="PackedScene" uid="uid://cwwt3n7cyqcpr" path="res://dialog/dialog_scene/warning_sing.tscn" id="11_ov2xu"]
 [ext_resource type="PackedScene" uid="uid://bd30iexuyjb4x" path="res://boss/boss_scenes/noa.tscn" id="14_inp7a"]
 [ext_resource type="AudioStream" uid="uid://bb54y2mmg658o" path="res://music/new/Stage 1.mp3" id="19_2tavo"]
@@ -222,7 +223,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 1.289628)
+offset = Vector2(0, 0.42866933)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -231,22 +232,29 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-134, -92)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 1.289628)
+offset = Vector2(0, 0.42866933)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
 
-[node name="Bombs" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
+[node name="Compass" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, 1.289628)
+offset = Vector2(0, 0.42866933)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
-[node name="GroundBomb" parent="abilits" unique_id=1219678768 instance=ExtResource("5_fn3g3")]
+[node name="Bomb" parent="abilits" unique_id=1219678768 instance=ExtResource("5_fn3g3")]
+position = Vector2(2425, -855)
+texture = ExtResource("11_inp7a")
+offset = Vector2(0, -0.8223787)
+particle_colors = Color(1, 0, 0.105882354, 1)
+ability = 2
+
+[node name="GroundBomb" parent="abilits" unique_id=533721857 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, 1.289628)
+offset = Vector2(0, 0.42866933)
 ability = 3
 
 [node name="enemies" type="Node2D" parent="." unique_id=1030024164]
@@ -261,7 +269,7 @@ position = Vector2(664, -576)
 position = Vector2(1193, -3887)
 
 [node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1139488191]
-position = Vector2(689, -3975)
+position = Vector2(65, -63)
 
 [node name="CompassTarget_Portal" type="Marker2D" parent="." unique_id=2095957082]
 position = Vector2(5376, -2704)
@@ -506,6 +514,8 @@ shape = SubResource("RectangleShape2D_lwhbe")
 [node name="player" parent="." unique_id=1819110571 node_paths=PackedStringArray("compass_target") instance=ExtResource("3_4717r")]
 position = Vector2(74, -63)
 compass_target = NodePath("../teleports/Teleporter")
+roll_speed = 520.0
+roll_time = 0.35
 max_life = 100
 
 [node name="area_zoom" type="Node2D" parent="." unique_id=967564032]

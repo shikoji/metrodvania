@@ -302,7 +302,7 @@ var potion_8_spawned: bool = false
 func update_map_corruption(factor: float) -> void:
 	if tilemap_material:
 		var safe_factor = clampf(factor, 0.0, 1.0)
-		tilemap_material.set_shader_parameter("darkness", safe_factor * 0.85)
+		tilemap_material.set_shader_parameter("darkness", safe_factor * 0.40)
 		tilemap_material.set_shader_parameter("glitch_intensity", safe_factor)
 
 var credits_started: bool = false
