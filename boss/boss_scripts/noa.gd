@@ -55,8 +55,10 @@ var _attack_shape_base_pos: Vector2
 var _last_attacker: Node2D = null
 
 func _ready() -> void:
-	texture_progress_bar.value = max_hp
-	hp = max_hp
+	hp = Global.boss_life
+	max_hp = Global.boss_life
+	texture_progress_bar.max_value = max_hp
+	texture_progress_bar.value = hp
 
 	_wall_ray_base_pos = wall_ray.position
 	_wall_ray2_base_pos = wall_ray2.position
@@ -81,6 +83,9 @@ func _ready() -> void:
 
 	update_facing()
 	_play_walk()
+
+func _process(delta: float) -> void:
+	max_hp = Global.boss_life
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(texture_progress_bar):
@@ -208,6 +213,7 @@ func take_damage(amount: int) -> void:
 		return
 
 	hp -= amount
+	Global.boss_life = hp
 	
 	if _player_in_range == null and is_instance_valid(_last_attacker):
 		var dir: int = signf(_last_attacker.global_position.x - global_position.x)
@@ -248,6 +254,7 @@ func death() -> void:
 
 	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_death):
 		anim.play(anim_death)
+		Global.boss_death = true
 	else:
 		free_and_explode()
 

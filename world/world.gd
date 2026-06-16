@@ -1,5 +1,16 @@
 extends Node2D
 
+const GOLEM_SCENE: PackedScene = preload("res://golem/golem_scenes/golem.tscn")
+
+@onready var golem_spawn_points: Node2D = $GolemSpawnPoints
+@onready var golem_spawn_timer: Timer = $GolemSpawnTimer
+
+@export var max_golems_alive: int = 4
+@export var golem_spawn_time: float = 5.0
+
+var boss_is_alive: bool = true
+var alive_golems: Array[Node] = []
+
 #camera zoom
 var zoom_perto = Vector2(7.0, 7.0)
 var zoom_normal = Vector2(3.0, 3.0)
@@ -124,9 +135,21 @@ func setup_player_globals():
 	Global.tilemap = $TileMapLayer
 
 func _ready() -> void:
+	potion_6.visible = false
+	potion_6.monitorable = false
+	potion_6.monitoring = false
+	potion_7.visible = false
+	potion_7.monitorable = false
+	potion_7.monitoring = false
+	potion_8.visible = false
+	potion_8.monitorable = false
+	potion_8.monitoring = false
 	door.enabled = false
 	setup_player_globals()
 	generate_tilemap()
+	golem_spawn_timer.wait_time = golem_spawn_time
+	golem_spawn_timer.timeout.connect(_on_golem_spawn_timer_timeout)
+	golem_spawn_timer.start()
 
 func fill_first_ring(ignore_positions: Array) -> void:
 	for x in range(0, 5):
@@ -211,9 +234,38 @@ func draw_path(room_positions, room_indexs) -> void:
 			room_id = room_indexs[i].pick_random()
 		place_pattern(room_positions[i], tileset.get_pattern(room_id))
 
+@onready var potion_6: Area2D = $potions/Potion6
+@onready var potion_7: Area2D = $potions/Potion7
+@onready var potion_8: Area2D = $potions/Potion8
+
+
+var potion_6_spawned: bool = false
+var potion_7_spawned: bool = false
+var potion_8_spawned: bool = false
+
 func _process(delta: float) -> void:
+	if Global.boss_death:
+		stop_golem_spawn()
+	
+	if not potion_6_spawned and Global.boss_life <= 300:
+		potion_6_spawned = true
+		show_potion(potion_6)
+
+	if not potion_7_spawned and Global.boss_life <= 200:
+		potion_7_spawned = true
+		show_potion(potion_7)
+
+	if not potion_8_spawned and Global.boss_life <= 100:
+		potion_8_spawned = true
+		show_potion(potion_8)
+
 	if player_camera:
 		player_camera.zoom = player_camera.zoom.lerp(zoom_alvo, delta * suavidade)
+
+func show_potion(potion: Area2D) -> void:
+	potion.visible = true
+	potion.monitorable = true
+	potion.monitoring = true
 
 func game_over():
 	if player != null:
@@ -242,11 +294,61 @@ func _on_damage_area_body_entered(_body: Node2D) -> void:
 	music_player.playing = false
 	boss_batle.playing = true
 	door.enabled = true
-	Global.player_damage = 10
+	Global.player_damage = 20
 
 
 func _on_damage_area_body_exited(_body: Node2D) -> void:
-	music_player.playing = true
 	boss_batle.playing = false
 	door.enabled = false
 	Global.player_damage = 1
+
+
+func _on_golem_spawn_timer_timeout() -> void:
+	if not boss_is_alive:
+		return
+
+	_clear_dead_golems()
+
+	if alive_golems.size() >= max_golems_alive:
+		return
+
+	spawn_golem()
+
+
+func spawn_golem() -> void:
+	var points: Array[Node] = golem_spawn_points.get_children()
+
+	if points.is_empty():
+		return
+
+	var point: Marker2D = points.pick_random() as Marker2D
+
+	if point == null:
+		return
+
+	var golem: Node2D = GOLEM_SCENE.instantiate()
+	golem.global_position = point.global_position
+
+	add_child(golem)
+	alive_golems.append(golem)
+
+
+func _clear_dead_golems() -> void:
+	alive_golems = alive_golems.filter(func(golem: Node) -> bool:
+		return is_instance_valid(golem)
+	)
+
+
+func stop_golem_spawn() -> void:
+	boss_is_alive = false
+	golem_spawn_timer.stop()
+
+
+func _on_lost_bombs_body_entered(_body: Node2D) -> void:
+	Abilities.bomb = false
+	Abilities.ground_bomb = false
+
+
+func _on_lost_bombs_body_exited(_body: Node2D) -> void:
+	Abilities.bomb = true
+	Abilities.ground_bomb = true

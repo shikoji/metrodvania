@@ -9,12 +9,22 @@ extends CharacterBody2D
 @export var hurt_stun_time: float = 0.18
 
 @export var anim_walk: StringName = &"walk"
-@export var anim_attack: StringName = &"attack"
+@export var anim_attack_a: StringName = &"attack-a"
+@export var anim_attack_b: StringName = &"attack-b"
+@export var anim_attack_c: StringName = &"attack-c"
 @export var anim_hurt: StringName = &"hurt"
 @export var anim_death: StringName = &"death" # você já ajustou o nome
 
+@export var fx_attack_a: StringName = &"attack_a_fx"
+@export var fx_attack_b: StringName = &"attack_b_fx"
+@export var fx_attack_c: StringName = &"attack_c_fx"
+
+var _attack_combo_index: int = 0
+var _current_attack_anim: StringName = &"attack-a"
 
 @onready var anim: AnimatedSprite2D = $anim
+@onready var attack_fx: AnimatedSprite2D = $efects
+
 @onready var wall_ray: RayCast2D = $RayCast2D
 @onready var wall_ray2: RayCast2D = $RayCast2D3
 
@@ -48,6 +58,7 @@ var _attack_shape_base_pos: Vector2
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 
 func _ready() -> void:
+	attack_fx.visible = false
 	texture_progress_bar.value = max_hp
 	hp = max_hp
 
@@ -63,7 +74,10 @@ func _ready() -> void:
 		attack_area.area_entered.connect(_on_attack_area_area_entered)
 	if not attack_area.area_exited.is_connected(_on_attack_area_area_exited):
 		attack_area.area_exited.connect(_on_attack_area_area_exited)
-
+		
+	if not attack_fx.animation_finished.is_connected(_on_attack_fx_finished):
+		attack_fx.animation_finished.connect(_on_attack_fx_finished)
+		
 	if not hurtbox.area_entered.is_connected(_on_hurtbox_area_entered):
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
@@ -72,6 +86,10 @@ func _ready() -> void:
 
 	update_facing()
 	_play_walk()
+
+func _on_attack_fx_finished() -> void:
+	attack_fx.visible = false
+	attack_fx.stop()
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(texture_progress_bar):
@@ -164,25 +182,52 @@ func attack_player() -> void:
 	_attack_cd = attack_interval
 	velocity.x = 0.0
 
-	# toca animação
-	if anim.sprite_frames and anim.sprite_frames.has_animation(anim_attack):
-		anim.play(anim_attack)
+	var current_fx: StringName = &"attack_a_fx"
 
-	# espera o frame do golpe
+	if _attack_combo_index == 0:
+		_current_attack_anim = anim_attack_a
+		current_fx = fx_attack_a
+	elif _attack_combo_index == 1:
+		_current_attack_anim = anim_attack_b
+		current_fx = fx_attack_b
+	else:
+		_current_attack_anim = anim_attack_c
+		current_fx = fx_attack_c
+
+	_attack_combo_index += 1
+	if _attack_combo_index > 2:
+		_attack_combo_index = 0
+
+	if anim.sprite_frames and anim.sprite_frames.has_animation(_current_attack_anim):
+		anim.play(_current_attack_anim)
+
 	await get_tree().create_timer(0.25).timeout
 
-	# segurança
-	if _dead:
-		return
-	
-	if not _attacking:
-		return
-	
-	if _player_in_range == null:
+	if _dead or not _attacking or _player_in_range == null:
 		return
 
-	# aplica dano no timing do ataque
+	_play_attack_fx(current_fx)
 	_apply_damage_to_player(_player_in_range)
+
+func _spawn_attack_fx(fx_scene: PackedScene) -> void:
+	if fx_scene == null:
+		return
+
+	var fx: Node2D = fx_scene.instantiate()
+	fx.global_position = attack_area.global_position
+	fx.scale.x = abs(fx.scale.x) * facing
+	get_tree().current_scene.add_child(fx)
+
+func _play_attack_fx(fx_anim: StringName) -> void:
+	if attack_fx.sprite_frames == null:
+		return
+
+	if not attack_fx.sprite_frames.has_animation(fx_anim):
+		return
+
+	attack_fx.flip_h = anim.flip_h
+	attack_fx.visible = true
+	attack_fx.play(fx_anim)
 
 func take_damage(amount: int) -> void:
 	if _dead:
@@ -269,7 +314,7 @@ func _on_anim_finished() -> void:
 	if _dead:
 		return
 
-	if anim.animation == String(anim_attack):
+	if anim.animation == String(anim_attack_a) or anim.animation == String(anim_attack_b) or anim.animation == String(anim_attack_c):
 		_attacking = false
 		_play_walk()
 		return
