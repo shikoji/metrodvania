@@ -73,6 +73,7 @@ theme_override_fonts/font = ExtResource("1_nix8d")
 theme_override_font_sizes/font_size = 41
 text = "[ SPACE TO SKIP   ]"
 horizontal_alignment = 1
+script = ExtResource("6_18v65")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Label/DialogueSound/Label" unique_id=1899593426]
@@ -82,7 +83,6 @@ offset_top = -2.0
 offset_right = 351.5
 offset_bottom = 38.0
 texture = ExtResource("5_k76wa")
-script = ExtResource("6_18v65")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1770334376]
