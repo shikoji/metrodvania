@@ -93,15 +93,6 @@ const ACTIONS := [
 		]
 	},
 	{
-		"action": "parasite",
-		"label": "Parasite",
-		"row_name": "ParasiteRow",
-		"defaults": [
-			{"type": BIND_KEY, "code": KEY_Z},
-			{"type": BIND_NONE, "code": 0}
-		]
-	},
-	{
 		"action": "interact",
 		"label": "Interact",
 		"row_name": "InteractRow",

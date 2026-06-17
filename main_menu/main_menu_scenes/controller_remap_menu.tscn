@@ -329,53 +329,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ww1iv")
 [node name="RightColumn" type="VBoxContainer" parent="Rows" unique_id=1153792609]
 layout_mode = 2
 
-[node name="ParasiteRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=181939349]
-layout_mode = 2
-
-[node name="ParasiteLabel" type="Label" parent="Rows/RightColumn/ParasiteRow" unique_id=1214697725]
-custom_minimum_size = Vector2(66, 0)
-layout_mode = 2
-text = "Parasite"
-
-[node name="ParasiteBind" type="Button" parent="Rows/RightColumn/ParasiteRow" unique_id=1232203959]
-custom_minimum_size = Vector2(90, 45)
-layout_mode = 2
-flat = true
-
-[node name="Icon" type="TextureRect" parent="Rows/RightColumn/ParasiteRow/ParasiteBind" unique_id=69250050]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_w2lf8")
-expand_mode = 1
-
-[node name="WaitingText" type="Label" parent="Rows/RightColumn/ParasiteRow/ParasiteBind" unique_id=428270744]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="InteractRow" type="HBoxContainer" parent="Rows/RightColumn" unique_id=941434824]
 layout_mode = 2
 
@@ -429,7 +382,7 @@ layout_mode = 2
 [node name="AdvanceDialogLabel" type="Label" parent="Rows/RightColumn/AdvanceDialogRow" unique_id=1361959679]
 layout_mode = 2
 text = "Advance
-  Dialog"
+Dialog"
 
 [node name="AdvanceDialogBind" type="Button" parent="Rows/RightColumn/AdvanceDialogRow" unique_id=2144401954]
 custom_minimum_size = Vector2(90, 45)

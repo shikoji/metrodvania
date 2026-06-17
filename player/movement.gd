@@ -205,8 +205,6 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
-	activate_power_mode()
-	
 	if is_dead:
 		return
 	
@@ -284,16 +282,7 @@ func update_timers(delta: float) -> void:
 	
 	if push_buffer_timer > 0.0:
 		push_buffer_timer -= delta
-	
-	if power_mode:
-		power_mode_hit_rate -= delta
-		if power_mode_hit_rate <= 0:
-			life -= 50
-			Global.player_life = life
-			power_mode_hit_rate = 0.5
-			if Global.player_life <= 0:
-				death()
-				return
+
 
 @export_category("Abilits")
 @export var power_mode_hit_rate = 0.5
@@ -441,16 +430,6 @@ func request_roll() -> void:
 		return
 	
 	start_roll()
-
-var power_mode = false
-
-func activate_power_mode():
-	if Input.is_action_just_pressed("parasite") and not power_mode and Abilities.power_mode:
-		print("hello?")
-		power_mode = true
-		animation_sprite.material = POWER_MODE_SHADER
-		attack_damage *= 2
-		$PowerMode.emitting = true
 
 func start_roll() -> void:
 	is_rolling = true
@@ -808,7 +787,6 @@ func death() -> void:
 		return
 
 	is_dead = true
-	power_mode = false
 
 	velocity = Vector2.ZERO
 	is_hurt = false

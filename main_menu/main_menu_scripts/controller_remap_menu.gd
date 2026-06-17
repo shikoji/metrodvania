@@ -33,11 +33,6 @@ const ACTIONS := [
 		"button_name": "PotionBind"
 	},
 	{
-		"action": "parasite",
-		"default": {"type": BIND_BUTTON, "index": JOY_BUTTON_Y},
-		"button_name": "ParasiteBind"
-	},
-	{
 		"action": "interact",
 		"default": {"type": BIND_BUTTON, "index": JOY_BUTTON_B},
 		"button_name": "InteractBind"
@@ -92,7 +87,6 @@ const ACTIONS := [
 @onready var potion_bind: Button = $Rows/LeftColumn/PotionRow/PotionBind
 @onready var bomb_bind: Button = $Rows/LeftColumn/BombRow/ThrowBombBind
 
-@onready var parasite_bind: Button = $Rows/RightColumn/ParasiteRow/ParasiteBind
 @onready var interact_bind: Button = $Rows/RightColumn/InteractRow/InteractBind
 @onready var advance_dialog_bind: Button = $Rows/RightColumn/AdvanceDialogRow/AdvanceDialogBind
 @onready var pause_bind: Button = $Rows/RightColumn/PauseRow/PauseBind
@@ -122,7 +116,6 @@ func _ready() -> void:
 		"attack": attack_bind,
 		"dash": dash_bind,
 		"potion": potion_bind,
-		"parasite": parasite_bind,
 		"interact": interact_bind,
 		"advance_dialog": advance_dialog_bind,
 		"pause": pause_bind,
@@ -563,28 +556,23 @@ func _setup_manual_navigation() -> void:
 	]
 
 	var right_buttons: Array[Button] = [
-		parasite_bind,
 		interact_bind,
 		advance_dialog_bind,
 		pause_bind,
 		grass_bind
 	]
 
-	for i in range(left_buttons.size()):
+	var rows_count: int = min(left_buttons.size(), right_buttons.size())
+
+	for i in range(rows_count):
 		var left_button: Button = left_buttons[i]
 		var right_button: Button = right_buttons[i]
 
-		var previous_i: int = i - 1
-		var next_i: int = i + 1
+		var previous_i: int = max(i - 1, 0)
+		var next_i: int = min(i + 1, rows_count - 1)
 
-		if previous_i < 0:
-			previous_i = 0
-
-		if next_i >= left_buttons.size():
-			next_i = left_buttons.size() - 1
-
-		left_button.focus_neighbor_left = left_button.get_path_to(left_button)
 		left_button.focus_neighbor_right = left_button.get_path_to(right_button)
+		left_button.focus_neighbor_left = left_button.get_path_to(left_button)
 		left_button.focus_neighbor_top = left_button.get_path_to(left_buttons[previous_i])
 		left_button.focus_neighbor_bottom = left_button.get_path_to(left_buttons[next_i])
 
@@ -593,10 +581,16 @@ func _setup_manual_navigation() -> void:
 		right_button.focus_neighbor_top = right_button.get_path_to(right_buttons[previous_i])
 		right_button.focus_neighbor_bottom = right_button.get_path_to(right_buttons[next_i])
 
+	# botão extra da esquerda
+	bomb_bind.focus_neighbor_top = bomb_bind.get_path_to(potion_bind)
 	bomb_bind.focus_neighbor_bottom = bomb_bind.get_path_to(restore_button)
+	bomb_bind.focus_neighbor_left = bomb_bind.get_path_to(bomb_bind)
+	bomb_bind.focus_neighbor_right = bomb_bind.get_path_to(grass_bind)
+
+	# último botão da direita desce para Restore
 	grass_bind.focus_neighbor_bottom = grass_bind.get_path_to(restore_button)
 
-	restore_button.focus_neighbor_top = restore_button.get_path_to(potion_bind)
+	restore_button.focus_neighbor_top = restore_button.get_path_to(bomb_bind)
 	restore_button.focus_neighbor_bottom = restore_button.get_path_to(back_button)
 	restore_button.focus_neighbor_left = restore_button.get_path_to(restore_button)
 	restore_button.focus_neighbor_right = restore_button.get_path_to(restore_button)
