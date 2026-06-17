@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dvypgf62dtg5u"]
 
 [ext_resource type="FontFile" uid="uid://c4t03ki51mrt3" path="res://globals/fonts/webfontkit-BoldPixels/BoldPixels.otf" id="1_nix8d"]
-[ext_resource type="Script" uid="uid://6plj3vdybwsj" path="res://instructions/instructionlabel.gd" id="2_18v65"]
 [ext_resource type="AudioStream" uid="uid://dndt6p1jf40u6" path="res://credits/credits_assents/Lingering.mp3" id="3_pr4ya"]
 [ext_resource type="AudioStream" uid="uid://u7ngt4445n48" path="res://main_menu/main_menu_assets/dialoguesound1.mp3" id="4_mrnca"]
 [ext_resource type="Texture2D" uid="uid://ncj5bejem1ey" path="res://globals/assets/Sprites/FaceButtons/Flat/CrossPressed.png" id="5_k76wa"]
@@ -47,7 +46,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "TESTING"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_18v65")
+script = ExtResource("6_18v65")
 metadata/_edit_use_anchors_ = true
 
 [node name="Music" type="AudioStreamPlayer" parent="CanvasLayer/Label" unique_id=185045393]
@@ -63,9 +62,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -139.0
+offset_left = -185.5
 offset_top = -54.0
-offset_right = 140.0
+offset_right = 186.5
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -73,7 +72,6 @@ theme_override_fonts/font = ExtResource("1_nix8d")
 theme_override_font_sizes/font_size = 41
 text = "[ SPACE TO SKIP   ]"
 horizontal_alignment = 1
-script = ExtResource("6_18v65")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Label/DialogueSound/Label" unique_id=1899593426]
