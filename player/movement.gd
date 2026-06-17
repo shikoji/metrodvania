@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 @onready var animation_sprite: AnimatedSprite2D = $animation_sprite
+@onready var collider: CollisionShape2D = $colider
 
 @export_group("help")
 @export var compass_target: Node2D
@@ -205,6 +206,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
+	activate_power_mode()
+	
 	if is_dead:
 		return
 	
@@ -282,7 +285,16 @@ func update_timers(delta: float) -> void:
 	
 	if push_buffer_timer > 0.0:
 		push_buffer_timer -= delta
-
+	
+	if power_mode:
+		power_mode_hit_rate -= delta
+		if power_mode_hit_rate <= 0:
+			life -= 50
+			Global.player_life = life
+			power_mode_hit_rate = 0.5
+			if Global.player_life <= 0:
+				death()
+				return
 
 @export_category("Abilits")
 @export var power_mode_hit_rate = 0.5
@@ -431,6 +443,16 @@ func request_roll() -> void:
 	
 	start_roll()
 
+var power_mode = false
+
+func activate_power_mode():
+	if Input.is_action_just_pressed("parasite") and not power_mode and Abilities.power_mode:
+		print("hello?")
+		power_mode = true
+		animation_sprite.material = POWER_MODE_SHADER
+		attack_damage *= 2
+		$PowerMode.emitting = true
+
 func start_roll() -> void:
 	is_rolling = true
 	is_attacking = false
@@ -464,19 +486,31 @@ func roll_movement(delta: float) -> void:
 		velocity.y += gravity * delta
 	else:
 		velocity.y = 0.0
-
+	
+	if animation_sprite.animation == "roll" and animation_sprite.frame == animation_sprite.sprite_frames.get_frame_count("roll") - 1:
+		end_roll()
 
 func end_roll() -> void:
 	if not is_rolling:
 		return
-	$colider.position.y = 2.0
-	$colider.shape.size.y = 26.0
+
+	var space_state := get_world_2d().direct_space_state
+	var query := PhysicsShapeQueryParameters2D.new()
+	
+	query.shape = collider.shape
+	query.transform = global_transform
+	query.transform.origin.y -= 7.0 
+	query.exclude = [self]
+	
+	var results := space_state.intersect_shape(query)
+	
+	if not results.is_empty():		
+		velocity.x = roll_direction * (horizontal_max_speed * 0.75)
+		return
+	collider.position.y = 2.0
+	collider.shape.size.y = 26.0
 
 	is_rolling = false
-
-	# IMPORTANTE:
-	# Player não deve colidir fisicamente com Enemies nunca.
-	# Então não reative a layer 3 na mask.
 	set_collision_mask_value(enemy_collision_layer, false)
 
 
@@ -787,6 +821,7 @@ func death() -> void:
 		return
 
 	is_dead = true
+	power_mode = false
 
 	velocity = Vector2.ZERO
 	is_hurt = false

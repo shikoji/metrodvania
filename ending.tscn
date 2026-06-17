@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dvypgf62dtg5u"]
+
+[ext_resource type="FontFile" uid="uid://c4t03ki51mrt3" path="res://globals/fonts/webfontkit-BoldPixels/BoldPixels.otf" id="1_k7rdy"]
+[ext_resource type="Script" uid="uid://6plj3vdybwsj" path="res://instructions/instructionlabel.gd" id="2_sy8ce"]
+[ext_resource type="AudioStream" uid="uid://dndt6p1jf40u6" path="res://credits/credits_assents/Lingering.mp3" id="3_uvbhr"]
+[ext_resource type="AudioStream" uid="uid://u7ngt4445n48" path="res://main_menu/main_menu_assets/dialoguesound1.mp3" id="4_m7rhh"]
+[ext_resource type="Texture2D" uid="uid://ncj5bejem1ey" path="res://globals/assets/Sprites/FaceButtons/Flat/CrossPressed.png" id="5_e2dv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elcn8"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tnt2"]
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[node name="Ending" type="Control" unique_id=149026520]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=914843707]
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer" unique_id=803078718]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -634.0
+offset_top = -142.5
+offset_right = 642.0
+offset_bottom = 142.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_k7rdy")
+theme_override_font_sizes/normal_font_size = 40
+text = "TESTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_sy8ce")
+metadata/_edit_use_anchors_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="CanvasLayer/Label" unique_id=185045393]
+stream = ExtResource("3_uvbhr")
+
+[node name="DialogueSound" type="AudioStreamPlayer" parent="CanvasLayer/Label" unique_id=1292894742]
+stream = ExtResource("4_m7rhh")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Label/DialogueSound" unique_id=952092372]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -54.0
+offset_right = 140.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_k7rdy")
+theme_override_font_sizes/font_size = 41
+text = "[ SPACE TO SKIP   ]"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Label/DialogueSound/Label" unique_id=1899593426]
+layout_mode = 0
+offset_left = 311.5
+offset_top = -2.0
+offset_right = 351.5
+offset_bottom = 38.0
+texture = ExtResource("5_e2dv3")
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1770334376]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -96.5
+offset_right = 90.0
+offset_bottom = 96.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_elcn8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1tnt2")
+fill_mode = 3
