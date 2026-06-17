@@ -34,24 +34,18 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_inp7a"]
 shader = ExtResource("2_ysn08")
 shader_parameter/color_count = 0
+shader_parameter/darkness = 0.0
 shader_parameter/glitch_intensity = 0.0
-shader_parameter/TIME_SCALE = 1.0
-shader_parameter/block_size_pixels = 16.0
-shader_parameter/max_glitch_distance_blocks = 1000.0
-shader_parameter/safe_zone_radius_blocks = 0.0
-shader_parameter/glitch_growth_rate = 2.0
+shader_parameter/glitch_speed = 20.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("2_ysn08")
 shader_parameter/palette = ExtResource("3_j34ew")
 shader_parameter/swap = ExtResource("4_p2iis")
 shader_parameter/color_count = 11
+shader_parameter/darkness = 0.0
 shader_parameter/glitch_intensity = 0.0
-shader_parameter/TIME_SCALE = 1.0
-shader_parameter/block_size_pixels = 16.0
-shader_parameter/max_glitch_distance_blocks = 600.0
-shader_parameter/safe_zone_radius_blocks = 0.0
-shader_parameter/glitch_growth_rate = 3.0000001392401203
+shader_parameter/glitch_speed = 20.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o1net"]
 texture = ExtResource("6_aysyn")
@@ -229,7 +223,7 @@ navigation_enabled = false
 [node name="RollUnlock" parent="abilits" unique_id=1538224283 instance=ExtResource("5_fn3g3")]
 position = Vector2(871, -618)
 texture = ExtResource("6_sc4t8")
-offset = Vector2(0, 0.69469595)
+offset = Vector2(0, -0.041594625)
 region_enabled = true
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0.42352942, 0.3372549, 0.2627451, 1)
@@ -238,7 +232,7 @@ ability = 4
 [node name="DoubleJump" parent="abilits" unique_id=1003847264 instance=ExtResource("5_fn3g3")]
 position = Vector2(-134, -92)
 texture = ExtResource("6_ai45w")
-offset = Vector2(0, 0.69469595)
+offset = Vector2(0, -0.041594625)
 region_rect = Rect2(12, 67, 16, 16)
 particle_colors = Color(0, 1, 1, 1)
 ability = 1
@@ -246,21 +240,21 @@ ability = 1
 [node name="Compass" parent="abilits" unique_id=1722225646 instance=ExtResource("5_fn3g3")]
 position = Vector2(2632, -872)
 texture = ExtResource("8_b2suy")
-offset = Vector2(0, 0.69469595)
+offset = Vector2(0, -0.041594625)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 5
 
 [node name="Bomb" parent="abilits" unique_id=1219678768 instance=ExtResource("5_fn3g3")]
 position = Vector2(2425, -855)
 texture = ExtResource("11_inp7a")
-offset = Vector2(0, 0.69469595)
+offset = Vector2(0, -0.041594625)
 particle_colors = Color(1, 0, 0.105882354, 1)
 ability = 2
 
 [node name="GroundBomb" parent="abilits" unique_id=533721857 instance=ExtResource("5_fn3g3")]
 position = Vector2(3328, -1648)
 texture = ExtResource("9_h8lre")
-offset = Vector2(0, 0.69469595)
+offset = Vector2(0, -0.041594625)
 ability = 3
 
 [node name="enemies" type="Node2D" parent="." unique_id=1030024164]
@@ -275,7 +269,7 @@ position = Vector2(664, -576)
 position = Vector2(1193, -3887)
 
 [node name="PlayerStartPosition" type="Marker2D" parent="." unique_id=1139488191]
-position = Vector2(65, -63)
+position = Vector2(68.945, -57.975)
 
 [node name="CompassTarget_Portal" type="Marker2D" parent="." unique_id=2095957082]
 position = Vector2(5376, -2704)
@@ -514,11 +508,11 @@ position = Vector2(1449, -3911)
 [node name="lost_bombs" type="Area2D" parent="Node2D" unique_id=229417744]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/lost_bombs" unique_id=1536714906]
-position = Vector2(792, -4048)
+position = Vector2(796, -4038)
 shape = SubResource("RectangleShape2D_lwhbe")
 
 [node name="player" parent="." unique_id=1819110571 node_paths=PackedStringArray("compass_target") instance=ExtResource("3_4717r")]
-position = Vector2(74, -63)
+position = Vector2(69, -58)
 compass_target = NodePath("../teleports/Teleporter")
 roll_speed = 520.0
 roll_time = 0.35
@@ -542,7 +536,7 @@ position = Vector2(2631, -875)
 shape = SubResource("RectangleShape2D_j7vgi")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="area_zoom/Area2D" unique_id=857248015]
-position = Vector2(3328.5, -1673.5)
+position = Vector2(3327, -1676)
 shape = SubResource("RectangleShape2D_inp7a")
 
 [node name="damage_area" type="Node2D" parent="." unique_id=1334987087]

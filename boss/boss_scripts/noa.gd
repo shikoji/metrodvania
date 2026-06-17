@@ -262,6 +262,7 @@ func free_and_explode():
 	add_sibling(instance)
 	await get_tree().create_timer(0.7).timeout
 	Global.fx_boss_finished = true
+
 	queue_free()
 	
 	

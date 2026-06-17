@@ -301,7 +301,7 @@ var potion_7_spawned: bool = false
 var potion_8_spawned: bool = false
 func update_map_corruption(factor: float) -> void:
 	if tilemap_material:
-		var safe_factor = clampf(factor, 0.0, 1.0)
+		var safe_factor = clampf(factor, 0.0, 0.75)
 		tilemap_material.set_shader_parameter("darkness", safe_factor * 0.40)
 		tilemap_material.set_shader_parameter("glitch_intensity", safe_factor)
 
@@ -311,7 +311,7 @@ var credits_started: bool = false
 func _process(delta: float) -> void:
 	if Global.fx_boss_finished and not credits_started:
 		credits_started = true
-		SceneManager.play_transition_in(preload("res://credits/credits_scene/credits.tscn"))
+		SceneManager.play_transition_in(preload("res://ending/ending.tscn"))
 	
 	if Global.boss_death:
 		stop_golem_spawn()
